@@ -1,0 +1,6 @@
+.env
+node_modules/
+zap-report.*
+*.nessus
+.DS_Store
+Thumbs.db

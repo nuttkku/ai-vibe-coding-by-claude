@@ -1,0 +1,20 @@
+# SITE_ADDRESS defaults to :80 (plain HTTP inside the VM; Cloudflare Tunnel provides HTTPS).
+# Set SITE_ADDRESS=myapp.example.com for option C and Caddy obtains a Let's Encrypt certificate itself.
+{$SITE_ADDRESS::80} {
+	encode gzip
+
+	handle /api/* {
+		reverse_proxy backend:3000
+	}
+
+	handle {
+		reverse_proxy frontend:80
+	}
+
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+}

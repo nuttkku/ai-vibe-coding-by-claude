@@ -1,0 +1,39 @@
+# CLAUDE.md
+
+## Project
+<App name> — <one sentence: what it does and for whom>.
+Full idea and scope: docs/app-idea.md
+
+## Stack
+- Frontend: Svelte 5 + Vite (frontend/)
+- Backend: Node.js LTS + Express, ES modules (backend/)
+- Database: PostgreSQL 17 via `pg`; schema managed by node-pg-migrate (backend/migrations/, SQL files)
+- Runtime: Docker Compose (docker-compose.yml), config from .env
+
+## Commands
+- Start everything: `docker compose up -d --build`
+- Logs: `docker compose logs -f backend`
+- Backend tests: `cd backend && npm test`
+- Frontend tests: `cd frontend && npm test`
+- E2E: `cd frontend && npm run test:e2e`
+- New migration: `cd backend && npx node-pg-migrate create <name> --migration-file-language sql`
+- Apply migrations: `cd backend && npm run migrate up` (backend container also runs this on start)
+
+## Coding rules
+- Use async/await; no callbacks.
+- Always use parameterized SQL queries (`$1, $2`); never build SQL with string concatenation.
+- Validate and sanitize every request body/query on the backend.
+- Return JSON errors as `{ "error": "<message>" }` with a correct HTTP status.
+- Read secrets and config only from environment variables. Never hard-code secrets.
+- Keep changes small and focused; do not refactor unrelated files.
+- Schema changes go in a NEW migration file with both Up and Down sections. Never edit a migration that has already been applied.
+
+## Never
+- Never commit `.env`, credentials, or tokens.
+- Never disable tests or security checks to make CI pass.
+- Never run destructive commands (`docker compose down -v`, `DROP TABLE`, `git push --force`) without asking.
+
+## Definition of Done
+- Tests pass (`npm test` in backend and frontend).
+- `docker compose up -d --build` starts cleanly from scratch.
+- README updated if setup or commands changed.

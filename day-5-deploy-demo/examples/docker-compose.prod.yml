@@ -1,0 +1,83 @@
+# Production stack: pulls images built by CI from GHCR, Caddy routes /api -> backend, / -> frontend.
+#
+# Pick ONE way to expose it:
+#   A) Cloudflare Quick Tunnel (no domain, no Cloudflare account) — default for the course VM:
+#        docker compose -f docker-compose.prod.yml --profile quick up -d
+#        docker compose -f docker-compose.prod.yml logs tunnel-quick | grep trycloudflare.com
+#   B) Cloudflare Named Tunnel (your domain on Cloudflare, stable URL): set TUNNEL_TOKEN, then
+#        docker compose -f docker-compose.prod.yml --profile named up -d
+#   C) Public VPS + own domain, Caddy gets a Let's Encrypt cert: set SITE_ADDRESS=<domain>, then
+#        docker compose -f docker-compose.prod.yml -f docker-compose.domain.yml up -d
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-:80}
+    # Reachable from the VM itself only; tunnels connect over the compose network.
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - frontend
+      - backend
+
+  frontend:
+    image: ${IMAGE_PREFIX}-frontend:latest
+    restart: unless-stopped
+
+  backend:
+    image: ${IMAGE_PREFIX}-backend:latest
+    restart: unless-stopped
+    # The backend image runs `npm run migrate up` before starting (see Day 2), so schema changes
+    # ship with each new image and existing data is kept.
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      NODE_ENV: production
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    # No published ports: the database is reachable only inside the compose network.
+
+  # A) Quick Tunnel: random https://<words>.trycloudflare.com URL, changes on every restart.
+  tunnel-quick:
+    image: cloudflare/cloudflared:latest
+    profiles: [quick]
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --url http://caddy:80
+    depends_on:
+      - caddy
+
+  # B) Named Tunnel: stable hostname on your Cloudflare-managed domain.
+  tunnel-named:
+    image: cloudflare/cloudflared:latest
+    profiles: [named]
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN:-}
+    depends_on:
+      - caddy
+
+volumes:
+  db-data:
+  caddy-data:
+  caddy-config:

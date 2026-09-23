@@ -1,0 +1,7 @@
+# Override for option C (public VPS + own domain). Publishes 80/443 so Caddy can obtain
+# a Let's Encrypt certificate for SITE_ADDRESS. Not needed when using Cloudflare Tunnel.
+services:
+  caddy:
+    ports: !override
+      - "80:80"
+      - "443:443"
