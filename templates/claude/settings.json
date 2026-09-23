@@ -14,7 +14,11 @@
       "Read(./**/.env)",
       "Bash(git push --force:*)",
       "Bash(git reset --hard:*)",
-      "Bash(rm -rf:*)"
+      "Bash(rm -rf:*)",
+      "Bash(docker compose down -v:*)",
+      "Bash(docker-compose down -v:*)",
+      "Bash(docker system prune:*)",
+      "Bash(docker volume rm:*)"
     ]
   }
 }

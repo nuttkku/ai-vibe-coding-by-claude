@@ -7,6 +7,7 @@
 - 🎮 **รู้จักคำสั่ง `/` ของ Claude Code ที่ต้องใช้** — ใช้ทุกวัน (`/clear` `/compact` `/context` `/usage` `/rewind` `/memory` ...), ตั้งค่า/สิทธิ์ (`/permissions` `/status` `/doctor` ...), ขั้นสูง (`/review` `/security-review` `/agents` `/mcp` `/hooks`) และสร้างคำสั่งของตัวเองได้
 - 🌱 **อ่านและใช้คำสั่ง git หลักได้** และรู้ว่าแต่ละคำสั่งตรงกับปุ่มไหนใน GitHub Desktop
 - 🧰 มีเครื่องมือครบ: VSCode + Claude Code, Git + GitHub Desktop, Docker Desktop (WSL2), Node.js LTS
+- 🐳 รันแอปด้วย Docker Compose และดู/หยุด/เริ่ม container ผ่านหน้าจอ Docker Desktop ได้ (ลงลึกวันที่ 2)
 - 🖥️ มี **Server จำลอง (VirtualBox VM, Ubuntu Server)** ที่ SSH เข้าได้และมี Docker พร้อมใช้ในวันที่ 3 และ 5
 - 💡 มี App Idea ของตัวเองเขียนเป็น Prompt พร้อมใช้ในวันที่ 2
 
@@ -19,7 +20,7 @@
 | 09:30–09:45 | 🩺 ตรวจเครื่อง (`check-env`) + ล็อกอิน Claude Code |
 | 09:45–11:00 | 🎮 **Claude Code Bootcamp** — คำสั่ง `/` ที่ต้องรู้ทีละตัว + ลองกดจริง |
 | 11:00–12:00 | 🌱 **Git Bootcamp** — คำสั่ง git ↔ GitHub Desktop |
-| 13:00–13:30 | 🐳 Lab: Docker Compose + 🧪 Lab รวม Claude Code (+ แก้เครื่องที่ติดตั้งไม่ผ่าน) |
+| 13:00–13:30 | 🐳 Lab: Docker Desktop ผ่านหน้าจอ + 🧪 Lab รวม Claude Code (+ แก้เครื่องที่ติดตั้งไม่ผ่าน) |
 | 13:30–14:45 | 🖥️ สร้าง VirtualBox VM + ติดตั้ง Docker บน VM + Snapshot |
 | 14:45–16:00 | 💡 Workshop: เขียน Prompt App Idea |
 
@@ -463,36 +464,50 @@ git log --oneline --graph
 
 ---
 
-## 🧪 4. Lab: ทดสอบรัน Docker Compose
+## 🐳 4. Lab: Docker Desktop (ใช้ผ่านหน้าจอ)
 
-ใช้ไฟล์ตัวอย่างใน [`examples/hello-compose/`](examples/hello-compose/) — มี 2 service: เว็บ (nginx) และฐานข้อมูล (PostgreSQL)
+วันนี้แค่ **รันได้และดูผ่านหน้าจอ Docker Desktop** — แนวคิด (image, volume, network) และคำสั่งทั้งหมด **ลงลึกวันที่ 2**
 
+ใช้ไฟล์ตัวอย่าง [`examples/hello-compose/`](examples/hello-compose/) — มี 2 ส่วน: เว็บ (nginx) และฐานข้อมูล (PostgreSQL)
+
+### ▶️ ขั้นที่ 1 — รันด้วยคำสั่งเดียว
+
+เปิดโฟลเดอร์ `day-1-setup/examples/hello-compose` ใน VSCode แล้ว **ให้ Claude รันให้** (อยู่ในโหมด Manual — อ่านคำสั่งก่อนกด Yes):
+
+```
+คัดลอก .env.example เป็น .env แล้วรัน docker compose up -d ในโฟลเดอร์นี้
+```
+
+หรือพิมพ์เองใน Terminal:
 ```bash
-cd day-1-setup/examples/hello-compose
 cp .env.example .env        # Windows PowerShell: copy .env.example .env
 docker compose up -d
-docker compose ps
 ```
 
-ตรวจสอบ:
-- เปิด <http://localhost:8080> ต้องเห็นหน้า "Hello Vibe Coding"
-- ทดสอบฐานข้อมูล:
-  ```bash
-  docker compose exec db psql -U app -d appdb -c "SELECT * FROM greetings;"
-  ```
+### 🖱️ ขั้นที่ 2 — สำรวจใน Docker Desktop
 
-ปิดระบบ:
-```bash
-docker compose down        # เก็บข้อมูลไว้
-docker compose down -v     # ลบข้อมูลใน volume ด้วย
+เปิด Docker Desktop แล้วทำตามทีละข้อ (ชื่อเมนูอาจต่างเล็กน้อยตามเวอร์ชัน):
+
+| # | ทำอะไร | ต้องเห็น |
+|---|---|---|
+| 1 | เมนู **Containers** | กลุ่มชื่อ `hello-compose` มี 2 ตัว: `web` และ `db` สถานะเขียว (Running) |
+| 2 | คลิกลิงก์พอร์ต **8080:80** ที่แถว `web` | เบราว์เซอร์เปิดหน้า "Hello Vibe Coding" 🎉 |
+| 3 | คลิกที่ `db` → แท็บ **Logs** | บรรทัด `database system is ready to accept connections` |
+| 4 | แท็บ **Exec** (หรือ Terminal) ของ `db` แล้วพิมพ์ `psql -U app -d appdb -c "SELECT * FROM greetings;"` | ข้อความ 2 แถวจากฐานข้อมูล |
+| 5 | กลับไปหน้า Containers กดปุ่ม **Stop** ที่กลุ่ม `hello-compose` | สถานะเป็นสีเทา · รีเฟรชเว็บ → เปิดไม่ได้ |
+| 6 | กด **Start** อีกครั้ง | เว็บกลับมา ข้อมูลใน DB ยังอยู่ |
+| 7 | เมนู **Images** | `nginx` และ `postgres` ที่ดาวน์โหลดมา |
+| 8 | เมนู **Volumes** | `hello-compose_db-data` — ที่เก็บข้อมูลของ DB (อธิบายวันที่ 2) |
+
+> 💡 ภาพรวมแบบง่าย: **Image** = ตัวติดตั้งโปรแกรม · **Container** = โปรแกรมที่กำลังรัน · **Volume** = ที่เก็บข้อมูล · **8080:80** = เปิดเครื่องเราพอร์ต 8080 แล้วส่งต่อเข้าโปรแกรม — รายละเอียดวันที่ 2
+
+### 🎮 ขั้นที่ 3 — ให้ Claude อธิบาย
+
+```
+อธิบาย @docker-compose.yml นี้แบบคนเพิ่งเริ่ม ไม่เกิน 10 บรรทัด ยังไม่ต้องแก้อะไร
 ```
 
-### 🎮 ภารกิจเสริม: ให้ Claude อธิบายและแก้
-เปิดโฟลเดอร์ `hello-compose` ใน VSCode แล้วลอง Prompt:
-```
-อธิบาย docker-compose.yml นี้ทีละบรรทัดแบบคนเพิ่งเริ่ม
-แล้วเพิ่ม service adminer ที่พอร์ต 8081 เพื่อดูฐานข้อมูลผ่านเว็บ
-```
+เก็บไว้รันต่อได้ หรือกด **Stop** ที่กลุ่ม `hello-compose` ก่อนไปทำ VM (ประหยัด RAM) — **อย่ากด Delete ที่ Volumes**
 
 ---
 
@@ -531,7 +546,7 @@ VM นี้จะเป็นเป้าสแกน Nessus ในวันท
 - [ ] รัน `scripts/check-env.ps1` (หรือ `.sh`) แล้วไม่มี FAIL
 - [ ] 🎮 Claude Code Bootcamp: ลองคำสั่ง `/` ระดับ 1–2 ครบ, `npm test` ผ่าน 5/5, มี `CLAUDE.md`, `.claude/settings.json`, `/check`
 - [ ] 🌱 Git Bootcamp: repo `vibe-playground` บน GitHub มี ≥ 3 commit ไม่มี `.env`
-- [ ] `docker run --rm hello-world` ผ่าน และ `hello-compose` เปิดหน้าเว็บ + query ฐานข้อมูลได้
+- [ ] `hello-compose` รันได้ และสำรวจใน Docker Desktop ครบ 8 ข้อ (เปิดเว็บ, ดู Logs, Exec query, Stop/Start)
 - [ ] SSH เข้า VM ได้ และ `docker run --rm hello-world` บน VM ผ่าน
 - [ ] Take Snapshot `clean-docker` ของ VM แล้ว
 - [ ] มีไฟล์ `app-idea.md` ของตัวเองที่ผ่านการขัดเกลากับ Claude แล้ว

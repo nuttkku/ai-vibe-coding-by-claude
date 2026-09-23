@@ -26,8 +26,8 @@
 
 | วัน | หัวข้อ | เนื้อหา |
 |---|---|---|
-| 🧰 1 | [เตรียมเครื่องมือ + ปูพื้นฐานแนวคิด](day-1-setup/README.md) | Mindset Vibe Coding, **🎮 Claude Code Bootcamp** (คำสั่งและปุ่มลัดครบชุด), **🌱 Git Bootcamp** (คำสั่ง git ↔ GitHub Desktop), Docker Compose, **VirtualBox VM (Ubuntu Server)**, เขียน Prompt App Idea |
-| 🏗️ 2 | [สร้าง Scaffold โปรเจกต์จริง](day-2-scaffold/README.md) | เขียน `CLAUDE.md`, Scaffold Svelte + Express + Docker Compose จาก Prompt เดียว, UI เชื่อม API, ทดสอบ E2E, Push ขึ้น GitHub |
+| 🧰 1 | [เตรียมเครื่องมือ + ปูพื้นฐานแนวคิด](day-1-setup/README.md) | Mindset Vibe Coding, **🎮 Claude Code Bootcamp** (คำสั่งและปุ่มลัดครบชุด), **🌱 Git Bootcamp** (คำสั่ง git ↔ GitHub Desktop), Docker Desktop (ใช้ผ่านหน้าจอ), **VirtualBox VM (Ubuntu Server)**, เขียน Prompt App Idea |
+| 🏗️ 2 | [สร้าง Scaffold โปรเจกต์จริง](day-2-scaffold/README.md) | เขียน `CLAUDE.md`, **🐳 Docker ลงลึก** (image, volume, network, คำสั่ง compose), Scaffold Svelte + Express + Docker Compose จาก Prompt เดียว, UI เชื่อม API, ทดสอบ E2E, Push ขึ้น GitHub |
 | 🛡️ 3 | [Testing และ Security](day-3-testing-security/README.md) | Unit + Integration Test, อ่าน Report และ Fix, Snyk, OWASP ZAP, Nessus (สแกน VM ของตัวเอง) |
 | 🚀 4 | [CI/CD + Sprint พัฒนาฟีเจอร์](day-4-cicd-sprint/README.md) | GitHub Actions Workflow, Sprint 1 (Core Feature), Sprint 2 (Feature เสริม/Polish/Bug), Coach รายบุคคล |
 | 🎤 5 | [Sprint สุดท้าย + Demo](day-5-deploy-demo/README.md) | ปิด Feature, Deploy ขึ้น VM + **Cloudflare Tunnel** ได้ URL HTTPS, Demo รายบุคคล, แชร์ Prompt/Strategy |
@@ -46,7 +46,7 @@
 │   └── examples/             # ตัวอย่าง Workflow (คัดลอกไปใช้ในโปรเจกต์ตัวเอง)
 ├── day-5-deploy-demo/        # วันที่ 5: Deploy + Demo
 │   └── examples/
-├── guides/                   # Cheat sheet Claude Code, Git + GitHub Desktop, โหมด·โมเดล·ค่าใช้จ่าย, คู่มือโควต้า
+├── guides/                   # Cheat sheet Claude Code, Git, Docker, โหมด·โมเดล·ค่าใช้จ่าย, คู่มือโควต้า
 ├── scripts/                  # check-env.ps1 / check-env.sh ตรวจเครื่องก่อนเรียน
 ├── templates/                # แม่แบบ CLAUDE.md, App Idea, Demo
 ├── prompts/                  # คลัง Prompt ที่ใช้ตลอดหลักสูตร

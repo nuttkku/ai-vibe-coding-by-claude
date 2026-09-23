@@ -53,6 +53,10 @@
 | Docker Desktop WSL2 backend | <https://docs.docker.com/desktop/features/wsl/> |
 | Microsoft — Install WSL | <https://learn.microsoft.com/windows/wsl/install> |
 | Docker Compose | <https://docs.docker.com/compose/> |
+| Docker — Get started / concepts | <https://docs.docker.com/get-started/> |
+| Docker — Volumes & bind mounts | <https://docs.docker.com/engine/storage/volumes/> |
+| Docker — Compose file reference | <https://docs.docker.com/reference/compose-file/> |
+| Docker — CLI reference | <https://docs.docker.com/reference/cli/docker/> |
 | Node.js | <https://nodejs.org/en/download> |
 | PostgreSQL | <https://www.postgresql.org/docs/> |
 | PostgreSQL Docker image | <https://hub.docker.com/_/postgres> |

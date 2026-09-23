@@ -10,8 +10,8 @@
 
 ## 🏗️ วันที่ 2
 - สร้าง CLAUDE.md ร่างแรก: `/init`
-- Scaffold จาก Prompt เดียว → [day-2 §2](../day-2-scaffold/README.md#-2-lab-scaffold-จาก-prompt-เดียว)
-- UI เชื่อม API → [day-2 §3](../day-2-scaffold/README.md#-3-lab-svelte-ui-เชื่อม-api)
+- Scaffold จาก Prompt เดียว → [day-2 §3](../day-2-scaffold/README.md#-3-lab-scaffold-จาก-prompt-เดียว)
+- UI เชื่อม API → [day-2 §4](../day-2-scaffold/README.md#-4-lab-svelte-ui-เชื่อม-api)
 - E2E: `ติดตั้ง Playwright ใน frontend แล้วเขียน E2E test 1 ไฟล์ ... รันให้ผ่าน`
 
 ## 🛡️ วันที่ 3

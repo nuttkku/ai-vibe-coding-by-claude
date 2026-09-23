@@ -3,6 +3,7 @@
 ## 🎯 เป้าหมายของวัน
 
 - เขียน `CLAUDE.md` ที่ทำให้ Claude ทำงานตรงตามมาตรฐานของโปรเจกต์
+- 🐳 เข้าใจ image/container, port, volume, bind mount, network และใช้คำสั่ง `docker compose` หลักได้
 - ให้ Claude สร้าง Scaffold **Svelte + Express + PostgreSQL + Docker Compose** จาก Prompt เดียว
 - ต่อ Svelte UI เข้ากับ API แล้วทดสอบ End-to-End ได้
 - Commit และ Push โปรเจกต์ขึ้น GitHub
@@ -11,8 +12,9 @@
 
 | เวลา | กิจกรรม |
 |---|---|
-| 09:00–10:00 | วิธีเขียน CLAUDE.md ให้ได้ผล |
-| 10:00–12:00 | Lab: Scaffold โปรเจกต์จาก Prompt เดียว |
+| 09:00–09:40 | 📝 วิธีเขียน CLAUDE.md ให้ได้ผล |
+| 09:40–10:00 | 🐳 Docker ที่ต้องรู้ก่อน Scaffold (แนวคิด + Lab กับ hello-compose) |
+| 10:00–12:00 | 🧪 Lab: Scaffold โปรเจกต์จาก Prompt เดียว |
 | 13:00–14:30 | Lab: Svelte UI เชื่อม API |
 | 14:30–15:30 | ทดสอบระบบแบบ End-to-End |
 | 15:30–16:00 | Commit และ Push ขึ้น GitHub |
@@ -45,7 +47,63 @@
 
 ---
 
-## 🧪 2. Lab: Scaffold จาก Prompt เดียว
+## 🐳 2. Docker ที่ต้องรู้ก่อน Scaffold
+
+วันที่ 1 เราใช้ Docker ผ่านหน้าจอ วันนี้ Claude จะสร้าง **Dockerfile + docker-compose.yml** ของแอปจริงให้ — ผู้เรียนต้อง **อ่านออกและแก้ปัญหาได้**
+
+> 📖 เปิด **[Docker Cheat Sheet](../guides/docker-commands.md)** ไว้ข้างจอ
+
+### 🧠 แนวคิด 5 อย่าง (10 นาที)
+
+| คำ | ความหมาย | ทำไมสำคัญวันนี้ |
+|---|---|---|
+| 🧱 **Image → Container** | Image = แม่แบบ (build จาก Dockerfile) · Container = ตัวที่รันจาก image ลบแล้วสร้างใหม่ได้ | แก้โค้ดแล้วต้อง `--build` ใหม่ ไม่งั้น container รันโค้ดเก่า |
+| 🔌 **Port** `3000:3000` | **เครื่องเรา : container** | พอร์ตชน → เปลี่ยนเลขฝั่งซ้าย |
+| 💾 **Named volume** | ที่เก็บข้อมูลที่อยู่รอดแม้ลบ container | ข้อมูล DB อยู่ที่นี่ — `down -v` = ข้อมูลหาย |
+| 📁 **Bind mount** `./src:/app/src` | ผูกโฟลเดอร์ในเครื่องเข้า container | แก้โค้ดแล้วเห็นผลทันทีตอน dev |
+| 🌐 **Network / ชื่อ service** | service ใน compose เดียวกันคุยกันด้วยชื่อ service | backend ต้องต่อ DB ที่ `db:5432` **ไม่ใช่ `localhost`** |
+
+### 🧪 Lab: ทดลองกับ hello-compose (10 นาที)
+
+เปิด Terminal ในโฟลเดอร์ `day-1-setup/examples/hello-compose` แล้วทำทีละข้อ — สังเกตหน้าจอ Docker Desktop คู่กันไปด้วย
+
+```bash
+docker compose up -d
+docker compose ps                    # ใครรันอยู่ healthy ไหม พอร์ตอะไร
+docker compose logs --tail 20 db     # log 20 บรรทัดล่าสุด (แบบที่วางให้ Claude ดูตอนมี error)
+docker compose exec db psql -U app -d appdb -c "INSERT INTO greetings (message) VALUES ('ข้อมูลของฉัน');"
+```
+
+**ทดลอง 1 — Volume รักษาข้อมูล:**
+```bash
+docker compose down                  # ลบ container (volume ยังอยู่)
+docker compose up -d
+docker compose exec db psql -U app -d appdb -c "SELECT * FROM greetings;"   # 'ข้อมูลของฉัน' ยังอยู่ ✅
+```
+
+**ทดลอง 2 — `down -v` ลบข้อมูลจริง:**
+```bash
+docker compose down -v               # ⚠️ ลบ volume ด้วย
+docker compose up -d
+docker compose exec db psql -U app -d appdb -c "SELECT * FROM greetings;"   # เหลือแค่ 2 แถวเริ่มต้น ❌
+```
+→ นี่คือเหตุผลที่ `down -v` อยู่ใน `deny` ของ `settings.json` และต้อง backup ก่อนเสมอ
+
+**ทดลอง 3 — Bind mount:** แก้ข้อความใน `html/index.html` แล้วรีเฟรช <http://localhost:8080> → เปลี่ยนทันทีโดยไม่ต้องรีสตาร์ท (เพราะโฟลเดอร์ `./html` ผูกเข้า container)
+
+**ทดลอง 4 — เปลี่ยนพอร์ต:** แก้ `WEB_PORT=8090` ใน `.env` → `docker compose up -d` → เปิด <http://localhost:8090>
+
+### 📄 อ่านไฟล์ที่ Claude จะสร้าง
+
+ดูตัวอย่างพร้อมคำอธิบายทีละบรรทัดใน [cheat sheet ข้อ 4–5](../guides/docker-commands.md#-4-อ่าน-docker-composeyml-ให้ออก) — สิ่งที่ต้องหาให้เจอในไฟล์ของตัวเองหลัง scaffold:
+- `healthcheck` ของ db + `depends_on: condition: service_healthy` ของ backend
+- backend ใช้ host `db` ใน `DATABASE_URL`
+- รหัสผ่านมาจาก `${...}` ใน `.env` ไม่ได้เขียนตรงๆ
+- DB **ไม่จำเป็นต้อง** publish พอร์ตออกมา (ปลอดภัยกว่า — วันที่ 3 จะเห็นผลใน Nessus)
+
+---
+
+## 🧪 3. Lab: Scaffold จาก Prompt เดียว
 
 ### 🎒 เตรียม
 1. สร้าง repo ใหม่บน GitHub (เช่น `room-booking`) แบบ Private หรือ Public — ติ๊ก *Add README* และ `.gitignore` = Node
@@ -122,7 +180,7 @@ git commit -m "chore: scaffold svelte + express + postgres"
 
 ---
 
-## 🎨 3. Lab: Svelte UI เชื่อม API
+## 🎨 4. Lab: Svelte UI เชื่อม API
 
 ทำทีละฟีเจอร์ เล็กๆ แล้ว Commit:
 
@@ -146,7 +204,7 @@ git commit -m "chore: scaffold svelte + express + postgres"
 
 ---
 
-## 🔁 4. ทดสอบระบบแบบ End-to-End
+## 🔁 5. ทดสอบระบบแบบ End-to-End
 
 ### 🖐️ ทดสอบด้วยมือ (Smoke test)
 1. `docker compose down -v && docker compose up -d --build` (เริ่มจากศูนย์)
@@ -162,7 +220,7 @@ git commit -m "chore: scaffold svelte + express + postgres"
 
 ---
 
-## ☁️ 5. Commit และ Push ขึ้น GitHub
+## ☁️ 6. Commit และ Push ขึ้น GitHub
 
 ก่อน Push ตรวจสอบ:
 ```bash
@@ -183,6 +241,7 @@ git push origin main
 ## ✅ Checklist ท้ายวัน
 
 - [ ] มี `CLAUDE.md` ที่ปรับให้เข้ากับแอปของตัวเอง
+- [ ] ทดลอง `down` เทียบ `down -v` แล้วอธิบายได้ว่าข้อมูลใน volume หายเมื่อไหร่
 - [ ] `docker compose up -d --build` แล้วทั้ง 3 service ขึ้น `healthy`/`running`
 - [ ] ตาราง `pgmigrations` มีรายการ migration ที่รันแล้ว (`docker compose exec db psql -U app -d appdb -c "SELECT name FROM pgmigrations;"`)
 - [ ] `curl http://localhost:<port>/api/health` ตอบ 200
@@ -194,6 +253,7 @@ git push origin main
 
 | อาการ | วิธีแก้ |
 |---|---|
+| คำสั่ง docker อื่นๆ / container `Exited` / ดิสก์เต็ม | ดู [Docker Cheat Sheet ข้อ 7](../guides/docker-commands.md#-7-แก้ปัญหาที่เจอบ่อย) |
 | Backend ต่อ DB ไม่ได้ (`ECONNREFUSED`) | ใน Docker ต้องใช้ host ชื่อ service (`db`) ไม่ใช่ `localhost`, และใช้ `depends_on: condition: service_healthy` |
 | Frontend เรียก API แล้ว CORS error | ใช้ Vite proxy หรือ reverse proxy แทนการเปิด CORS กว้างๆ |
 | แก้โค้ดแล้วไม่เปลี่ยน | รัน `docker compose up -d --build` หรือใช้ volume mount ตอน dev |
