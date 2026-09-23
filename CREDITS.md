@@ -30,9 +30,9 @@
 | Claude Code — Slash commands <https://docs.anthropic.com/en/docs/claude-code/slash-commands> | คู่มือโควต้า, Cheat Sheet |
 | Claude Code — CLI reference <https://docs.anthropic.com/en/docs/claude-code/cli-reference> | วันที่ 1 Bootcamp, Cheat Sheet |
 | Claude Code — Interactive mode (ปุ่มลัด) <https://docs.anthropic.com/en/docs/claude-code/interactive-mode> | วันที่ 1 Bootcamp, Cheat Sheet |
-| Claude Code — Settings & permissions <https://docs.anthropic.com/en/docs/claude-code/settings> | วันที่ 1 ภารกิจ 5, `templates/claude/settings.json` |
-| Claude Code — Common workflows (Plan mode, custom commands) <https://docs.anthropic.com/en/docs/claude-code/common-workflows> | วันที่ 1 ภารกิจ 3, 6 |
-| Claude Code — Checkpointing (rewind) <https://docs.anthropic.com/en/docs/claude-code/checkpointing> | คู่มือโควต้า |
+| Claude Code — Settings & permissions <https://docs.anthropic.com/en/docs/claude-code/settings> | วันที่ 1 `/permissions`, `templates/claude/settings.json` |
+| Claude Code — Common workflows (Plan mode, custom commands) <https://docs.anthropic.com/en/docs/claude-code/common-workflows> | วันที่ 1 Plan mode, custom command |
+| Claude Code — Checkpointing (rewind) <https://docs.anthropic.com/en/docs/claude-code/checkpointing> | คู่มือโควต้า, วันที่ 1 `/rewind` |
 
 ## 🧰 เครื่องมือพัฒนา
 

@@ -3,7 +3,7 @@
 รายละเอียดและบริบทของแต่ละ Prompt อยู่ในบทเรียนของวันนั้นๆ
 
 ## 🧰 วันที่ 1
-- 🎮 Claude Code Bootcamp 7 ภารกิจ (`@`, `!`, Plan mode, `/rewind`, `CLAUDE.md`, settings, custom command) → [day-1 §2](../day-1-setup/README.md#-2-claude-code-bootcamp)
+- 🎮 Claude Code Bootcamp: คำสั่ง `/` ทีละตัว (ระดับ 1 ใช้ทุกวัน → ระดับ 3 ขั้นสูง) + custom command → [day-1 §2](../day-1-setup/README.md#-2-claude-code-bootcamp)
 - 🌱 Git Bootcamp: `เพิ่มฟังก์ชัน addVat(price) บวก VAT 7% พร้อม test แล้ว commit ให้ด้วย` (อ่านคำสั่ง git ก่อนกด Yes) → [day-1 §3](../day-1-setup/README.md#-3-git-bootcamp)
 - อธิบาย Compose: `อธิบาย docker-compose.yml นี้ทีละบรรทัดแบบคนเพิ่งเริ่ม แล้วเพิ่ม service adminer ที่พอร์ต 8081`
 - ขัดเกลา App Idea → [day-1 §6](../day-1-setup/README.md#-6-workshop-เขียน-prompt-app-idea)

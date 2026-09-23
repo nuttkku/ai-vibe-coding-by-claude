@@ -49,6 +49,8 @@ Claude Code อัปเดตบ่อย ถ้าคำสั่งไหน�
 
 ## 📋 4. Slash commands ที่ใช้บ่อย
 
+คำอธิบายทีละคำสั่งพร้อมแบบฝึก อยู่ใน [บทเรียนวันที่ 1 Session 2](../day-1-setup/README.md#-2-claude-code-bootcamp)
+
 ### ⭐ ใช้ทุกวัน
 
 | คำสั่ง | ทำอะไร |
@@ -80,6 +82,8 @@ Claude Code อัปเดตบ่อย ถ้าคำสั่งไหน�
 | `/config` | เปิดหน้าตั้งค่า |
 | `/add-dir` | ให้ Claude เข้าถึงโฟลเดอร์อื่นนอกโปรเจกต์ |
 | `/login` / `/logout` | สลับบัญชี |
+| `/terminal-setup` | ตั้ง `Shift+Enter` ให้ขึ้นบรรทัดใหม่ใน Terminal |
+| `/ide` | เชื่อม `claude` ใน Terminal กับ VS Code (เห็นโค้ดที่เลือก + diff ใน editor) |
 
 ### 🚀 ขั้นสูง (ใช้วันที่ 3–5)
 
@@ -90,7 +94,10 @@ Claude Code อัปเดตบ่อย ถ้าคำสั่งไหน�
 | `/agents` | จัดการ subagent (ผู้ช่วยเฉพาะทาง เช่น reviewer) |
 | `/mcp` | จัดการ MCP server (ต่อเครื่องมือภายนอก เช่น เบราว์เซอร์) |
 | `/hooks` | ตั้งให้รันคำสั่งอัตโนมัติ เช่น รัน test ทุกครั้งหลังแก้ไฟล์ |
+| `/install-github-app` | ติดตั้ง Claude บน GitHub repo ให้ mention `@claude` ใน Issue/PR ได้ |
 | `/export` | ส่งออกบทสนทนา (ใช้แชร์ Prompt ในวันที่ 5) |
+| `/feedback` (หรือ `/bug`) | รายงานปัญหาของ Claude Code ให้ Anthropic |
+| `/exit` | ออกจาก Claude Code (CLI) |
 
 ## 💻 5. คำสั่ง CLI (ใน Terminal)
 
