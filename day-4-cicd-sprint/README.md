@@ -1,13 +1,13 @@
-# วันที่ 4 — CI/CD + Sprint พัฒนาฟีเจอร์
+# 🚀 วันที่ 4 — CI/CD + Sprint พัฒนาฟีเจอร์
 
-## เป้าหมายของวัน
+## 🎯 เป้าหมายของวัน
 
 - ให้ Claude เขียน GitHub Actions Workflow: **Test → Snyk/ZAP → Build → Push Image**
 - Sprint 1: สร้าง Core Feature ครบวงจร (UI + API + DB)
 - Sprint 2: Feature เสริม, Polish UI, แก้ Bug
 - ทุกการเปลี่ยนแปลงผ่าน CI/CD Pipeline สีเขียว
 
-## ตารางเวลา (แนะนำ)
+## ⏰ ตารางเวลา (แนะนำ)
 
 | เวลา | กิจกรรม |
 |---|---|
@@ -20,9 +20,9 @@
 
 ---
 
-## 1. GitHub Actions Workflow
+## ⚙️ 1. GitHub Actions Workflow
 
-### ภาพรวม Pipeline
+### 🗺️ ภาพรวม Pipeline
 
 ```
 push / PR
@@ -39,7 +39,7 @@ push / PR
 
 ตัวอย่างเต็ม: [`examples/ci.yml`](examples/ci.yml) — **คัดลอกไปไว้ที่ `.github/workflows/ci.yml` ในโปรเจกต์ของตัวเอง**
 
-### Prompt ให้ Claude เขียน/ปรับ Workflow
+### 💬 Prompt ให้ Claude เขียน/ปรับ Workflow
 
 ```
 สร้าง .github/workflows/ci.yml สำหรับโปรเจกต์นี้ โดยใช้ day-4 examples/ci.yml เป็นต้นแบบ:
@@ -50,12 +50,12 @@ push / PR
 ปรับ path, พอร์ต, ชื่อ db ให้ตรงกับโปรเจกต์จริง และอธิบายแต่ละ job สั้นๆ
 ```
 
-### ตั้งค่าใน GitHub
+### 🔐 ตั้งค่าใน GitHub
 1. Snyk → Account settings → คัดลอก **Auth Token**
 2. GitHub repo → Settings → Secrets and variables → Actions → **New repository secret** ชื่อ `SNYK_TOKEN`
 3. Push แล้วดูผลที่แท็บ **Actions**
 
-### เมื่อ Pipeline แดง
+### 🚨 เมื่อ Pipeline แดง
 ```
 GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 <วาง log ช่วงที่ error>
@@ -66,11 +66,11 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 
 ---
 
-## 2. Sprint 1 — Core Feature
+## 🏃 2. Sprint 1 — Core Feature
 
 **เป้าหมาย:** ฟีเจอร์ "Must have" จาก `app-idea.md` ทำงานได้ครบวงจร
 
-### วิธีทำงานแบบ Sprint กับ Claude
+### 🔄 วิธีทำงานแบบ Sprint กับ Claude
 
 1. **วางแผน (Plan mode)** — ให้ Claude เสนอแผนก่อน ยังไม่แก้โค้ด
    ```
@@ -85,7 +85,7 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 3. **Review เอง** ด้วย `git diff` ก่อน commit ทุกครั้ง — ถ้า task เปลี่ยน schema ต้องเห็น **ไฟล์ migration ใหม่** ใน diff (ไม่ใช่การแก้ไฟล์เดิม)
 4. **Push** → ดู Pipeline เขียว
 
-### แนวทาง Feature Branch (แนะนำ)
+### 🌿 แนวทาง Feature Branch (แนะนำ)
 ```bash
 git switch -c feat/booking-create
 # ... ทำงาน ...
@@ -95,9 +95,9 @@ git push -u origin feat/booking-create
 
 ---
 
-## 3. Sprint 2 — Feature เสริม, Polish UI, แก้ Bug
+## ✨ 3. Sprint 2 — Feature เสริม, Polish UI, แก้ Bug
 
-### Polish UI
+### 💅 Polish UI
 ```
 ปรับ UI ทั้งแอปให้:
 - responsive บนมือถือ (กว้าง 375px ต้องใช้งานได้)
@@ -107,7 +107,7 @@ git push -u origin feat/booking-create
 ไม่ต้องเพิ่ม UI library ใหม่
 ```
 
-### แก้ Bug อย่างเป็นระบบ
+### 🐞 แก้ Bug อย่างเป็นระบบ
 1. เขียนขั้นตอนทำให้เกิดบั๊ก (Reproduce steps)
 2. ให้ Claude **เขียน test ที่ fail ก่อน** แล้วค่อยแก้ให้ test ผ่าน
    ```
@@ -117,7 +117,7 @@ git push -u origin feat/booking-create
 
 ---
 
-## 4. Coach รายบุคคล — คำถามที่วิทยากรใช้ถาม
+## 🧑‍🏫 4. Coach รายบุคคล — คำถามที่วิทยากรใช้ถาม
 
 - ตอนนี้ติดอะไรอยู่? ลองให้ Claude ทำไปแล้วกี่รอบ? Prompt ล่าสุดคืออะไร?
 - `CLAUDE.md` ของคุณมีกฎที่ช่วยเรื่องนี้หรือยัง?
@@ -127,7 +127,7 @@ git push -u origin feat/booking-create
 
 ---
 
-## Checklist ท้ายวัน
+## ✅ Checklist ท้ายวัน
 
 - [ ] `.github/workflows/ci.yml` อยู่ในโปรเจกต์ และรันครบ 4 job
 - [ ] Pipeline บน `main` เป็นสีเขียว
@@ -137,7 +137,7 @@ git push -u origin feat/booking-create
 - [ ] Bug ที่พบถูกแก้พร้อม test
 - [ ] การเปลี่ยน schema ทุกครั้งอยู่ใน migration ใหม่ และ `npm run migrate down` ย้อนได้
 
-## Troubleshooting
+## 🛠️ Troubleshooting
 
 | อาการ | วิธีแก้ |
 |---|---|
@@ -147,5 +147,9 @@ git push -u origin feat/booking-create
 | CI fail ที่ `migrate up` | มักเกิดจากแก้ไฟล์ migration เดิม หรือ migration พึ่งข้อมูลที่ไม่มีใน DB ว่าง — สร้าง migration ใหม่แทน |
 | Test ผ่านในเครื่องแต่ fail ใน CI | ตรวจ env var ที่ใช้ในเครื่องแต่ไม่ได้ตั้งใน CI, และ `npm ci` ต้องมี `package-lock.json` |
 
-## อ้างอิง
+## 📚 อ้างอิง
 ดู [CREDITS.md](../CREDITS.md) หัวข้อ "CI/CD & Deploy" และ "Security"
+
+---
+
+<p align="center"><a href="../day-3-testing-security/README.md">⬅️ 🛡️ วันที่ 3</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../day-5-deploy-demo/README.md">🎤 วันที่ 5 ➡️</a></p>

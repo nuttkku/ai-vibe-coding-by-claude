@@ -1,12 +1,12 @@
-# วันที่ 5 — Sprint สุดท้าย + Demo
+# 🎤 วันที่ 5 — Sprint สุดท้าย + Demo
 
-## เป้าหมายของวัน
+## 🎯 เป้าหมายของวัน
 
 - ปิด Feature, แก้ Bug, Polish App ให้พร้อมนำเสนอ
 - Deploy App ขึ้น Server จริงจนได้ **URL ที่เข้าได้จากภายนอก (HTTPS)**
 - นำเสนอ Demo รายบุคคล พร้อมแชร์ Prompt/Strategy และสิ่งที่เรียนรู้
 
-## ตารางเวลา (แนะนำ)
+## ⏰ ตารางเวลา (แนะนำ)
 
 | เวลา | กิจกรรม |
 |---|---|
@@ -18,7 +18,7 @@
 
 ---
 
-## 1. Sprint สุดท้าย
+## 🏁 1. Sprint สุดท้าย
 
 **กฎ Sprint สุดท้าย:** ไม่เพิ่มฟีเจอร์ใหม่หลัง 11:00 — เวลาที่เหลือใช้ทำให้สิ่งที่มี "เสถียร"
 
@@ -32,9 +32,9 @@
 
 ---
 
-## 2. Deploy ขึ้น Server จริง
+## 🌍 2. Deploy ขึ้น Server จริง
 
-### ทางเลือก — ไม่มีโดเมนก็ได้ URL
+### 🧭 ทางเลือก — ไม่มีโดเมนก็ได้ URL
 
 | ทางเลือก | ต้องมีอะไร | URL ที่ได้ | เหมาะกับ |
 |---|---|---|---|
@@ -53,7 +53,7 @@
 
 ไฟล์ตัวอย่าง: [`docker-compose.prod.yml`](examples/docker-compose.prod.yml), [`Caddyfile`](examples/Caddyfile), [`.env.example`](examples/.env.example), [`docker-compose.domain.yml`](examples/docker-compose.domain.yml) (เฉพาะทางเลือก C)
 
-### ขั้นตอน A: VM + Cloudflare Quick Tunnel
+### 🅰️ ขั้นตอน A: VM + Cloudflare Quick Tunnel
 
 1. **เปิด VM** จากวันที่ 1 แล้ว SSH เข้า (`ssh <user>@192.168.56.101`) — ถ้า VM พัง ย้อน Snapshot `clean-docker`
 2. **คัดลอกไฟล์** ขึ้น VM:
@@ -80,9 +80,9 @@
    ตาราง DB ถูกสร้างอัตโนมัติ เพราะ container backend รัน `npm run migrate up` ก่อน start (ตั้งไว้ตั้งแต่วันที่ 2) — ตรวจได้ด้วย
    `docker compose -f docker-compose.prod.yml logs backend | head -20`
 
-> URL ของ Quick Tunnel จะเปลี่ยนเมื่อ container `tunnel-quick` รีสตาร์ท — **อย่ารีสตาร์ทหลังส่ง URL ให้ผู้ชม Demo แล้ว** อัปเดตแอปด้วย `docker compose ... up -d frontend backend` แทน
+> ⚠️ URL ของ Quick Tunnel จะเปลี่ยนเมื่อ container `tunnel-quick` รีสตาร์ท — **อย่ารีสตาร์ทหลังส่ง URL ให้ผู้ชม Demo แล้ว** อัปเดตแอปด้วย `docker compose ... up -d frontend backend` แทน
 
-### ทางเลือก B: Named Tunnel (มีโดเมน, URL คงที่)
+### 🅱️ ทางเลือก B: Named Tunnel (มีโดเมน, URL คงที่)
 1. เพิ่มโดเมนเข้า Cloudflare (เปลี่ยน nameserver ตามที่ Cloudflare บอก)
 2. Cloudflare Dashboard → **Zero Trust → Networks → Tunnels → Create a tunnel** (ชนิด Cloudflared) → คัดลอก **token**
 3. ตั้ง **Public Hostname** เช่น `app.example.com` → Service `http://caddy:80`
@@ -91,12 +91,12 @@
    docker compose -f docker-compose.prod.yml --profile named up -d
    ```
 
-### ทางเลือก C: VPS สาธารณะ + โดเมน + Caddy
+### 🌐 ทางเลือก C: VPS สาธารณะ + โดเมน + Caddy
 1. ตั้ง A record ของโดเมน → Public IP ของ VPS, เปิด firewall 22/80/443
 2. ใส่ `SITE_ADDRESS=<โดเมน>` ใน `.env` (Caddy จะขอใบรับรอง Let's Encrypt ให้เอง)
 3. `docker compose -f docker-compose.prod.yml -f docker-compose.domain.yml up -d`
 
-### อัปเดตเวอร์ชันใหม่ + Backup ก่อนทุกครั้ง
+### 💾 อัปเดตเวอร์ชันใหม่ + Backup ก่อนทุกครั้ง
 
 เมื่อ CI push image ใหม่ (อาจมี migration ใหม่ที่เปลี่ยน schema) ให้ **backup ก่อนเสมอ**:
 
@@ -114,10 +114,10 @@ bash restore.sh backups/<ไฟล์ล่าสุดก่อนอัปเ�
 
 ไฟล์: [`backup.sh`](examples/backup.sh) (เก็บ 7 ไฟล์ล่าสุด, ตั้ง cron รายวันได้), [`restore.sh`](examples/restore.sh) (ถามยืนยันก่อนเขียนทับ)
 
-> **ก่อน Demo:** รัน `bash backup.sh` 1 ครั้ง และลอง `restore.sh` กับไฟล์นั้นให้แน่ใจว่าใช้ได้ — backup ที่ไม่เคยลอง restore ถือว่ายังไม่มี backup
+> 💡 **ก่อน Demo:** รัน `bash backup.sh` 1 ครั้ง และลอง `restore.sh` กับไฟล์นั้นให้แน่ใจว่าใช้ได้ — backup ที่ไม่เคยลอง restore ถือว่ายังไม่มี backup
 > ไฟล์ backup อยู่บน VM เครื่องเดียวกัน — ถ้าจะใช้งานจริงต่อ ให้คัดลอกออกไปเก็บที่อื่นด้วย (`scp` กลับมาเครื่องตัวเอง)
 
-### ให้ Claude ช่วย Deploy
+### 🤖 ให้ Claude ช่วย Deploy
 ```
 ช่วยเตรียม deploy โปรเจกต์นี้ขึ้น VirtualBox VM (Ubuntu Server, มี Docker แล้ว)
 และเปิดออกอินเทอร์เน็ตด้วย Cloudflare Quick Tunnel โดยใช้ day-5 examples เป็นต้นแบบ:
@@ -129,17 +129,17 @@ bash restore.sh backups/<ไฟล์ล่าสุดก่อนอัปเ�
 
 > ⚠️ **อย่าวางรหัสผ่าน SSH หรือ Tunnel token ลงใน Prompt** — ใช้ SSH key และอนุญาตคำสั่งทีละคำสั่ง
 
-### (เสริม) Deploy อัตโนมัติจาก CI
+### 🔁 (เสริม) Deploy อัตโนมัติจาก CI
 VM ใน VirtualBox อยู่หลัง NAT ทำให้ GitHub Actions SSH เข้ามาไม่ได้ ทางออกที่ง่าย: ตั้ง cron บน VM ให้รัน `docker compose -f docker-compose.prod.yml pull frontend backend && docker compose -f docker-compose.prod.yml up -d frontend backend` ทุก 5 นาที เพื่อดึง image ใหม่จาก GHCR เอง (ให้ Claude ช่วยเขียน crontab)
 (ทางเลือก C ใช้ job SSH จาก CI ได้ตรงๆ โดยเก็บ SSH key ใน GitHub Secrets)
 
-### สแกน Production
+### 🔎 สแกน Production
 - **ZAP baseline** กับ URL ของ Tunnel (ของตัวเองเท่านั้น) — Cloudflare อาจ rate-limit ถ้าสแกนหนัก ใช้ baseline ไม่ใช่ full scan
 - **Nessus Basic Network Scan** กับ IP Host-only ของ VM — ควรเห็นเฉพาะพอร์ต **22** เปิด (Caddy bind แค่ `127.0.0.1`, Postgres ไม่ publish) เทียบกับผลสแกนวันที่ 3
 
 ---
 
-## 3. Demo รายบุคคล
+## 🎬 3. Demo รายบุคคล
 
 ใช้แม่แบบ [`templates/demo-presentation.md`](../templates/demo-presentation.md)
 
@@ -151,7 +151,7 @@ VM ใน VirtualBox อยู่หลัง NAT ทำให้ GitHub Actions
 | Prompt/Strategy ที่ได้ผล | 2 นาที |
 | สิ่งที่เรียนรู้ + ถาม-ตอบ | 1–2 นาที |
 
-### เกณฑ์ประเมิน (แนะนำ)
+### 🏆 เกณฑ์ประเมิน (แนะนำ)
 
 | หัวข้อ | น้ำหนัก |
 |---|---|
@@ -163,7 +163,7 @@ VM ใน VirtualBox อยู่หลัง NAT ทำให้ GitHub Actions
 
 ---
 
-## 4. แชร์ Prompt/Strategy + สิ่งที่เรียนรู้
+## 🤝 4. แชร์ Prompt/Strategy + สิ่งที่เรียนรู้
 
 ให้ผู้เรียนแต่ละคนเพิ่ม Prompt ที่ได้ผลที่สุด 1–3 อันลงใน [`prompts/`](../prompts/) ผ่าน Pull Request (ถ้าต้องการแบ่งปันกับรุ่นต่อไป)
 
@@ -174,7 +174,7 @@ VM ใน VirtualBox อยู่หลัง NAT ทำให้ GitHub Actions
 
 ---
 
-## Checklist ท้ายวัน (และท้ายหลักสูตร)
+## ✅ Checklist ท้ายวัน (และท้ายหลักสูตร)
 
 - [ ] แอปเข้าได้ที่ URL ของ Cloudflare Tunnel (หรือโดเมนของตัวเอง) จากเครือข่ายภายนอก เช่น มือถือที่ใช้ 4G
 - [ ] Pipeline บน `main` เขียว, image ล่าสุดคือที่ deploy อยู่
@@ -184,5 +184,9 @@ VM ใน VirtualBox อยู่หลัง NAT ทำให้ GitHub Actions
 - [ ] นำเสนอ Demo แล้ว
 - [ ] แชร์ Prompt/Strategy อย่างน้อย 1 อัน
 
-## อ้างอิง
+## 📚 อ้างอิง
 ดู [CREDITS.md](../CREDITS.md) หัวข้อ "CI/CD & Deploy"
+
+---
+
+<p align="center"><a href="../day-4-cicd-sprint/README.md">⬅️ 🚀 วันที่ 4</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../prompts/community.md">🎉 จบหลักสูตร — แชร์ Prompt ของคุณ</a></p>

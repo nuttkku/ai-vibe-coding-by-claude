@@ -1,4 +1,4 @@
-# สร้าง Server จำลองด้วย VirtualBox (Ubuntu Server)
+# 🖥️ สร้าง Server จำลองด้วย VirtualBox (Ubuntu Server)
 
 VM นี้คือ "Server จริง" ของผู้เรียนตลอดหลักสูตร:
 
@@ -8,9 +8,9 @@ VM นี้คือ "Server จริง" ของผู้เรียนต
 | 3 | เป้าหมายสแกน **Nessus** (เครื่องของตัวเอง — สแกนได้โดยไม่ผิดกฎ) |
 | 5 | **Deploy** แอปขึ้น VM แล้วเปิดสู่อินเทอร์เน็ตด้วย **Cloudflare Tunnel** |
 
-> **ทำก่อนเข้าเรียน (Pre-course):** ดาวน์โหลด VirtualBox และไฟล์ ISO ของ Ubuntu Server LTS (~3 GB) ไว้ล่วงหน้า เพื่อไม่ให้เครือข่ายในห้องอบรมช้า
+> 💡 **ทำก่อนเข้าเรียน (Pre-course):** ดาวน์โหลด VirtualBox และไฟล์ ISO ของ Ubuntu Server LTS (~3 GB) ไว้ล่วงหน้า เพื่อไม่ให้เครือข่ายในห้องอบรมช้า
 
-## สเปกแนะนำ
+## 📐 สเปกแนะนำ
 
 | รายการ | ค่า |
 |---|---|
@@ -22,18 +22,18 @@ VM นี้คือ "Server จริง" ของผู้เรียนต
 
 เครื่องผู้เรียนควรมี RAM 16 GB เพราะต้องเปิด Docker Desktop และ VM พร้อมกัน
 
-## 1. ติดตั้ง VirtualBox
+## 📥 1. ติดตั้ง VirtualBox
 
 ดาวน์โหลดจาก <https://www.virtualbox.org/wiki/Downloads> ติดตั้งแบบค่าเริ่มต้น
 
-> **Windows + WSL2/Docker Desktop:** VirtualBox เวอร์ชันใหม่ใช้งานร่วมกับ Hyper-V/WSL2 ได้ (ผ่าน Windows Hypervisor Platform) แต่ VM อาจช้าลงบ้าง ถ้าเห็นไอคอนเต่าสีเขียว 🐢 ที่มุมหน้าต่าง VM แปลว่ากำลังรันผ่านโหมดนี้ ใช้งานในหลักสูตรได้ปกติ
+> 💡 **Windows + WSL2/Docker Desktop:** VirtualBox เวอร์ชันใหม่ใช้งานร่วมกับ Hyper-V/WSL2 ได้ (ผ่าน Windows Hypervisor Platform) แต่ VM อาจช้าลงบ้าง ถ้าเห็นไอคอนเต่าสีเขียว 🐢 ที่มุมหน้าต่าง VM แปลว่ากำลังรันผ่านโหมดนี้ ใช้งานในหลักสูตรได้ปกติ
 
-## 2. สร้าง Host-only Network
+## 🔌 2. สร้าง Host-only Network
 
 VirtualBox → **File → Tools → Network Manager** → แท็บ *Host-only Networks* → **Create**
 ค่าเริ่มต้นมักเป็น `192.168.56.1/24` (เครื่องเรา = `192.168.56.1`)
 
-## 3. สร้าง VM
+## 🏗️ 3. สร้าง VM
 
 1. **New** → ตั้งชื่อ `vibe-server` → เลือกไฟล์ ISO → ติ๊ก **Skip Unattended Installation**
 2. ตั้ง RAM, CPU, Disk ตามตารางด้านบน
@@ -50,7 +50,7 @@ VirtualBox → **File → Tools → Network Manager** → แท็บ *Host-onl
    ```
    จด IP ไว้ เช่น `192.168.56.101`
 
-## 4. SSH จากเครื่องเรา
+## 🔑 4. SSH จากเครื่องเรา
 
 ```bash
 ssh <user>@192.168.56.101
@@ -63,9 +63,9 @@ ssh-copy-id <user>@192.168.56.101
 ```
 Windows PowerShell ไม่มี `ssh-copy-id` — ให้ Claude ช่วย: `ช่วยเขียนคำสั่ง PowerShell คัดลอก public key ไปที่ ~/.ssh/authorized_keys บน VM`
 
-> ใช้ VSCode Extension **Remote - SSH** เปิดไฟล์บน VM ได้เหมือนเครื่องตัวเอง
+> 💡 ใช้ VSCode Extension **Remote - SSH** เปิดไฟล์บน VM ได้เหมือนเครื่องตัวเอง
 
-## 5. ติดตั้ง Docker บน VM
+## 🐳 5. ติดตั้ง Docker บน VM
 
 ใช้สคริปต์ [`examples/vm-setup.sh`](examples/vm-setup.sh) (ติดตั้ง Docker Engine ตามเอกสาร Docker + เปิด firewall เฉพาะ SSH):
 
@@ -83,12 +83,12 @@ docker run --rm hello-world
 docker compose version
 ```
 
-## 6. Snapshot
+## 📸 6. Snapshot
 
 VirtualBox → เลือก VM → **Snapshots → Take** ตั้งชื่อ `clean-docker`
 ถ้าทำอะไรพังในวันต่อๆ ไป ย้อนกลับมาจุดนี้ได้ทันที
 
-## Troubleshooting
+## 🛠️ Troubleshooting
 
 | อาการ | วิธีแก้ |
 |---|---|
@@ -97,3 +97,7 @@ VirtualBox → เลือก VM → **Snapshots → Take** ตั้งชื�
 | ไม่เห็น IP 192.168.56.x | ตรวจว่า Adapter 2 เป็น Host-only และ interface ได้ DHCP (`sudo netplan apply`) |
 | SSH `Connection refused` | บน VM: `sudo systemctl status ssh` ถ้ายังไม่ติดตั้ง `sudo apt install openssh-server` |
 | Nessus (ใน Docker Desktop) มองไม่เห็น VM | ลองติดตั้ง Nessus ลง Windows โดยตรง หรือติดตั้ง Nessus ในอีก VM บน Host-only network เดียวกัน |
+
+---
+
+<p align="center"><a href="README.md#-6-สร้าง-server-จำลองด้วย-virtualbox">⬅️ กลับไปบทเรียนวันที่ 1</a> · <a href="../README.md">🏠 หน้าหลัก</a></p>

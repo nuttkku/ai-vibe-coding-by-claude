@@ -1,34 +1,36 @@
-# AI Vibe Coding ด้วย Claude (หลักสูตร 5 วัน)
+# 🤖 AI Vibe Coding ด้วย Claude (หลักสูตร 5 วัน)
 
-หลักสูตรเชิงปฏิบัติการ สร้างเว็บแอปจริงตั้งแต่เริ่มจนถึง Deploy ได้ URL โดยใช้ **Claude Code** เป็นคู่หูเขียนโค้ด
-ครอบคลุม Scaffold → UI/API/DB → Testing → Security Scan → CI/CD → Deploy → Demo
+![Days](https://img.shields.io/badge/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3-5_%E0%B8%A7%E0%B8%B1%E0%B8%99-ff7a59) ![Stack](https://img.shields.io/badge/stack-Svelte_%C2%B7_Express_%C2%B7_PostgreSQL-4f46e5) ![Code: MIT](https://img.shields.io/badge/code-MIT-22c55e) ![Content: CC BY-NC-SA 4.0](https://img.shields.io/badge/content-CC_BY--NC--SA_4.0-f59e0b)
 
-> **ผู้จัดทำหลักสูตร:** Wanut Padee (wanut@kku.ac.th)
+✨ หลักสูตรเชิงปฏิบัติการ สร้างเว็บแอปจริงตั้งแต่เริ่มจนถึง Deploy ได้ URL โดยใช้ **Claude Code** เป็นคู่หูเขียนโค้ด
+🏗️ Scaffold → 🎨 UI/API/DB → 🧪 Testing → 🛡️ Security Scan → ⚙️ CI/CD → 🌍 Deploy → 🎤 Demo
+
+> 📌 **ผู้จัดทำหลักสูตร:** Wanut Padee (wanut@kku.ac.th)
 > **License:** โค้ดใช้ [MIT](LICENSE) · เนื้อหาการสอนใช้ [CC BY-NC-SA 4.0 (เพื่อการศึกษา)](LICENSE-EDU.md) · ดู [CREDITS.md](CREDITS.md) สำหรับแหล่งอ้างอิง
 
 ---
 
-## ผู้เรียนจะได้อะไร
+## 🎁 ผู้เรียนจะได้อะไร
 
-- เข้าใจแนวคิด Vibe Coding และรู้ว่าเมื่อไหร่ควร "ปล่อยให้ AI ขับ" เมื่อไหร่ต้อง "จับพวงมาลัยเอง"
-- เขียน `CLAUDE.md` และ Prompt ที่ทำให้ Claude สร้างโค้ดได้ตรงใจ
-- สร้างแอป **Svelte + Express + PostgreSQL** รันด้วย **Docker Compose**
-- ให้ Claude เขียน Unit/Integration Test และอ่านผลเพื่อแก้บั๊ก
-- สแกนความปลอดภัยด้วย **Snyk**, **OWASP ZAP**, **Nessus**
-- สร้าง Pipeline **GitHub Actions**: Test → Security Scan → Build → Push Image
-- สร้าง Server จำลองด้วย **VirtualBox** แล้ว Deploy แอปขึ้นไป เปิดสู่อินเทอร์เน็ตด้วย **Cloudflare Tunnel** (ไม่ต้องมีโดเมน) และนำเสนอ Demo พร้อม URL
+- 🧠 เข้าใจแนวคิด Vibe Coding และรู้ว่าเมื่อไหร่ควร "ปล่อยให้ AI ขับ" เมื่อไหร่ต้อง "จับพวงมาลัยเอง"
+- 📝 เขียน `CLAUDE.md` และ Prompt ที่ทำให้ Claude สร้างโค้ดได้ตรงใจ
+- 🏗️ สร้างแอป **Svelte + Express + PostgreSQL** รันด้วย **Docker Compose**
+- 🧪 ให้ Claude เขียน Unit/Integration Test และอ่านผลเพื่อแก้บั๊ก
+- 🛡️ สแกนความปลอดภัยด้วย **Snyk**, **OWASP ZAP**, **Nessus**
+- ⚙️ สร้าง Pipeline **GitHub Actions**: Test → Security Scan → Build → Push Image
+- 🌍 สร้าง Server จำลองด้วย **VirtualBox** แล้ว Deploy แอปขึ้นไป เปิดสู่อินเทอร์เน็ตด้วย **Cloudflare Tunnel** (ไม่ต้องมีโดเมน) และนำเสนอ Demo พร้อม URL
 
-## ตารางหลักสูตร
+## 🗓️ ตารางหลักสูตร
 
 | วัน | หัวข้อ | เนื้อหา |
 |---|---|---|
-| 1 | [เตรียมเครื่องมือ + ปูพื้นฐานแนวคิด](day-1-setup/README.md) | Mindset Vibe Coding, ติดตั้ง VSCode + Claude Code, Git, Docker (WSL2), Node.js, PostgreSQL, **VirtualBox VM (Ubuntu Server)**, ทดสอบ Docker Compose, เขียน Prompt App Idea |
-| 2 | [สร้าง Scaffold โปรเจกต์จริง](day-2-scaffold/README.md) | เขียน `CLAUDE.md`, Scaffold Svelte + Express + Docker Compose จาก Prompt เดียว, UI เชื่อม API, ทดสอบ E2E, Push ขึ้น GitHub |
-| 3 | [Testing และ Security](day-3-testing-security/README.md) | Unit + Integration Test, อ่าน Report และ Fix, Snyk, OWASP ZAP, Nessus (สแกน VM ของตัวเอง) |
-| 4 | [CI/CD + Sprint พัฒนาฟีเจอร์](day-4-cicd-sprint/README.md) | GitHub Actions Workflow, Sprint 1 (Core Feature), Sprint 2 (Feature เสริม/Polish/Bug), Coach รายบุคคล |
-| 5 | [Sprint สุดท้าย + Demo](day-5-deploy-demo/README.md) | ปิด Feature, Deploy ขึ้น VM + **Cloudflare Tunnel** ได้ URL HTTPS, Demo รายบุคคล, แชร์ Prompt/Strategy |
+| 🧰 1 | [เตรียมเครื่องมือ + ปูพื้นฐานแนวคิด](day-1-setup/README.md) | Mindset Vibe Coding, ติดตั้ง VSCode + Claude Code, Git, Docker (WSL2), Node.js, PostgreSQL, **VirtualBox VM (Ubuntu Server)**, ทดสอบ Docker Compose, เขียน Prompt App Idea |
+| 🏗️ 2 | [สร้าง Scaffold โปรเจกต์จริง](day-2-scaffold/README.md) | เขียน `CLAUDE.md`, Scaffold Svelte + Express + Docker Compose จาก Prompt เดียว, UI เชื่อม API, ทดสอบ E2E, Push ขึ้น GitHub |
+| 🛡️ 3 | [Testing และ Security](day-3-testing-security/README.md) | Unit + Integration Test, อ่าน Report และ Fix, Snyk, OWASP ZAP, Nessus (สแกน VM ของตัวเอง) |
+| 🚀 4 | [CI/CD + Sprint พัฒนาฟีเจอร์](day-4-cicd-sprint/README.md) | GitHub Actions Workflow, Sprint 1 (Core Feature), Sprint 2 (Feature เสริม/Polish/Bug), Coach รายบุคคล |
+| 🎤 5 | [Sprint สุดท้าย + Demo](day-5-deploy-demo/README.md) | ปิด Feature, Deploy ขึ้น VM + **Cloudflare Tunnel** ได้ URL HTTPS, Demo รายบุคคล, แชร์ Prompt/Strategy |
 
-## โครงสร้าง Repository
+## 📂 โครงสร้าง Repository
 
 ```
 .
@@ -52,7 +54,7 @@
 └── LICENSE-EDU.md            # CC BY-NC-SA 4.0 (เนื้อหาการสอน)
 ```
 
-## สิ่งที่ต้องเตรียมก่อนเข้าเรียน
+## 🎒 สิ่งที่ต้องเตรียมก่อนเข้าเรียน
 
 - คอมพิวเตอร์ Windows 10/11 (รองรับ WSL2), macOS (Intel) หรือ Linux — **RAM 16 GB ขึ้นไป** (ต้องเปิด Docker Desktop และ VM พร้อมกัน), พื้นที่ว่าง ≥ 60 GB, เปิด Virtualization ใน BIOS แล้ว
 - บัญชี [GitHub](https://github.com) และบัญชี [Claude](https://claude.ai) แผน Pro ขึ้นไป (เพื่อใช้ Claude Code)
@@ -61,11 +63,11 @@
 - สิทธิ์ Admin บนเครื่อง (สำหรับติดตั้ง Docker/WSL2/VirtualBox)
 - **ไม่ต้องมีโดเมนและไม่ต้องมีบัญชี Cloudflare** — วันที่ 5 ใช้ Cloudflare Quick Tunnel ได้ URL `*.trycloudflare.com` ฟรี
 
-**ดาวน์โหลดไว้ก่อนวันแรก** (ไฟล์ใหญ่ ห้องอบรมอาจเน็ตช้า): VSCode, Git, GitHub Desktop, Docker Desktop, Node.js LTS, [VirtualBox](https://www.virtualbox.org/wiki/Downloads), ISO ของ [Ubuntu Server LTS](https://ubuntu.com/download/server) (~3 GB)
+📦 **ดาวน์โหลดไว้ก่อนวันแรก** (ไฟล์ใหญ่ ห้องอบรมอาจเน็ตช้า): VSCode, Git, GitHub Desktop, Docker Desktop, Node.js LTS, [VirtualBox](https://www.virtualbox.org/wiki/Downloads), ISO ของ [Ubuntu Server LTS](https://ubuntu.com/download/server) (~3 GB)
 
-> Mac ชิป Apple Silicon (M1–M4): VirtualBox รองรับได้จำกัด ให้ใช้ [UTM](https://mac.getutm.app) หรือ Multipass สร้าง Ubuntu VM แทน ขั้นตอนหลังจากนั้นเหมือนกัน
+> ⚠️ Mac ชิป Apple Silicon (M1–M4): VirtualBox รองรับได้จำกัด ให้ใช้ [UTM](https://mac.getutm.app) หรือ Multipass สร้าง Ubuntu VM แทน ขั้นตอนหลังจากนั้นเหมือนกัน
 
-### ตรวจความพร้อมของเครื่อง
+### 🩺 ตรวจความพร้อมของเครื่อง
 
 หลังติดตั้งเครื่องมือแล้ว ให้รันสคริปต์ตรวจก่อนวันแรก (อ่านอย่างเดียว ไม่แก้ไขอะไรในเครื่อง):
 
@@ -78,18 +80,18 @@ powershell -ExecutionPolicy Bypass -File scripts\check-env.ps1
 bash scripts/check-env.sh
 ```
 
-แก้ทุกข้อที่เป็น **FAIL** ก่อนมาเรียน ส่วน **WARN** ถามวิทยากรได้ในวันแรก
+🔴 แก้ทุกข้อที่เป็น **FAIL** ก่อนมาเรียน ส่วน **WARN** ถามวิทยากรได้ในวันแรก
 สคริปต์จะตรวจ: RAM, พื้นที่ดิสก์, Virtualization, Git, Node.js LTS, VS Code, Claude Code, WSL2, Docker, VirtualBox, ISO ของ Ubuntu, พอร์ตที่ใช้ใน Lab และการเชื่อมต่อ GitHub / Docker Hub / Claude / Cloudflare
 
 รายละเอียดการติดตั้งทีละขั้นอยู่ที่ [วันที่ 1](day-1-setup/README.md)
 
-## วิธีใช้ Repo นี้
+## 🧭 วิธีใช้ Repo นี้
 
-**ผู้เรียน:** Fork หรือ Clone repo นี้ไว้อ่านประกอบ แล้วสร้าง **repo แยก** สำหรับโปรเจกต์ของตัวเอง (เริ่มวันที่ 2) คัดลอกไฟล์จาก `templates/` และ `day-*/examples/` ไปใช้ได้เลย
+👩‍🎓 **ผู้เรียน:** Fork หรือ Clone repo นี้ไว้อ่านประกอบ แล้วสร้าง **repo แยก** สำหรับโปรเจกต์ของตัวเอง (เริ่มวันที่ 2) คัดลอกไฟล์จาก `templates/` และ `day-*/examples/` ไปใช้ได้เลย
 
-**วิทยากร:** แต่ละวันมีตารางเวลา, เป้าหมาย, Checklist และ Prompt ตัวอย่าง ปรับเวลาได้ตามกลุ่มผู้เรียน — ส่ง `scripts/check-env.*` ให้ผู้เรียนรันล่วงหน้า 1 สัปดาห์ และอ่าน [guides/claude-code-efficiency.md](guides/claude-code-efficiency.md) เพื่อเตรียมรับมือเมื่อผู้เรียนใช้โควต้า Claude หมด
+🧑‍🏫 **วิทยากร:** แต่ละวันมีตารางเวลา, เป้าหมาย, Checklist และ Prompt ตัวอย่าง ปรับเวลาได้ตามกลุ่มผู้เรียน — ส่ง `scripts/check-env.*` ให้ผู้เรียนรันล่วงหน้า 1 สัปดาห์ และอ่าน [guides/claude-code-efficiency.md](guides/claude-code-efficiency.md) เพื่อเตรียมรับมือเมื่อผู้เรียนใช้โควต้า Claude หมด
 
-## License
+## ⚖️ License
 
 Repo นี้ใช้ **dual license**:
 
@@ -98,6 +100,6 @@ Repo นี้ใช้ **dual license**:
 | โค้ด, config, workflow, template ที่นำไปรันได้ | [MIT](LICENSE) | `*.yml`, `*.sh`, `*.ps1`, `*.sql`, `Caddyfile`, `templates/CLAUDE.md.template` |
 | เนื้อหาการสอน (บทเรียน, คำอธิบาย, แบบฝึกหัด, รูปภาพ) | [CC BY-NC-SA 4.0](LICENSE-EDU.md) | `day-*/README.md`, `guides/*.md`, `prompts/*.md` |
 
-นำไปใช้สอนในสถาบันการศึกษา/อบรมที่ไม่แสวงหากำไรได้ทันทีโดยให้เครดิต — หากต้องการใช้เชิงพาณิชย์ (เช่น อบรมเก็บเงิน) กรุณาติดต่อผู้จัดทำ
+🏫 นำไปใช้สอนในสถาบันการศึกษา/อบรมที่ไม่แสวงหากำไรได้ทันทีโดยให้เครดิต — หากต้องการใช้เชิงพาณิชย์ (เช่น อบรมเก็บเงิน) กรุณาติดต่อผู้จัดทำ
 
 ชื่อทางการค้าที่กล่าวถึง (Claude, Anthropic, Docker, GitHub, VirtualBox, Ubuntu, Cloudflare, Snyk, Nessus ฯลฯ) เป็นของเจ้าของแต่ละราย หลักสูตรนี้ไม่มีส่วนเกี่ยวข้องหรือได้รับการรับรองจากบริษัทเหล่านั้น

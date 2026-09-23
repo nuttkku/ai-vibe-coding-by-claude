@@ -1,13 +1,13 @@
-# วันที่ 2 — สร้าง Scaffold โปรเจกต์จริง
+# 🏗️ วันที่ 2 — สร้าง Scaffold โปรเจกต์จริง
 
-## เป้าหมายของวัน
+## 🎯 เป้าหมายของวัน
 
 - เขียน `CLAUDE.md` ที่ทำให้ Claude ทำงานตรงตามมาตรฐานของโปรเจกต์
 - ให้ Claude สร้าง Scaffold **Svelte + Express + PostgreSQL + Docker Compose** จาก Prompt เดียว
 - ต่อ Svelte UI เข้ากับ API แล้วทดสอบ End-to-End ได้
 - Commit และ Push โปรเจกต์ขึ้น GitHub
 
-## ตารางเวลา (แนะนำ)
+## ⏰ ตารางเวลา (แนะนำ)
 
 | เวลา | กิจกรรม |
 |---|---|
@@ -19,11 +19,11 @@
 
 ---
 
-## 1. วิธีเขียน CLAUDE.md ให้ได้ผล
+## 📝 1. วิธีเขียน CLAUDE.md ให้ได้ผล
 
 `CLAUDE.md` คือไฟล์ที่ Claude Code **อ่านอัตโนมัติทุกครั้ง** ที่เริ่มทำงานในโปรเจกต์ เปรียบเหมือน "คู่มือพนักงานใหม่" — สิ่งที่เขียนไว้ในนี้ไม่ต้องพิมพ์ซ้ำในทุก Prompt
 
-### ควรมีอะไรบ้าง
+### 📋 ควรมีอะไรบ้าง
 
 | หัวข้อ | ตัวอย่าง |
 |---|---|
@@ -35,7 +35,7 @@
 | สิ่งที่ห้ามทำ | ห้าม commit `.env`, ห้ามต่อ SQL ด้วย string concat |
 | Definition of Done | Test ผ่าน, lint ผ่าน, อัปเดต README |
 
-### เคล็ดลับ
+### 💡 เคล็ดลับ
 - **สั้นและเจาะจง** ดีกว่ายาวและกว้าง — Claude อ่านทุกครั้ง ข้อความที่ไม่จำเป็นกินบริบท
 - เขียนเป็น **คำสั่ง** ("ใช้ parameterized query เสมอ") ไม่ใช่คำอธิบายยาว
 - **อัปเดตเมื่อ Claude ทำผิดซ้ำ** — ถ้าต้องบอกเรื่องเดิมสองครั้ง ให้ใส่ลง `CLAUDE.md`
@@ -45,15 +45,15 @@
 
 ---
 
-## 2. Lab: Scaffold จาก Prompt เดียว
+## 🧪 2. Lab: Scaffold จาก Prompt เดียว
 
-### เตรียม
+### 🎒 เตรียม
 1. สร้าง repo ใหม่บน GitHub (เช่น `room-booking`) แบบ Private หรือ Public — ติ๊ก *Add README* และ `.gitignore` = Node
 2. Clone ลงเครื่องด้วย GitHub Desktop แล้วเปิดใน VSCode
 3. คัดลอก `templates/CLAUDE.md.template` มาเป็น `CLAUDE.md` แล้วแก้ส่วน `<...>` ให้ตรงกับแอปของตัวเอง
 4. วาง `app-idea.md` จากวันที่ 1 ไว้ใน `docs/app-idea.md`
 
-### Prompt Scaffold
+### 💬 Prompt Scaffold
 
 ```
 อ่าน CLAUDE.md และ docs/app-idea.md แล้วสร้าง Scaffold ของโปรเจกต์:
@@ -73,13 +73,13 @@
 ถ้ามี error ให้แก้จนผ่านก่อนรายงาน
 ```
 
-### ขณะ Claude ทำงาน — สิ่งที่ผู้เรียนควรทำ
+### 👀 ขณะ Claude ทำงาน — สิ่งที่ผู้เรียนควรทำ
 - **อ่านแผน** ที่ Claude เสนอก่อนกดอนุญาต ถ้าไม่ตรงใจให้แก้ตั้งแต่ตอนนี้
 - สังเกตคำสั่งที่ Claude ขอรัน — อย่ากดอนุญาตคำสั่งที่ไม่เข้าใจ ให้ถามก่อน
 - เมื่อเสร็จ ให้ **รันเองอีกรอบ** เพื่อยืนยัน
 - วันนี้ใช้โควต้าหนัก: commit แล้ว `/clear` ทุกครั้งที่จบ task (ดู [guides/claude-code-efficiency.md](../guides/claude-code-efficiency.md))
 
-### ทำไมใช้ Migration แทน `init.sql`
+### 🗃️ ทำไมใช้ Migration แทน `init.sql`
 
 วันที่ 1 เราใช้ `init.sql` ซึ่ง **รันแค่ครั้งแรกตอน volume ของ Postgres ยังว่าง** — พอ Sprint วันที่ 4 ต้องเพิ่มคอลัมน์ แก้ `init.sql` ไปก็ไม่มีผล ต้องลบข้อมูลทิ้ง (`down -v`) ซึ่งทำบน Server จริงไม่ได้
 
@@ -114,7 +114,7 @@ npm run migrate down    # ย้อน migration ล่าสุด 1 ไฟล�
 2. ทุก migration ต้องมี **Down** ที่ย้อนกลับได้
 3. Commit ไฟล์ migration พร้อมโค้ดที่ใช้ schema ใหม่ใน commit เดียวกัน
 
-### Commit แรก
+### 📦 Commit แรก
 ```bash
 git add .
 git commit -m "chore: scaffold svelte + express + postgres"
@@ -122,7 +122,7 @@ git commit -m "chore: scaffold svelte + express + postgres"
 
 ---
 
-## 3. Lab: Svelte UI เชื่อม API
+## 🎨 3. Lab: Svelte UI เชื่อม API
 
 ทำทีละฟีเจอร์ เล็กๆ แล้ว Commit:
 
@@ -146,14 +146,14 @@ git commit -m "chore: scaffold svelte + express + postgres"
 
 ---
 
-## 4. ทดสอบระบบแบบ End-to-End
+## 🔁 4. ทดสอบระบบแบบ End-to-End
 
-### ทดสอบด้วยมือ (Smoke test)
+### 🖐️ ทดสอบด้วยมือ (Smoke test)
 1. `docker compose down -v && docker compose up -d --build` (เริ่มจากศูนย์)
 2. เปิดหน้าเว็บ → เพิ่ม → แก้ไข → ลบ → รีเฟรช ข้อมูลยังอยู่ถูกต้อง
 3. `docker compose restart backend` แล้วลองใหม่ (ข้อมูลต้องยังอยู่)
 
-### ให้ Claude สร้าง E2E Test อัตโนมัติ (Playwright)
+### 🎭 ให้ Claude สร้าง E2E Test อัตโนมัติ (Playwright)
 ```
 ติดตั้ง Playwright ใน frontend แล้วเขียน E2E test 1 ไฟล์:
 เปิดหน้าแรก → เพิ่มรายการใหม่ → ตรวจว่าแสดงในตาราง → ลบ → ตรวจว่าหายไป
@@ -162,7 +162,7 @@ git commit -m "chore: scaffold svelte + express + postgres"
 
 ---
 
-## 5. Commit และ Push ขึ้น GitHub
+## ☁️ 5. Commit และ Push ขึ้น GitHub
 
 ก่อน Push ตรวจสอบ:
 ```bash
@@ -176,11 +176,11 @@ git push origin main
 ```
 หรือกด **Push origin** ใน GitHub Desktop
 
-> ให้ Claude ช่วยเขียน commit message ได้: `ช่วยสรุปการเปลี่ยนแปลงที่ยังไม่ commit และเขียน commit message แบบ Conventional Commits`
+> 💡 ให้ Claude ช่วยเขียน commit message ได้: `ช่วยสรุปการเปลี่ยนแปลงที่ยังไม่ commit และเขียน commit message แบบ Conventional Commits`
 
 ---
 
-## Checklist ท้ายวัน
+## ✅ Checklist ท้ายวัน
 
 - [ ] มี `CLAUDE.md` ที่ปรับให้เข้ากับแอปของตัวเอง
 - [ ] `docker compose up -d --build` แล้วทั้ง 3 service ขึ้น `healthy`/`running`
@@ -190,7 +190,7 @@ git push origin main
 - [ ] E2E test อย่างน้อย 1 case ผ่าน
 - [ ] Push ขึ้น GitHub แล้ว และไม่มี `.env` ใน repo
 
-## Troubleshooting
+## 🛠️ Troubleshooting
 
 | อาการ | วิธีแก้ |
 |---|---|
@@ -200,5 +200,9 @@ git push origin main
 | แก้ schema แล้วตารางไม่เปลี่ยน | อย่าแก้ migration เดิม — สร้างไฟล์ใหม่แล้ว `npm run migrate up` (ดูหัวข้อ Migration) |
 | Claude แก้ไฟล์เยอะเกินที่ขอ | ขอให้ "แก้เฉพาะไฟล์ X" และใช้ `git diff` ตรวจก่อน commit, ย้อนด้วย `git restore` |
 
-## อ้างอิง
+## 📚 อ้างอิง
 ดู [CREDITS.md](../CREDITS.md) หัวข้อ "Claude / Anthropic" (Memory / CLAUDE.md, Best practices) และ "Framework & Library"
+
+---
+
+<p align="center"><a href="../day-1-setup/README.md">⬅️ 🧰 วันที่ 1</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../day-3-testing-security/README.md">🛡️ วันที่ 3 ➡️</a></p>

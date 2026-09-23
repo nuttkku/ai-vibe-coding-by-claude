@@ -1,6 +1,6 @@
-# วันที่ 3 — Testing และ Security
+# 🛡️ วันที่ 3 — Testing และ Security
 
-## เป้าหมายของวัน
+## 🎯 เป้าหมายของวัน
 
 - ให้ Claude เขียน Unit Test + Integration Test ให้ครอบคลุม และรันผ่าน
 - อ่าน Test/Coverage Report แล้วสั่งแก้อย่างมีเป้าหมาย
@@ -10,7 +10,7 @@
 > ⚠️ **จริยธรรมและกฎหมาย:** สแกนเฉพาะแอปและเครื่องของตัวเอง หรือที่ได้รับอนุญาตเป็นลายลักษณ์อักษรเท่านั้น
 > การสแกนระบบของผู้อื่นโดยไม่ได้รับอนุญาตอาจผิด พ.ร.บ.คอมพิวเตอร์ฯ
 
-## ตารางเวลา (แนะนำ)
+## ⏰ ตารางเวลา (แนะนำ)
 
 | เวลา | กิจกรรม |
 |---|---|
@@ -22,9 +22,9 @@
 
 ---
 
-## 1. Unit Test + Integration Test
+## 🧪 1. Unit Test + Integration Test
 
-### ความต่าง
+### ⚖️ ความต่าง
 
 | ประเภท | ทดสอบอะไร | เครื่องมือ | ต้องมี DB ไหม |
 |---|---|---|---|
@@ -32,7 +32,7 @@
 | Integration | API endpoint จริง ผ่าน HTTP ถึง DB | Vitest + Supertest | ใช่ (DB ทดสอบ) |
 | E2E | ผู้ใช้คลิกบนเบราว์เซอร์ | Playwright (ทำแล้ววันที่ 2) | ใช่ |
 
-### Prompt: วางแผนก่อนเขียน
+### 💬 Prompt: วางแผนก่อนเขียน
 
 ```
 อ่านโค้ดใน backend/ แล้วเสนอแผน test (ยังไม่ต้องเขียน):
@@ -58,7 +58,7 @@ Frontend ก็ทำเช่นเดียวกัน (Vitest + `@testing-li
 
 ---
 
-## 2. อ่าน Report และแก้ไข
+## 📊 2. อ่าน Report และแก้ไข
 
 ```bash
 cd backend
@@ -81,7 +81,7 @@ Commit: `git commit -m "test: add unit and integration tests"`
 
 ---
 
-## 3. Snyk — สแกน Dependency
+## 📦 3. Snyk — สแกน Dependency
 
 Snyk ตรวจว่า npm package ที่ใช้อยู่มีช่องโหว่ที่รู้จัก (CVE) หรือไม่
 
@@ -95,7 +95,7 @@ snyk code test           # สแกนโค้ดที่เขียนเ�
 
 ทางเลือกที่ไม่ต้องสมัคร: `npm audit`
 
-### ให้ Claude ช่วยแก้
+### 🤖 ให้ Claude ช่วยแก้
 ```
 นี่คือผล snyk test: <วางผล>
 จัดลำดับตามความรุนแรง และเสนอวิธีแก้แต่ละตัว (อัปเกรดเวอร์ชันไหน, มี breaking change ไหม)
@@ -104,11 +104,11 @@ snyk code test           # สแกนโค้ดที่เขียนเ�
 
 ---
 
-## 4. OWASP ZAP — Dynamic Scan เว็บแอป
+## 🕷️ 4. OWASP ZAP — Dynamic Scan เว็บแอป
 
 ZAP โจมตีแอปที่ **กำลังรันอยู่** แบบอัตโนมัติ เพื่อหาปัญหาเช่น header ความปลอดภัยที่ขาด, XSS, cookie ไม่ปลอดภัย
 
-### Baseline Scan (passive — ปลอดภัย ใช้เวลาไม่นาน)
+### 👁️ Baseline Scan (passive — ปลอดภัย ใช้เวลาไม่นาน)
 
 ให้แอปรันอยู่ก่อน (`docker compose up -d`) แล้ว:
 
@@ -128,12 +128,12 @@ docker run --rm -v "${PWD}:/zap/wrk:rw" -t ghcr.io/zaproxy/zaproxy:stable `
 
 ต้องการกำหนดว่า rule ไหน IGNORE/WARN/FAIL ให้คัดลอก [`examples/zap-rules.tsv`](examples/zap-rules.tsv) มาไว้ในโฟลเดอร์ปัจจุบัน แล้วเพิ่ม `-c zap-rules.tsv` ต่อท้ายคำสั่ง (คั่นคอลัมน์ด้วย Tab)
 
-> Linux: ถ้า `host.docker.internal` ใช้ไม่ได้ ให้เพิ่ม `--add-host=host.docker.internal:host-gateway`
+> 💡 Linux: ถ้า `host.docker.internal` ใช้ไม่ได้ ให้เพิ่ม `--add-host=host.docker.internal:host-gateway`
 
-### Full Scan (active — โจมตีจริง)
+### 💥 Full Scan (active — โจมตีจริง)
 ใช้ `zap-full-scan.py` แทน **เฉพาะกับแอปของตัวเองในเครื่องเท่านั้น** อาจสร้างข้อมูลขยะใน DB
 
-### ให้ Claude ช่วยแก้
+### 🤖 ให้ Claude ช่วยแก้
 ```
 นี่คือ alert จาก ZAP: <วางรายการ WARN/FAIL>
 แก้ใน backend (เช่น ใช้ helmet ตั้ง security headers) และ nginx/vite config ถ้าจำเป็น
@@ -142,11 +142,11 @@ docker run --rm -v "${PWD}:/zap/wrk:rw" -t ghcr.io/zaproxy/zaproxy:stable `
 
 ---
 
-## 5. Nessus — สแกน Infrastructure/Host
+## 🛰️ 5. Nessus — สแกน Infrastructure/Host
 
 Nessus ตรวจระดับ **เครื่อง/เซิร์ฟเวอร์**: พอร์ตที่เปิด, บริการที่ล้าสมัย, config ที่ไม่ปลอดภัย
 
-### ติดตั้ง Nessus Essentials (ฟรี, สูงสุด 16 IP)
+### 📥 ติดตั้ง Nessus Essentials (ฟรี, สูงสุด 16 IP)
 1. ขอ Activation Code ที่ <https://www.tenable.com/products/nessus/nessus-essentials>
 2. รันผ่าน Docker:
    ```bash
@@ -155,19 +155,19 @@ Nessus ตรวจระดับ **เครื่อง/เซิร์ฟเ
 3. เปิด <https://localhost:8834> (ยอมรับ certificate) → เลือก *Nessus Essentials* → ใส่ Activation Code
 4. รอดาวน์โหลด plugin (อาจใช้ 15–30 นาที — **ควรทำตั้งแต่ช่วงเช้า**)
 
-### สแกน
+### 🔎 สแกน
 - New Scan → **Basic Network Scan**
 - Target: **IP Host-only ของ VM** ที่สร้างในวันที่ 1 (เช่น `192.168.56.101`) — เป็นเครื่องของเราเอง สแกนได้อย่างปลอดภัย
 - ดูผลตาม Severity: Critical → High → Medium
 
-### Lab: เห็นผลต่างก่อน/หลัง
+### 🧪 Lab: เห็นผลต่างก่อน/หลัง
 1. บน VM รัน `hello-compose` จากวันที่ 1 (ซึ่ง **เปิดพอร์ต Postgres 5432 ออกมา**) แล้วสแกนรอบที่ 1
 2. ให้ Claude ช่วยแก้ compose ให้ Postgres ไม่ publish port และปิดบริการที่ไม่จำเป็น แล้วสแกนรอบที่ 2
 3. เปรียบเทียบ: พอร์ต/finding ไหนหายไป — นี่คือหลัก *ลด attack surface* ที่จะใช้ตอน deploy วันที่ 5
 
-> ข้อควรรู้: พอร์ตที่ Docker publish (`ports:`) **ข้าม firewall `ufw`** ของ Ubuntu ได้ การปิดพอร์ตจึงต้องทำที่ compose ด้วย ไม่ใช่แค่ที่ firewall
+> ⚠️ ข้อควรรู้: พอร์ตที่ Docker publish (`ports:`) **ข้าม firewall `ufw`** ของ Ubuntu ได้ การปิดพอร์ตจึงต้องทำที่ compose ด้วย ไม่ใช่แค่ที่ firewall
 
-### ให้ Claude ช่วยตีความ
+### 🤖 ให้ Claude ช่วยตีความ
 ```
 นี่คือ finding จาก Nessus (export เป็น CSV): <วาง>
 สรุปเป็นภาษาไทย: ความเสี่ยงคืออะไร, เกี่ยวกับแอปเราหรือเป็นของ OS/เครื่อง, วิธีแก้
@@ -175,7 +175,7 @@ Nessus ตรวจระดับ **เครื่อง/เซิร์ฟเ
 
 ---
 
-## สรุป: 3 ชั้นของการสแกน
+## 🧅 สรุป: 3 ชั้นของการสแกน
 
 | ชั้น | เครื่องมือ | หาอะไร | เมื่อไหร่ |
 |---|---|---|---|
@@ -183,7 +183,7 @@ Nessus ตรวจระดับ **เครื่อง/เซิร์ฟเ
 | Running App | OWASP ZAP | header, XSS, cookie, misconfig ของเว็บ | ทุก deploy (CI) |
 | Host/Network | Nessus | พอร์ต, บริการ, OS patch | ก่อนขึ้น production + ตามรอบ |
 
-## Checklist ท้ายวัน
+## ✅ Checklist ท้ายวัน
 
 - [ ] Unit + Integration test ผ่านทั้งหมด, branch coverage ≥ 70%
 - [ ] `snyk test` ไม่มี High/Critical ที่แก้ได้ค้างอยู่
@@ -192,5 +192,9 @@ Nessus ตรวจระดับ **เครื่อง/เซิร์ฟเ
 - [ ] บันทึกสิ่งที่แก้ไว้ใน `docs/security-notes.md`
 - [ ] Commit และ Push แล้ว (อย่า commit ไฟล์ report ที่มีข้อมูลเครื่อง — ใส่ใน `.gitignore`)
 
-## อ้างอิง
+## 📚 อ้างอิง
 ดู [CREDITS.md](../CREDITS.md) หัวข้อ "Framework & Library" และ "Security"
+
+---
+
+<p align="center"><a href="../day-2-scaffold/README.md">⬅️ 🏗️ วันที่ 2</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../day-4-cicd-sprint/README.md">🚀 วันที่ 4 ➡️</a></p>

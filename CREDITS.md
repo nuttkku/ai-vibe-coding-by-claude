@@ -1,21 +1,21 @@
-# Credits & แหล่งอ้างอิง
+# 🙏 Credits & แหล่งอ้างอิง
 
 หลักสูตรนี้เรียบเรียงจากเอกสารทางการของเครื่องมือแต่ละตัว และแนวคิดจากผู้บุกเบิกด้านนี้ ขอขอบคุณเจ้าของผลงานทุกท่าน
 ลิงก์ทั้งหมดเป็นเอกสารต้นฉบับ — เมื่อเนื้อหาในหลักสูตรกับเอกสารต้นฉบับขัดกัน ให้ยึดเอกสารต้นฉบับ (เครื่องมือเหล่านี้อัปเดตบ่อย)
 
-## ผู้จัดทำ
+## ✍️ ผู้จัดทำ
 
 - **Wanut Padee** — ออกแบบ Outline หลักสูตร 5 วัน, เรียบเรียงและตรวจทานเนื้อหา
 - เนื้อหาฉบับร่างจัดทำด้วยความช่วยเหลือของ **Claude Code** (Anthropic) — สอดคล้องกับหัวข้อของหลักสูตร และผ่านการตรวจทานโดยผู้จัดทำ
 
-## แนวคิด Vibe Coding
+## 🌊 แนวคิด Vibe Coding
 
 | แหล่ง | ใช้ในส่วน |
 |---|---|
 | Andrej Karpathy — โพสต์บน X ที่บัญญัติคำว่า "vibe coding" (2 ก.พ. 2025) <https://x.com/karpathy/status/1886192184808149383> | วันที่ 1 Mindset |
 | Simon Willison — "Not all AI-assisted programming is vibe coding" <https://simonwillison.net/2025/Mar/19/vibe-coding/> | วันที่ 1 Mindset (ความต่างระหว่าง vibe coding กับ AI-assisted engineering) |
 
-## Claude / Anthropic
+## 🤖 Claude / Anthropic
 
 | แหล่ง | ใช้ในส่วน |
 |---|---|
@@ -30,7 +30,7 @@
 | Claude Code — Slash commands <https://docs.anthropic.com/en/docs/claude-code/slash-commands> | คู่มือโควต้า |
 | Claude Code — Checkpointing (rewind) <https://docs.anthropic.com/en/docs/claude-code/checkpointing> | คู่มือโควต้า |
 
-## เครื่องมือพัฒนา
+## 🧰 เครื่องมือพัฒนา
 
 | เครื่องมือ | เอกสาร |
 |---|---|
@@ -53,7 +53,7 @@
 | VSCode Remote - SSH | <https://code.visualstudio.com/docs/remote/ssh> |
 | UTM (สำหรับ Apple Silicon) | <https://mac.getutm.app> |
 
-## Framework & Library
+## 📦 Framework & Library
 
 | เครื่องมือ | เอกสาร |
 |---|---|
@@ -67,7 +67,7 @@
 | Supertest | <https://github.com/ladjs/supertest> |
 | Playwright | <https://playwright.dev> |
 
-## Security
+## 🛡️ Security
 
 | เครื่องมือ | เอกสาร |
 |---|---|
@@ -80,7 +80,7 @@
 | Tenable Nessus Essentials | <https://www.tenable.com/products/nessus/nessus-essentials> |
 | Nessus Documentation | <https://docs.tenable.com/nessus/> |
 
-## CI/CD & Deploy
+## 🚀 CI/CD & Deploy
 
 | เครื่องมือ | เอกสาร |
 |---|---|
@@ -93,7 +93,7 @@
 | cloudflared Docker image | <https://hub.docker.com/r/cloudflare/cloudflared> |
 | Let's Encrypt | <https://letsencrypt.org/docs/> |
 
-## เครื่องหมายการค้า
+## ™️ เครื่องหมายการค้า
 
 Claude และ Anthropic เป็นเครื่องหมายการค้าของ Anthropic PBC · Docker เป็นเครื่องหมายการค้าของ Docker, Inc. · GitHub เป็นเครื่องหมายการค้าของ GitHub, Inc. · Visual Studio Code และ Windows เป็นเครื่องหมายการค้าของ Microsoft · Snyk เป็นเครื่องหมายการค้าของ Snyk Ltd. · Nessus และ Tenable เป็นเครื่องหมายการค้าของ Tenable, Inc. · ZAP เป็นโครงการของ ZAP by Checkmarx · Oracle และ VirtualBox เป็นเครื่องหมายการค้าของ Oracle · Ubuntu เป็นเครื่องหมายการค้าของ Canonical Ltd. · Cloudflare เป็นเครื่องหมายการค้าของ Cloudflare, Inc. · Node.js เป็นเครื่องหมายการค้าของ OpenJS Foundation · PostgreSQL เป็นเครื่องหมายการค้าของ PostgreSQL Community Association
 
