@@ -46,7 +46,7 @@
 │   └── examples/             # ตัวอย่าง Workflow (คัดลอกไปใช้ในโปรเจกต์ตัวเอง)
 ├── day-5-deploy-demo/        # วันที่ 5: Deploy + Demo
 │   └── examples/
-├── guides/                   # Cheat sheet Claude Code, Git + GitHub Desktop, คู่มือโควต้า
+├── guides/                   # Cheat sheet Claude Code, Git + GitHub Desktop, โหมด·โมเดล·ค่าใช้จ่าย, คู่มือโควต้า
 ├── scripts/                  # check-env.ps1 / check-env.sh ตรวจเครื่องก่อนเรียน
 ├── templates/                # แม่แบบ CLAUDE.md, App Idea, Demo
 ├── prompts/                  # คลัง Prompt ที่ใช้ตลอดหลักสูตร

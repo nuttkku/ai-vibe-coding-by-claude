@@ -25,7 +25,11 @@
 | Claude Code — Best practices for agentic coding <https://www.anthropic.com/engineering/claude-code-best-practices> | วันที่ 2, 4 |
 | Claude Code GitHub Actions <https://docs.anthropic.com/en/docs/claude-code/github-actions> | วันที่ 4 (เสริม) |
 | Anthropic Prompt Engineering Guide <https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview> | วันที่ 1–2 การเขียน Prompt |
-| Claude plans & pricing <https://www.anthropic.com/pricing> | วันที่ 1 |
+| Claude plans & pricing <https://claude.com/pricing> | วันที่ 1, คู่มือโหมด·โมเดล·ค่าใช้จ่าย |
+| Claude API Pricing <https://platform.claude.com/docs/en/about-claude/pricing> | คู่มือโหมด·โมเดล·ค่าใช้จ่าย (ราคา token, cache, batch) |
+| Claude Code — Permission modes <https://code.claude.com/docs/en/permission-modes> | วันที่ 1 🚦 โหมด |
+| Claude Code — Model configuration <https://code.claude.com/docs/en/model-config> | วันที่ 1 🧠 โมเดล, effort |
+| Claude Code — Manage costs <https://code.claude.com/docs/en/costs> | คู่มือโหมด·โมเดล·ค่าใช้จ่าย, คู่มือโควต้า |
 | Anthropic Help Center — Using Claude Code with your Pro or Max plan / usage limits <https://support.anthropic.com> | คู่มือโควต้า |
 | Claude Code — Slash commands <https://docs.anthropic.com/en/docs/claude-code/slash-commands> | คู่มือโควต้า, Cheat Sheet |
 | Claude Code — CLI reference <https://docs.anthropic.com/en/docs/claude-code/cli-reference> | วันที่ 1 Bootcamp, Cheat Sheet |
