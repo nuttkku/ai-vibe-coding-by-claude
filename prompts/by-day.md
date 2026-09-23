@@ -3,9 +3,10 @@
 รายละเอียดและบริบทของแต่ละ Prompt อยู่ในบทเรียนของวันนั้นๆ
 
 ## 🧰 วันที่ 1
-- ทดสอบ Claude Code: `สร้างไฟล์ hello.js ที่พิมพ์ "Hello Vibe Coding" แล้วรันให้ดู`
+- 🎮 Claude Code Bootcamp 7 ภารกิจ (`@`, `!`, Plan mode, `/rewind`, `CLAUDE.md`, settings, custom command) → [day-1 §2](../day-1-setup/README.md#-2-claude-code-bootcamp)
+- 🌱 Git Bootcamp: `เพิ่มฟังก์ชัน addVat(price) บวก VAT 7% พร้อม test แล้ว commit ให้ด้วย` (อ่านคำสั่ง git ก่อนกด Yes) → [day-1 §3](../day-1-setup/README.md#-3-git-bootcamp)
 - อธิบาย Compose: `อธิบาย docker-compose.yml นี้ทีละบรรทัดแบบคนเพิ่งเริ่ม แล้วเพิ่ม service adminer ที่พอร์ต 8081`
-- ขัดเกลา App Idea → [day-1 §7](../day-1-setup/README.md#-7-workshop-เขียน-prompt-app-idea)
+- ขัดเกลา App Idea → [day-1 §6](../day-1-setup/README.md#-6-workshop-เขียน-prompt-app-idea)
 
 ## 🏗️ วันที่ 2
 - สร้าง CLAUDE.md ร่างแรก: `/init`

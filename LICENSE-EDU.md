@@ -11,7 +11,7 @@
 ## 📐 ขอบเขต
 
 สัญญานี้ครอบคลุม **เนื้อหาการสอน** ได้แก่ บทเรียน คำอธิบาย แบบฝึกหัด Checklist คลัง Prompt สไลด์ และรูปภาพ
-(เช่น `README.md`, `day-*/README.md`, `prompts/*.md`, `templates/*.md` ที่เป็นแบบฟอร์มสำหรับผู้เรียน)
+(เช่น `README.md`, `day-*/README.md`, `guides/*.md`, `prompts/*.md`, `templates/*.md` ที่เป็นแบบฟอร์มสำหรับผู้เรียน)
 
 **โค้ดและไฟล์ที่นำไปรันได้** (เช่น `*.yml`, `*.js`, `Dockerfile`, `templates/CLAUDE.md.template`) ใช้ [MIT License](LICENSE) แยกต่างหาก
 เพื่อให้ผู้เรียนนำไปใช้ในโปรเจกต์ของตนได้อย่างอิสระ

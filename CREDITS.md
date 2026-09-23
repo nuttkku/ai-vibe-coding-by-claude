@@ -27,7 +27,11 @@
 | Anthropic Prompt Engineering Guide <https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview> | วันที่ 1–2 การเขียน Prompt |
 | Claude plans & pricing <https://www.anthropic.com/pricing> | วันที่ 1 |
 | Anthropic Help Center — Using Claude Code with your Pro or Max plan / usage limits <https://support.anthropic.com> | คู่มือโควต้า |
-| Claude Code — Slash commands <https://docs.anthropic.com/en/docs/claude-code/slash-commands> | คู่มือโควต้า |
+| Claude Code — Slash commands <https://docs.anthropic.com/en/docs/claude-code/slash-commands> | คู่มือโควต้า, Cheat Sheet |
+| Claude Code — CLI reference <https://docs.anthropic.com/en/docs/claude-code/cli-reference> | วันที่ 1 Bootcamp, Cheat Sheet |
+| Claude Code — Interactive mode (ปุ่มลัด) <https://docs.anthropic.com/en/docs/claude-code/interactive-mode> | วันที่ 1 Bootcamp, Cheat Sheet |
+| Claude Code — Settings & permissions <https://docs.anthropic.com/en/docs/claude-code/settings> | วันที่ 1 ภารกิจ 5, `templates/claude/settings.json` |
+| Claude Code — Common workflows (Plan mode, custom commands) <https://docs.anthropic.com/en/docs/claude-code/common-workflows> | วันที่ 1 ภารกิจ 3, 6 |
 | Claude Code — Checkpointing (rewind) <https://docs.anthropic.com/en/docs/claude-code/checkpointing> | คู่มือโควต้า |
 
 ## 🧰 เครื่องมือพัฒนา
@@ -36,6 +40,9 @@
 |---|---|
 | Visual Studio Code | <https://code.visualstudio.com/docs> |
 | Git | <https://git-scm.com/doc> |
+| Pro Git Book (ฟรี) | <https://git-scm.com/book/en/v2> |
+| Learn Git Branching (ฝึก branch แบบโต้ตอบ) | <https://learngitbranching.js.org> |
+| Conventional Commits | <https://www.conventionalcommits.org> |
 | GitHub Desktop | <https://docs.github.com/en/desktop> |
 | GitHub Docs (repo, push, GHCR) | <https://docs.github.com> |
 | Docker Desktop | <https://docs.docker.com/desktop/> |

@@ -100,4 +100,4 @@ VirtualBox → เลือก VM → **Snapshots → Take** ตั้งชื�
 
 ---
 
-<p align="center"><a href="README.md#-6-สร้าง-server-จำลองด้วย-virtualbox">⬅️ กลับไปบทเรียนวันที่ 1</a> · <a href="../README.md">🏠 หน้าหลัก</a></p>
+<p align="center"><a href="README.md#️-5-สร้าง-server-จำลองด้วย-virtualbox">⬅️ กลับไปบทเรียนวันที่ 1</a> · <a href="../README.md">🏠 หน้าหลัก</a></p>
