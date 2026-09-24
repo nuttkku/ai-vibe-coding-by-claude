@@ -1,8 +1,7 @@
-# 🏗️ วันที่ 2 — สร้าง Scaffold โปรเจกต์จริง
+# 🏗️ วันที่ 3 — สร้าง Scaffold โปรเจกต์จริง
 
 ## 🎯 เป้าหมายของวัน
 
-- เขียน `CLAUDE.md` ที่ทำให้ Claude ทำงานตรงตามมาตรฐานของโปรเจกต์
 - 🐳 เข้าใจ image/container, port, volume, bind mount, network และใช้คำสั่ง `docker compose` หลักได้
 - ให้ Claude สร้าง Scaffold **Svelte + Express + PostgreSQL + Docker Compose** จาก Prompt เดียว
 - ต่อ Svelte UI เข้ากับ API แล้วทดสอบ End-to-End ได้
@@ -12,44 +11,17 @@
 
 | เวลา | กิจกรรม |
 |---|---|
-| 09:00–09:40 | 📝 วิธีเขียน CLAUDE.md ให้ได้ผล |
-| 09:40–10:00 | 🐳 Docker ที่ต้องรู้ก่อน Scaffold (แนวคิด + Lab กับ hello-compose) |
-| 10:00–12:00 | 🧪 Lab: Scaffold โปรเจกต์จาก Prompt เดียว |
-| 13:00–14:30 | Lab: Svelte UI เชื่อม API |
-| 14:30–15:30 | ทดสอบระบบแบบ End-to-End |
-| 15:30–16:00 | Commit และ Push ขึ้น GitHub |
+| 09:00–09:30 | 🐳 Docker ที่ต้องรู้ก่อน Scaffold (แนวคิด + Lab กับ hello-compose) |
+| 09:30–12:00 | 🧪 Lab: Scaffold โปรเจกต์จาก Prompt เดียว |
+| 13:00–14:30 | 🎨 Lab: Svelte UI เชื่อม API |
+| 14:30–15:30 | 🔁 ทดสอบระบบแบบ End-to-End |
+| 15:30–16:00 | ☁️ Commit และ Push ขึ้น GitHub |
 
 ---
 
-## 📝 1. วิธีเขียน CLAUDE.md ให้ได้ผล
+## 🐳 1. Docker ที่ต้องรู้ก่อน Scaffold
 
-`CLAUDE.md` คือไฟล์ที่ Claude Code **อ่านอัตโนมัติทุกครั้ง** ที่เริ่มทำงานในโปรเจกต์ เปรียบเหมือน "คู่มือพนักงานใหม่" — สิ่งที่เขียนไว้ในนี้ไม่ต้องพิมพ์ซ้ำในทุก Prompt
-
-### 📋 ควรมีอะไรบ้าง
-
-| หัวข้อ | ตัวอย่าง |
-|---|---|
-| โปรเจกต์นี้คืออะไร | "ระบบจองห้องประชุมสำหรับคณะ ผู้ใช้คือบุคลากร ~200 คน" |
-| Tech stack + เวอร์ชัน | Svelte 5, Express 5, PostgreSQL 17, Node LTS |
-| โครงสร้างโฟลเดอร์ | `frontend/`, `backend/`, `backend/migrations/` |
-| คำสั่งที่ใช้บ่อย | `docker compose up -d`, `npm test`, `npm run migrate up` |
-| มาตรฐานโค้ด | ESM, async/await, validate input ทุก endpoint |
-| สิ่งที่ห้ามทำ | ห้าม commit `.env`, ห้ามต่อ SQL ด้วย string concat |
-| Definition of Done | Test ผ่าน, lint ผ่าน, อัปเดต README |
-
-### 💡 เคล็ดลับ
-- **สั้นและเจาะจง** ดีกว่ายาวและกว้าง — Claude อ่านทุกครั้ง ข้อความที่ไม่จำเป็นกินบริบท
-- เขียนเป็น **คำสั่ง** ("ใช้ parameterized query เสมอ") ไม่ใช่คำอธิบายยาว
-- **อัปเดตเมื่อ Claude ทำผิดซ้ำ** — ถ้าต้องบอกเรื่องเดิมสองครั้ง ให้ใส่ลง `CLAUDE.md`
-- ใช้คำสั่ง `/init` ใน Claude Code เพื่อสร้างร่างแรกจากโค้ดที่มีอยู่ แล้วแก้ต่อ
-
-แม่แบบพร้อมใช้: [`templates/CLAUDE.md.template`](../templates/CLAUDE.md.template)
-
----
-
-## 🐳 2. Docker ที่ต้องรู้ก่อน Scaffold
-
-วันที่ 1 เราใช้ Docker ผ่านหน้าจอ วันนี้ Claude จะสร้าง **Dockerfile + docker-compose.yml** ของแอปจริงให้ — ผู้เรียนต้อง **อ่านออกและแก้ปัญหาได้**
+วันที่ 2 เราใช้ Docker ผ่านหน้าจอ วันนี้ Claude จะสร้าง **Dockerfile + docker-compose.yml** ของแอปจริงให้ — ผู้เรียนต้อง **อ่านออกและแก้ปัญหาได้**
 
 > 📖 เปิด **[Docker Cheat Sheet](../guides/docker-commands.md)** ไว้ข้างจอ
 
@@ -65,7 +37,7 @@
 
 ### 🧪 Lab: ทดลองกับ hello-compose (10 นาที)
 
-เปิด Terminal ในโฟลเดอร์ `day-1-setup/examples/hello-compose` แล้วทำทีละข้อ — สังเกตหน้าจอ Docker Desktop คู่กันไปด้วย
+เปิด Terminal ในโฟลเดอร์ `day-2-bootcamp/examples/hello-compose` แล้วทำทีละข้อ — สังเกตหน้าจอ Docker Desktop คู่กันไปด้วย
 
 ```bash
 docker compose up -d
@@ -99,17 +71,18 @@ docker compose exec db psql -U app -d appdb -c "SELECT * FROM greetings;"   # �
 - `healthcheck` ของ db + `depends_on: condition: service_healthy` ของ backend
 - backend ใช้ host `db` ใน `DATABASE_URL`
 - รหัสผ่านมาจาก `${...}` ใน `.env` ไม่ได้เขียนตรงๆ
-- DB **ไม่จำเป็นต้อง** publish พอร์ตออกมา (ปลอดภัยกว่า — วันที่ 3 จะเห็นผลใน Nessus)
+- DB **ไม่จำเป็นต้อง** publish พอร์ตออกมา (ปลอดภัยกว่า — วันที่ 4 จะเห็นผลใน Nessus)
 
 ---
 
-## 🧪 3. Lab: Scaffold จาก Prompt เดียว
+## 🧪 2. Lab: Scaffold จาก Prompt เดียว
 
 ### 🎒 เตรียม
-1. สร้าง repo ใหม่บน GitHub (เช่น `room-booking`) แบบ Private หรือ Public — ติ๊ก *Add README* และ `.gitignore` = Node
-2. Clone ลงเครื่องด้วย GitHub Desktop แล้วเปิดใน VSCode
-3. คัดลอก `templates/CLAUDE.md.template` มาเป็น `CLAUDE.md` แล้วแก้ส่วน `<...>` ให้ตรงกับแอปของตัวเอง
-4. วาง `app-idea.md` จากวันที่ 1 ไว้ใน `docs/app-idea.md`
+เปิด repo โปรเจกต์ที่สร้างไว้ท้ายวันที่ 2 ใน VSCode แล้วตรวจว่ามีครบ:
+- `CLAUDE.md` (กรอกส่วน `<...>` แล้ว) — ยังไม่มี: ดู [วันที่ 2 ข้อ 5](../day-2-bootcamp/README.md#-5-claudemd--เตรียม-repo-โปรเจกต์)
+- `docs/app-idea.md` ที่ตัด scope แล้ว
+- `.claude/settings.json` (กันอ่าน `.env` และคำสั่งอันตราย)
+- โหมด Claude Code เป็น **Manual** หรือ **Plan** — ไม่ใช่ Auto
 
 ### 💬 Prompt Scaffold
 
@@ -139,7 +112,7 @@ docker compose exec db psql -U app -d appdb -c "SELECT * FROM greetings;"   # �
 
 ### 🗃️ ทำไมใช้ Migration แทน `init.sql`
 
-วันที่ 1 เราใช้ `init.sql` ซึ่ง **รันแค่ครั้งแรกตอน volume ของ Postgres ยังว่าง** — พอ Sprint วันที่ 4 ต้องเพิ่มคอลัมน์ แก้ `init.sql` ไปก็ไม่มีผล ต้องลบข้อมูลทิ้ง (`down -v`) ซึ่งทำบน Server จริงไม่ได้
+hello-compose (วันที่ 2) ใช้ `init.sql` ซึ่ง **รันแค่ครั้งแรกตอน volume ของ Postgres ยังว่าง** — พอ Sprint วันที่ 5 ต้องเพิ่มคอลัมน์ แก้ `init.sql` ไปก็ไม่มีผล ต้องลบข้อมูลทิ้ง (`down -v`) ซึ่งทำบน Server จริงไม่ได้
 
 **Migration** = ไฟล์ที่บันทึกการเปลี่ยนแปลง schema ทีละขั้น เรียงลำดับตามเวลา เครื่องมือจะจำว่ารันไปถึงไฟล์ไหนแล้ว (ในตาราง `pgmigrations`) และรันเฉพาะไฟล์ใหม่
 
@@ -180,7 +153,7 @@ git commit -m "chore: scaffold svelte + express + postgres"
 
 ---
 
-## 🎨 4. Lab: Svelte UI เชื่อม API
+## 🎨 3. Lab: Svelte UI เชื่อม API
 
 ทำทีละฟีเจอร์ เล็กๆ แล้ว Commit:
 
@@ -204,7 +177,7 @@ git commit -m "chore: scaffold svelte + express + postgres"
 
 ---
 
-## 🔁 5. ทดสอบระบบแบบ End-to-End
+## 🔁 4. ทดสอบระบบแบบ End-to-End
 
 ### 🖐️ ทดสอบด้วยมือ (Smoke test)
 1. `docker compose down -v && docker compose up -d --build` (เริ่มจากศูนย์)
@@ -220,7 +193,7 @@ git commit -m "chore: scaffold svelte + express + postgres"
 
 ---
 
-## ☁️ 6. Commit และ Push ขึ้น GitHub
+## ☁️ 5. Commit และ Push ขึ้น GitHub
 
 ก่อน Push ตรวจสอบ:
 ```bash
@@ -240,7 +213,6 @@ git push origin main
 
 ## ✅ Checklist ท้ายวัน
 
-- [ ] มี `CLAUDE.md` ที่ปรับให้เข้ากับแอปของตัวเอง
 - [ ] ทดลอง `down` เทียบ `down -v` แล้วอธิบายได้ว่าข้อมูลใน volume หายเมื่อไหร่
 - [ ] `docker compose up -d --build` แล้วทั้ง 3 service ขึ้น `healthy`/`running`
 - [ ] ตาราง `pgmigrations` มีรายการ migration ที่รันแล้ว (`docker compose exec db psql -U app -d appdb -c "SELECT name FROM pgmigrations;"`)
@@ -265,4 +237,4 @@ git push origin main
 
 ---
 
-<p align="center"><a href="../day-1-setup/README.md">⬅️ 🧰 วันที่ 1</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../day-3-testing-security/README.md">🛡️ วันที่ 3 ➡️</a></p>
+<p align="center"><a href="../day-2-bootcamp/README.md">⬅️ 🎮 วันที่ 2</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../day-4-testing-security/README.md">🛡️ วันที่ 4 ➡️</a></p>

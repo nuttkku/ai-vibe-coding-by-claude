@@ -1,5 +1,5 @@
 // Small helpers for a shop's daily sales report.
-// This file contains intentional bugs for the Day 1 Claude Code bootcamp. Do not "fix" them in the course repo.
+// This file contains intentional bugs for the Day 2 Claude Code bootcamp. Do not "fix" them in the course repo.
 
 export function total(prices) {
   let sum = 0;

@@ -26,26 +26,25 @@
 
 | วัน | หัวข้อ | เนื้อหา |
 |---|---|---|
-| 🧰 1 | [เตรียมเครื่องมือ + ปูพื้นฐานแนวคิด](day-1-setup/README.md) | Mindset Vibe Coding, **🎮 Claude Code Bootcamp** (คำสั่งและปุ่มลัดครบชุด), **🌱 Git Bootcamp** (คำสั่ง git ↔ GitHub Desktop), Docker Desktop (ใช้ผ่านหน้าจอ), **VirtualBox VM (Ubuntu Server)**, เขียน Prompt App Idea |
-| 🏗️ 2 | [สร้าง Scaffold โปรเจกต์จริง](day-2-scaffold/README.md) | เขียน `CLAUDE.md`, **🐳 Docker ลงลึก** (image, volume, network, คำสั่ง compose), Scaffold Svelte + Express + Docker Compose จาก Prompt เดียว, UI เชื่อม API, ทดสอบ E2E, Push ขึ้น GitHub |
-| 🛡️ 3 | [Testing และ Security](day-3-testing-security/README.md) | Unit + Integration Test, อ่าน Report และ Fix, Snyk, OWASP ZAP, Nessus (สแกน VM ของตัวเอง) |
-| 🚀 4 | [CI/CD + Sprint พัฒนาฟีเจอร์](day-4-cicd-sprint/README.md) | GitHub Actions Workflow, Sprint 1 (Core Feature), Sprint 2 (Feature เสริม/Polish/Bug), Coach รายบุคคล |
-| 🎤 5 | [Sprint สุดท้าย + Demo](day-5-deploy-demo/README.md) | ปิด Feature, Deploy ขึ้น VM + **Cloudflare Tunnel** ได้ URL HTTPS, Demo รายบุคคล, แชร์ Prompt/Strategy |
+| 🧰 1 | [เปิดหลักสูตร + Vibe Coding + ติดตั้งเครื่องมือ](day-1-intro/README.md) | เช้า: เปิดหลักสูตร, แนะนำตัวผู้สอนและผู้อบรม, สาธิตสด · บ่าย: Vibe Coding คืออะไร, ติดตั้ง **VSCode + Claude Code Extension** และ **Git + GitHub Desktop** · การบ้าน: ติดตั้ง Docker, Node.js, VirtualBox |
+| 🎮 2 | [Claude Code + Git Bootcamp](day-2-bootcamp/README.md) | **🎮 Claude Code Bootcamp** (โหมด, โมเดล, คำสั่ง `/`), **🌱 Git Bootcamp** (คำสั่ง git ↔ GitHub Desktop), Docker Desktop ผ่านหน้าจอ, Workshop App Idea, `CLAUDE.md` + เตรียม repo โปรเจกต์ |
+| 🏗️ 3 | [สร้าง Scaffold โปรเจกต์จริง](day-3-scaffold/README.md) | **🐳 Docker ลงลึก** (image, volume, network, คำสั่ง compose), Scaffold Svelte + Express + Docker Compose จาก Prompt เดียว, UI เชื่อม API, ทดสอบ E2E, Push ขึ้น GitHub |
+| 🛡️ 4 | [Testing, Security + Server จำลอง](day-4-testing-security/README.md) | Unit + Integration Test + อ่าน Report, Snyk, OWASP ZAP, สร้าง **VirtualBox VM**, Nessus (สแกน VM ของตัวเอง) |
+| 🚀 5 | [CI/CD + Sprint + Deploy + Demo](day-5-cicd-deploy-demo/README.md) | GitHub Actions Workflow, Sprint 2 ชั่วโมง (ปิดฟีเจอร์ + Polish), Deploy ขึ้น VM + **Cloudflare Tunnel** ได้ URL HTTPS, Demo รายบุคคล, แชร์ Prompt/Strategy |
 
 ## 📂 โครงสร้าง Repository
 
 ```
 .
-├── day-1-setup/              # วันที่ 1: ติดตั้งเครื่องมือ + Mindset
+├── day-1-intro/              # วันที่ 1: เปิดหลักสูตร + Vibe Coding + ติดตั้ง VSCode/Claude Code/Git
+├── day-2-bootcamp/           # วันที่ 2: Claude Code + Git Bootcamp, Docker, App Idea, CLAUDE.md
+│   └── examples/                 # claude-playground/, hello-compose/
+├── day-3-scaffold/           # วันที่ 3: Docker ลงลึก + Scaffold โปรเจกต์
+├── day-4-testing-security/   # วันที่ 4: Test + Snyk/ZAP + VM + Nessus
 │   ├── virtualbox-vm.md          # คู่มือสร้าง Server จำลอง (Ubuntu VM)
-│   └── examples/                 # hello-compose/, vm-setup.sh
-├── day-2-scaffold/           # วันที่ 2: CLAUDE.md + Scaffold โปรเจกต์
-├── day-3-testing-security/   # วันที่ 3: Test + Snyk/ZAP/Nessus
-│   └── examples/
-├── day-4-cicd-sprint/        # วันที่ 4: GitHub Actions + Sprint
-│   └── examples/             # ตัวอย่าง Workflow (คัดลอกไปใช้ในโปรเจกต์ตัวเอง)
-├── day-5-deploy-demo/        # วันที่ 5: Deploy + Demo
-│   └── examples/
+│   └── examples/                 # zap-rules.tsv, security-notes.md, vm-setup.sh
+├── day-5-cicd-deploy-demo/   # วันที่ 5: GitHub Actions + Sprint + Deploy + Demo
+│   └── examples/                 # ci.yml, docker-compose.prod.yml, Caddyfile, backup/restore
 ├── guides/                   # Cheat sheet Claude Code, Git, Docker, โหมด·โมเดล·ค่าใช้จ่าย, คู่มือโควต้า
 ├── scripts/                  # check-env.ps1 / check-env.sh ตรวจเครื่องก่อนเรียน
 ├── templates/                # แม่แบบ CLAUDE.md, App Idea, Demo
@@ -60,19 +59,19 @@
 
 - คอมพิวเตอร์ Windows 10/11 (รองรับ WSL2), macOS (Intel) หรือ Linux — **RAM 16 GB ขึ้นไป** (ต้องเปิด Docker Desktop และ VM พร้อมกัน), พื้นที่ว่าง ≥ 60 GB, เปิด Virtualization ใน BIOS แล้ว
 - บัญชี [GitHub](https://github.com) และบัญชี [Claude](https://claude.ai) แผน Pro ขึ้นไป (เพื่อใช้ Claude Code)
-- บัญชี [Snyk](https://snyk.io) (ฟรี) — ใช้วันที่ 3–4
-- Activation Code ของ [Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials) (ฟรี, ส่งทางอีเมล) — ใช้วันที่ 3
+- บัญชี [Snyk](https://snyk.io) (ฟรี) — ใช้วันที่ 4–5
+- Activation Code ของ [Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials) (ฟรี, ส่งทางอีเมล) — ใช้วันที่ 4
 - สิทธิ์ Admin บนเครื่อง (สำหรับติดตั้ง Docker/WSL2/VirtualBox)
-- ⚠️ **ติดตั้งเครื่องมือทั้งหมดให้เสร็จก่อนวันแรก** ตาม [วันที่ 1 ข้อ 0](day-1-setup/README.md#-0-การบ้านก่อนเรียน-ติดตั้งเครื่องมือ) — ช่วงเช้าวันแรกเป็น Bootcamp ลงมือทำ ไม่มีเวลาติดตั้ง
+- 📥 วันที่ 1 ติดตั้ง VSCode + Claude Code + Git ในห้อง · Docker, Node.js, VirtualBox เป็น **การบ้านก่อนวันที่ 2** ตาม [วันที่ 1 ข้อ 7](day-1-intro/README.md#-7-การบ้านก่อนวันที่-2-15301600)
 - **ไม่ต้องมีโดเมนและไม่ต้องมีบัญชี Cloudflare** — วันที่ 5 ใช้ Cloudflare Quick Tunnel ได้ URL `*.trycloudflare.com` ฟรี
 
-📦 **ดาวน์โหลดไว้ก่อนวันแรก** (ไฟล์ใหญ่ ห้องอบรมอาจเน็ตช้า): VSCode, Git, GitHub Desktop, Docker Desktop, Node.js LTS, [VirtualBox](https://www.virtualbox.org/wiki/Downloads), ISO ของ [Ubuntu Server LTS](https://ubuntu.com/download/server) (~3 GB)
+📦 **ดาวน์โหลดไว้ล่วงหน้าได้เลย** (ไฟล์ใหญ่ ห้องอบรมอาจเน็ตช้า): VSCode, Git, GitHub Desktop, Docker Desktop, Node.js LTS, [VirtualBox](https://www.virtualbox.org/wiki/Downloads), ISO ของ [Ubuntu Server LTS](https://ubuntu.com/download/server) (~3 GB)
 
 > ⚠️ Mac ชิป Apple Silicon (M1–M4): VirtualBox รองรับได้จำกัด ให้ใช้ [UTM](https://mac.getutm.app) หรือ Multipass สร้าง Ubuntu VM แทน ขั้นตอนหลังจากนั้นเหมือนกัน
 
 ### 🩺 ตรวจความพร้อมของเครื่อง
 
-หลังติดตั้งเครื่องมือแล้ว ให้รันสคริปต์ตรวจก่อนวันแรก (อ่านอย่างเดียว ไม่แก้ไขอะไรในเครื่อง):
+หลังทำการบ้านติดตั้งเครื่องมือแล้ว ให้รันสคริปต์ตรวจก่อนวันที่ 2 (อ่านอย่างเดียว ไม่แก้ไขอะไรในเครื่อง):
 
 ```powershell
 # Windows (PowerShell)
@@ -83,16 +82,16 @@ powershell -ExecutionPolicy Bypass -File scripts\check-env.ps1
 bash scripts/check-env.sh
 ```
 
-🔴 แก้ทุกข้อที่เป็น **FAIL** ก่อนมาเรียน ส่วน **WARN** ถามวิทยากรได้ในวันแรก
+🔴 แก้ทุกข้อที่เป็น **FAIL** ก่อนวันที่ 2 ส่วน **WARN** ถามวิทยากรได้
 สคริปต์จะตรวจ: RAM, พื้นที่ดิสก์, Virtualization, Git, Node.js LTS, VS Code, Claude Code, WSL2, Docker, VirtualBox, ISO ของ Ubuntu, พอร์ตที่ใช้ใน Lab และการเชื่อมต่อ GitHub / Docker Hub / Claude / Cloudflare
 
-รายละเอียดการติดตั้งทีละขั้นอยู่ที่ [วันที่ 1](day-1-setup/README.md)
+รายละเอียดการติดตั้งทีละขั้นอยู่ที่ [วันที่ 1](day-1-intro/README.md)
 
 ## 🧭 วิธีใช้ Repo นี้
 
-👩‍🎓 **ผู้เรียน:** Fork หรือ Clone repo นี้ไว้อ่านประกอบ แล้วสร้าง **repo แยก** สำหรับโปรเจกต์ของตัวเอง (เริ่มวันที่ 2) คัดลอกไฟล์จาก `templates/` และ `day-*/examples/` ไปใช้ได้เลย
+👩‍🎓 **ผู้เรียน:** Fork หรือ Clone repo นี้ไว้อ่านประกอบ แล้วสร้าง **repo แยก** สำหรับโปรเจกต์ของตัวเอง (สร้างท้ายวันที่ 2) คัดลอกไฟล์จาก `templates/` และ `day-*/examples/` ไปใช้ได้เลย
 
-🧑‍🏫 **วิทยากร:** แต่ละวันมีตารางเวลา, เป้าหมาย, Checklist และ Prompt ตัวอย่าง ปรับเวลาได้ตามกลุ่มผู้เรียน — ส่ง `scripts/check-env.*` ให้ผู้เรียนรันล่วงหน้า 1 สัปดาห์ และอ่าน [guides/claude-code-efficiency.md](guides/claude-code-efficiency.md) เพื่อเตรียมรับมือเมื่อผู้เรียนใช้โควต้า Claude หมด
+🧑‍🏫 **วิทยากร:** แต่ละวันมีตารางเวลา, เป้าหมาย, Checklist และ Prompt ตัวอย่าง ปรับเวลาได้ตามกลุ่มผู้เรียน — ส่ง `scripts/check-env.*` ให้ผู้เรียนรันเป็นการบ้านหลังวันที่ 1 และอ่าน [guides/claude-code-efficiency.md](guides/claude-code-efficiency.md) เพื่อเตรียมรับมือเมื่อผู้เรียนใช้โควต้า Claude หมด
 
 ## ⚖️ License
 

@@ -81,7 +81,7 @@ if ($vbox) {
     Add-Result 'PASS' 'VirtualBox' ((& $vbox --version) -join ' ')
     $vms = (& $vbox list vms) -join "`n"
     if ($vms -match 'vibe-server') { Add-Result 'PASS' 'Course VM' "'vibe-server' exists" }
-    else { Add-Result 'WARN' 'Course VM' "'vibe-server' not created yet (done on Day 1)" }
+    else { Add-Result 'WARN' 'Course VM' "'vibe-server' not created yet (done on Day 4)" }
 } else { Add-Result 'FAIL' 'VirtualBox' 'not found - https://www.virtualbox.org/wiki/Downloads' }
 
 $iso = Get-ChildItem "$env:USERPROFILE\Downloads" -Filter 'ubuntu-*-live-server-*.iso' | Select-Object -First 1
@@ -116,6 +116,6 @@ $fail = @($results | Where-Object Status -eq 'FAIL').Count
 $warn = @($results | Where-Object Status -eq 'WARN').Count
 Write-Host ('-' * 60)
 Write-Host ("{0} FAIL, {1} WARN" -f $fail, $warn)
-if ($fail -gt 0) { Write-Host 'Fix FAIL items before Day 1. See day-1-setup/README.md' -ForegroundColor Red; exit 1 }
-Write-Host 'Ready for Day 1.' -ForegroundColor Green
+if ($fail -gt 0) { Write-Host 'Fix FAIL items before Day 2. See day-1-intro/README.md' -ForegroundColor Red; exit 1 }
+Write-Host 'Ready for Day 2.' -ForegroundColor Green
 exit 0

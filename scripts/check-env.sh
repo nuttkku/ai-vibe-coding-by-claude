@@ -64,7 +64,7 @@ else fail "Docker" "not found - https://docs.docker.com/get-docker/"; fi
 if has VBoxManage; then
   pass "VirtualBox" "$(VBoxManage --version)"
   if VBoxManage list vms | grep -q vibe-server; then pass "Course VM" "'vibe-server' exists"
-  else warn "Course VM" "'vibe-server' not created yet (done on Day 1)"; fi
+  else warn "Course VM" "'vibe-server' not created yet (done on Day 4)"; fi
 elif has utmctl || [ -d "/Applications/UTM.app" ]; then pass "UTM" "installed"
 elif has multipass; then pass "Multipass" "$(multipass version | head -1)"
 else fail "VM software" "install VirtualBox (or UTM/Multipass on Apple Silicon)"; fi
@@ -88,5 +88,5 @@ done
 
 printf -- '------------------------------------------------------------\n'
 printf '%d FAIL, %d WARN\n' "$fail" "$warn"
-if [ "$fail" -gt 0 ]; then printf '%sFix FAIL items before Day 1. See day-1-setup/README.md%s\n' "$R" "$N"; exit 1; fi
-printf '%sReady for Day 1.%s\n' "$G" "$N"
+if [ "$fail" -gt 0 ]; then printf '%sFix FAIL items before Day 2. See day-1-intro/README.md%s\n' "$R" "$N"; exit 1; fi
+printf '%sReady for Day 2.%s\n' "$G" "$N"

@@ -1,119 +1,43 @@
-# 🧰 วันที่ 1 — เตรียมเครื่องมือ + ปูพื้นฐานแนวคิด
+# 🎮 วันที่ 2 — Claude Code + Git Bootcamp, Docker, App Idea
 
 ## 🎯 เป้าหมายของวัน
 
 เมื่อจบวันนี้ ผู้เรียนจะ:
-- 🧠 อธิบายได้ว่า Vibe Coding คืออะไร และต่างจาก "ให้ AI ช่วยเขียนโค้ด" แบบรับผิดชอบอย่างไร
-- 🎮 **รู้จักคำสั่ง `/` ของ Claude Code ที่ต้องใช้** — ใช้ทุกวัน (`/clear` `/compact` `/context` `/usage` `/rewind` `/memory` ...), ตั้งค่า/สิทธิ์ (`/permissions` `/status` `/doctor` ...), ขั้นสูง (`/review` `/security-review` `/agents` `/mcp` `/hooks`) และสร้างคำสั่งของตัวเองได้
+- 🎮 **รู้จักโหมด, โมเดล และคำสั่ง `/` ของ Claude Code ที่ต้องใช้** — ใช้ทุกวัน (`/clear` `/compact` `/context` `/usage` `/rewind` `/memory` ...), ตั้งค่า/สิทธิ์ (`/permissions` `/status` `/doctor` ...), ขั้นสูง (`/review` `/security-review` `/agents` `/mcp` `/hooks`) และสร้างคำสั่งของตัวเองได้
 - 🌱 **อ่านและใช้คำสั่ง git หลักได้** และรู้ว่าแต่ละคำสั่งตรงกับปุ่มไหนใน GitHub Desktop
-- 🧰 มีเครื่องมือครบ: VSCode + Claude Code, Git + GitHub Desktop, Docker Desktop (WSL2), Node.js LTS
-- 🐳 รันแอปด้วย Docker Compose และดู/หยุด/เริ่ม container ผ่านหน้าจอ Docker Desktop ได้ (ลงลึกวันที่ 2)
-- 🖥️ มี **Server จำลอง (VirtualBox VM, Ubuntu Server)** ที่ SSH เข้าได้และมี Docker พร้อมใช้ในวันที่ 3 และ 5
-- 💡 มี App Idea ของตัวเองเขียนเป็น Prompt พร้อมใช้ในวันที่ 2
+- 🐳 รันแอปด้วย Docker Compose และดู/หยุด/เริ่ม container ผ่านหน้าจอ Docker Desktop ได้ (ลงลึกวันที่ 3)
+- 💡 มี App Idea ของตัวเองที่ตัด scope แล้ว
+- 📝 มี repo โปรเจกต์บน GitHub พร้อม `CLAUDE.md` — พร้อมเริ่ม Scaffold วันที่ 3
 
 ## ⏰ ตารางเวลา (แนะนำ)
 
 | เวลา | กิจกรรม |
 |---|---|
-| **ก่อนเรียน** | 📥 ติดตั้งเครื่องมือทั้งหมดตาม [ข้อ 0](#-0-การบ้านก่อนเรียน-ติดตั้งเครื่องมือ) แล้วรัน `check-env` |
-| 09:00–09:30 | 🧠 Mindset: Vibe Coding คืออะไร |
-| 09:30–09:45 | 🩺 ตรวจเครื่อง (`check-env`) + ล็อกอิน Claude Code |
-| 09:45–11:00 | 🎮 **Claude Code Bootcamp** — คำสั่ง `/` ที่ต้องรู้ทีละตัว + ลองกดจริง |
-| 11:00–12:00 | 🌱 **Git Bootcamp** — คำสั่ง git ↔ GitHub Desktop |
-| 13:00–13:30 | 🐳 Lab: Docker Desktop ผ่านหน้าจอ + 🧪 Lab รวม Claude Code (+ แก้เครื่องที่ติดตั้งไม่ผ่าน) |
-| 13:30–14:45 | 🖥️ สร้าง VirtualBox VM + ติดตั้ง Docker บน VM + Snapshot |
-| 14:45–16:00 | 💡 Workshop: เขียน Prompt App Idea |
+| 09:00–09:15 | 🩺 ตรวจการบ้าน (`check-env`) — ใครยังติด จับคู่เพื่อนไปก่อน แก้ช่วงบ่าย |
+| 09:15–10:45 | 🎮 **Claude Code Bootcamp** — โหมด, โมเดล, คำสั่ง `/` ทีละตัว + ลองกดจริง |
+| 10:45–12:00 | 🌱 **Git Bootcamp** — คำสั่ง git ↔ GitHub Desktop |
+| 13:00–13:40 | 🐳 Lab: Docker Desktop ผ่านหน้าจอ + 🧪 Lab รวม Claude Code (+ แก้เครื่องที่ติดตั้งไม่ผ่าน) |
+| 13:40–14:50 | 💡 Workshop: App Idea |
+| 14:50–16:00 | 📝 CLAUDE.md + เตรียม repo โปรเจกต์ของตัวเอง |
 
-> 💡 ช่วงเช้าเป็น **ลงมือทำ 2 ชั่วโมงเต็ม** ไม่ใช่นั่งฟัง — วิทยากรสาธิตทีละคำสั่ง แล้วให้ผู้เรียนกดตามทันที เดินดูทีละเครื่อง
-> ผู้เรียนที่ยังติดตั้งไม่เสร็จ ให้จับคู่กับเพื่อนทำ Bootcamp ไปก่อน แล้วค่อยแก้เครื่องช่วง 13:00
+> 💡 ช่วงเช้าเป็น **ลงมือทำเกือบ 3 ชั่วโมง** ไม่ใช่นั่งฟัง — วิทยากรสาธิตทีละคำสั่ง แล้วให้ผู้เรียนกดตามทันที เดินดูทีละเครื่อง
 
 ---
 
-## 📥 0. การบ้านก่อนเรียน: ติดตั้งเครื่องมือ
+## 🩺 0. ตรวจการบ้าน (09:00–09:15)
 
-ทำให้เสร็จ **ก่อนวันแรก** แล้วรัน `scripts/check-env.ps1` (Windows) หรือ `scripts/check-env.sh` (macOS/Linux) ให้ไม่มี FAIL
-
-<details>
-<summary>🟦 <b>VSCode + Claude Code</b></summary>
-
-1. ดาวน์โหลด VSCode จาก <https://code.visualstudio.com> (Windows: ติ๊ก "Add to PATH" และ "Open with Code")
-2. สมัคร <https://claude.ai> แล้วอัปเกรดเป็นแผน **Pro** ขึ้นไป (รวมสิทธิ์ Claude Code) — รายละเอียดแผน: <https://www.anthropic.com/pricing>
-3. VSCode → Extensions (`Ctrl+Shift+X`) → ค้นหา **"Claude Code"** (ผู้เผยแพร่: Anthropic) → Install → คลิกไอคอน Claude ที่ Sidebar → ล็อกอิน
-4. (แนะนำ) ติดตั้ง CLI ด้วย เพื่อใช้ `claude` ใน Terminal ได้ ตามวิธีล่าสุดใน <https://docs.anthropic.com/en/docs/claude-code/setup>
-
-</details>
-
-<details>
-<summary>🌱 <b>Git + GitHub Desktop</b></summary>
-
-- Windows: <https://git-scm.com/download/win> (ค่าเริ่มต้น จะได้ Git Bash มาด้วย) · macOS: `xcode-select --install`
-- GitHub Desktop: <https://desktop.github.com> แล้วล็อกอินบัญชี GitHub
-- ตั้งค่าตัวตน:
-  ```bash
-  git config --global user.name "ชื่อ นามสกุล"
-  git config --global user.email "you@example.com"
-  ```
-
-</details>
-
-<details>
-<summary>🐧 <b>WSL2 + Docker Desktop</b></summary>
-
-1. Windows: เปิด **PowerShell (Run as Administrator)** → `wsl --install` → รีสตาร์ท → ตรวจ `wsl -l -v` ต้องเห็น VERSION 2
-2. ดาวน์โหลด Docker Desktop <https://www.docker.com/products/docker-desktop/> (Windows: ติ๊ก **Use WSL 2**)
-3. เปิด Docker Desktop รอ *Engine running* แล้วทดสอบ `docker run --rm hello-world`
-
-> ⚠️ ถ้าเจอ error เรื่อง Virtualization ให้เปิด **Intel VT-x / AMD-V (SVM)** ใน BIOS
-
-</details>
-
-<details>
-<summary>🟩 <b>Node.js LTS + PostgreSQL</b></summary>
-
-- ดาวน์โหลด **LTS** (เลขเวอร์ชันคู่) จาก <https://nodejs.org> แล้วตรวจ `node -v` · `npm -v`
-- PostgreSQL: **ไม่ต้องติดตั้งลงเครื่อง** ใช้ผ่าน Docker ใน Lab (ถ้าอยากติดตั้งเอง: <https://www.postgresql.org/download/>)
-- แนะนำ VSCode Extension **"PostgreSQL"** หรือ **"SQLTools"** ไว้ดูข้อมูล
-
-</details>
-
-<details>
-<summary>🖥️ <b>VirtualBox + ISO</b></summary>
-
-ดาวน์โหลด VirtualBox <https://www.virtualbox.org/wiki/Downloads> และ ISO ของ Ubuntu Server LTS <https://ubuntu.com/download/server> (~3 GB) ไว้ในโฟลเดอร์ Downloads — สร้าง VM ในห้องเรียน
-
-</details>
-
----
-
-## 🧠 1. Mindset: Vibe Coding คืออะไร
-
-คำว่า **"vibe coding"** ถูกบัญญัติโดย Andrej Karpathy (ก.พ. 2025) หมายถึงการเขียนโปรแกรมโดย "บอกสิ่งที่ต้องการ" เป็นภาษาธรรมชาติ แล้วปล่อยให้ AI เขียนโค้ด ผู้พัฒนาเน้นดูผลลัพธ์ ลองรัน แล้วสั่งแก้ต่อ แทนการพิมพ์โค้ดเองทุกบรรทัด
-
-### 🌈 สเปกตรัมของการใช้ AI เขียนโค้ด
-
+ทุกคนรันตัวตรวจในโฟลเดอร์ repo หลักสูตร:
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\check-env.ps1     # Windows
 ```
- Pure Vibe Coding  ←──────────────────────────────→  AI-Assisted Engineering
- "ไม่อ่านโค้ด แค่ดูว่ารันได้"                         "AI เขียน เราอ่าน/ทดสอบ/รับผิดชอบ"
- เหมาะ: prototype, ของเล่น, ทดลองไอเดีย               เหมาะ: งานจริง, ขึ้น production, มีข้อมูลผู้ใช้
+```bash
+bash scripts/check-env.sh                                          # macOS / Linux
 ```
-
-หลักสูตรนี้ **เริ่มจากฝั่งซ้าย** (เร็ว สนุก ได้ของจริงในวันเดียว) แล้ว **ค่อยๆ ขยับไปฝั่งขวา** ด้วย Test, Security Scan และ CI/CD ในวันที่ 3–4
-
-### 🌟 หลัก 5 ข้อของ Vibe Coder ที่ดี
-
-1. **คุณคือ Product Owner + Reviewer** — Claude คือนักพัฒนาที่เร็วมาก แต่ไม่รู้ว่าคุณต้องการอะไรถ้าไม่บอก
-2. **บริบทคือทุกอย่าง** — `CLAUDE.md`, ไฟล์ตัวอย่าง, error message เต็มๆ ช่วยได้มากกว่า Prompt ยาวๆ
-3. **ทีละก้าวเล็กๆ + Commit บ่อย** — ถ้า AI พาหลงทาง ย้อนกลับได้ทันที
-4. **เชื่อแต่ตรวจสอบ (Trust, but verify)** — รันจริง, ดู Test, ดูผลสแกน ไม่ใช่เชื่อคำว่า "เสร็จแล้ว"
-5. **ความลับไม่เข้า Prompt/Repo** — รหัสผ่าน, API key อยู่ใน `.env` และ `.gitignore` เสมอ
-
-### 🗣️ กิจกรรมอภิปราย (10 นาที)
-- งานแบบไหนที่คุณจะ "vibe" ได้เต็มที่? งานแบบไหนที่ต้องอ่านโค้ดทุกบรรทัด?
-- ถ้าแอปที่ AI เขียนมีช่องโหว่แล้วข้อมูลรั่ว ใครรับผิดชอบ?
+ช่วงเช้าต้องใช้แค่ **VSCode + Claude Code + Git** (ติดตั้งแล้วเมื่อวาน) — ส่วน Docker ต้องพร้อมภายใน 13:00 · VirtualBox ใช้วันที่ 4
 
 ---
 
-## 🎮 2. Claude Code Bootcamp
+## 🎮 1. Claude Code Bootcamp
 
 **เป้าหมายของช่วงนี้:** รู้จัก **คำสั่ง `/` ทุกตัวที่ผู้ใช้ Claude Code ควรรู้** — ทำอะไร, ใช้ตอนไหน, และได้ลองกดจริงทุกตัว
 
@@ -136,11 +60,11 @@
 
 ```bash
 # macOS / Linux / Git Bash
-cp -r day-1-setup/examples/claude-playground ~/vibe-playground && code ~/vibe-playground
+cp -r day-2-bootcamp/examples/claude-playground ~/vibe-playground && code ~/vibe-playground
 ```
 ```powershell
 # Windows PowerShell
-Copy-Item -Recurse day-1-setup\examples\claude-playground $HOME\vibe-playground; code $HOME\vibe-playground
+Copy-Item -Recurse day-2-bootcamp\examples\claude-playground $HOME\vibe-playground; code $HOME\vibe-playground
 ```
 
 ในโฟลเดอร์มี `calc.js` (**บั๊กจงใจ 3 จุด**) และ `calc.test.js` (ตอนนี้ fail 4 ข้อ)
@@ -163,10 +87,10 @@ Copy-Item -Recurse day-1-setup\examples\claude-playground $HOME\vibe-playground;
 
 | โหมด (ชื่อใน VS Code) | Claude ทำได้เองโดยไม่ถาม | ใช้ในหลักสูตร |
 |---|---|---|
-| 🖐️ **Manual** | อ่านไฟล์เท่านั้น — แก้ไฟล์/รันคำสั่ง ถามทุกครั้ง | ✅ วันที่ 1–2 |
+| 🖐️ **Manual** | อ่านไฟล์เท่านั้น — แก้ไฟล์/รันคำสั่ง ถามทุกครั้ง | ✅ วันที่ 2–3 |
 | ✏️ **Edit automatically** | อ่าน + แก้ไฟล์ + คำสั่งไฟล์พื้นฐาน — คำสั่งอื่นยังถาม | ✅ หลัง commit แล้ว |
 | 🗺️ **Plan** | อ่าน + วางแผน **ห้ามแก้ไฟล์จนกว่าเราอนุมัติแผน** | ✅ ก่อนงานใหญ่ทุกครั้ง |
-| 🤖 **Auto** | ทุกอย่าง โดยมีโมเดลอีกตัวตรวจแต่ละ action เบื้องหลัง | ⚠️ วันที่ 4–5 เมื่อ commit แล้ว + มีกฎ deny |
+| 🤖 **Auto** | ทุกอย่าง โดยมีโมเดลอีกตัวตรวจแต่ละ action เบื้องหลัง | ⚠️ วันที่ 5 เมื่อ commit แล้ว + มีกฎ deny |
 | ☠️ **Bypass permissions** | ทุกอย่าง ไม่ตรวจอะไร | ❌ ห้ามใช้ |
 
 ⚠️ **แผน Pro/Max/Team เริ่มต้นที่ Auto** — Claude จะแก้ไฟล์และรันคำสั่งเองโดยไม่ถาม **ก่อนเริ่มแบบฝึกทั้งหมด ให้คลิกตัวบอกโหมดใต้ช่องพิมพ์ แล้วเลือก Manual** (Extension จำค่าไว้ให้บทสนทนาถัดไป) · ใน Terminal กด `Shift+Tab` จนเห็น `⏸ manual mode on`
@@ -245,7 +169,7 @@ Copy-Item -Recurse day-1-setup\examples\claude-playground $HOME\vibe-playground;
 
 #### `/usage` — ดูโควต้าแผน Pro ที่เหลือ
 - **ทำอะไร:** แสดงการใช้งานเทียบกับขีดจำกัดของแผน และเวลาที่จะรีเซ็ต
-- **ใช้เมื่อ:** ก่อนเริ่มงานใหญ่ (Scaffold วันที่ 2, Sprint วันที่ 4), รู้สึกว่าใกล้หมด
+- **ใช้เมื่อ:** ก่อนเริ่มงานใหญ่ (Scaffold วันที่ 3, Sprint วันที่ 5), รู้สึกว่าใกล้หมด
 - 🧪 **ลองเลย:** `/usage` แล้วจดไว้ — ท้ายวันดูอีกครั้งว่าวันนี้ใช้ไปเท่าไหร่
 - 💡 ส่วน **Session** ใน `/usage` แสดงเป็นเงิน ($) — สำหรับแผน Pro/Max เป็น **ค่าประเมินตามราคา API ไม่ได้เรียกเก็บจริง** (มีผลจริงเฉพาะผู้ใช้แบบ API key) · หมดโควต้าแล้วอยากทำต่อ: `/usage-credits` · อ่านวิธีประหยัดใน [คู่มือโควต้า](../guides/claude-code-efficiency.md)
 
@@ -260,7 +184,7 @@ Copy-Item -Recurse day-1-setup\examples\claude-playground $HOME\vibe-playground;
 - 🧪 **ลองเลย:**
   1. สั่ง `เปลี่ยนชื่อทุกฟังก์ชันใน calc.js เป็นภาษาไทย` → ดูว่าไฟล์เปลี่ยน
   2. `/rewind` → เลือกข้อความก่อนหน้า → ย้อน **โค้ดและแชท** → ไฟล์กลับเหมือนเดิม
-- ⚠️ `/rewind` ย้อนได้เฉพาะไฟล์ที่ Claude **แก้ผ่านเครื่องมือแก้ไฟล์** — สิ่งที่เกิดจากคำสั่ง shell (เช่น ลบไฟล์ด้วย `rm`, `git commit`) ย้อนไม่ได้ → **git ยังจำเป็นเสมอ** (Session 3)
+- ⚠️ `/rewind` ย้อนได้เฉพาะไฟล์ที่ Claude **แก้ผ่านเครื่องมือแก้ไฟล์** — สิ่งที่เกิดจากคำสั่ง shell (เช่น ลบไฟล์ด้วย `rm`, `git commit`) ย้อนไม่ได้ → **git ยังจำเป็นเสมอ** (Git Bootcamp ถัดไป)
 
 #### `/resume` — กลับไปบทสนทนาเก่า
 - **ทำอะไร:** แสดงรายการ session ก่อนหน้าให้เลือกกลับไปทำต่อ (CLI: `claude -c` = ล่าสุด, `claude -r` = เลือก)
@@ -310,18 +234,18 @@ Copy-Item -Recurse day-1-setup\examples\claude-playground $HOME\vibe-playground;
 
 ---
 
-### 🚀 ระดับ 3 — รู้จักไว้ ใช้จริงวันที่ 3–5
+### 🚀 ระดับ 3 — รู้จักไว้ ใช้จริงวันที่ 4–5
 
 วิทยากรสาธิตให้ดู 1–2 ตัว ที่เหลือแค่รู้ว่ามี
 
 | คำสั่ง | ทำอะไร | ได้ใช้เมื่อ |
 |---|---|---|
-| `/review` | ให้ Claude review โค้ดหรือ Pull Request | 🚀 วันที่ 4 ก่อน merge |
-| `/security-review` | ตรวจการเปลี่ยนแปลงในมุมความปลอดภัย (injection, ความลับรั่ว, auth) | 🛡️ วันที่ 3 คู่กับ Snyk/ZAP |
-| `/agents` | สร้าง/จัดการ **subagent** — ผู้ช่วยเฉพาะทาง เช่น "test writer", "security reviewer" | 🛡️ วันที่ 3–4 |
-| `/mcp` | ต่อเครื่องมือภายนอกผ่าน MCP เช่น ให้ Claude เปิดเบราว์เซอร์ดูหน้าเว็บเอง | 🚀 วันที่ 4 Polish UI |
-| `/hooks` | ตั้งให้รันคำสั่งอัตโนมัติ เช่น รัน test ทุกครั้งหลัง Claude แก้ไฟล์ | 🚀 วันที่ 4 |
-| `/install-github-app` | ติดตั้ง Claude บน GitHub repo ให้ mention `@claude` ใน Issue/PR ได้ | 🚀 วันที่ 4 (เสริม) |
+| `/review` | ให้ Claude review โค้ดหรือ Pull Request | 🚀 วันที่ 5 ก่อน merge |
+| `/security-review` | ตรวจการเปลี่ยนแปลงในมุมความปลอดภัย (injection, ความลับรั่ว, auth) | 🛡️ วันที่ 4 คู่กับ Snyk/ZAP |
+| `/agents` | สร้าง/จัดการ **subagent** — ผู้ช่วยเฉพาะทาง เช่น "test writer", "security reviewer" | 🛡️ วันที่ 4–5 |
+| `/mcp` | ต่อเครื่องมือภายนอกผ่าน MCP เช่น ให้ Claude เปิดเบราว์เซอร์ดูหน้าเว็บเอง | 🚀 วันที่ 5 Polish UI |
+| `/hooks` | ตั้งให้รันคำสั่งอัตโนมัติ เช่น รัน test ทุกครั้งหลัง Claude แก้ไฟล์ | 🚀 วันที่ 5 |
+| `/install-github-app` | ติดตั้ง Claude บน GitHub repo ให้ mention `@claude` ใน Issue/PR ได้ | 🚀 วันที่ 5 (เสริม) |
 | `/export` | ส่งออกบทสนทนาเป็นไฟล์/คลิปบอร์ด | 🎤 วันที่ 5 แชร์ Prompt/Strategy |
 | `/feedback` (หรือ `/bug`) | ส่ง feedback/รายงานปัญหาให้ Anthropic | เมื่อเจอบั๊กของ Claude Code เอง |
 | `/exit` | ออกจาก Claude Code (CLI) | — |
@@ -360,11 +284,11 @@ Shift+Tab → Plan mode →  "วางแผนแก้บั๊กใน @cal
 
 ---
 
-## 🌱 3. Git Bootcamp
+## 🌱 2. Git Bootcamp
 
 > 📖 เปิด **[Git Cheat Sheet + GitHub Desktop](../guides/git-commands.md)** ไว้ข้างจอ
 
-**ทำไมต้องรู้คำสั่ง git ทั้งที่ใช้ GitHub Desktop?** เพราะ Claude Code ใช้ git ผ่าน command line — ตอนที่ Claude ขอรัน `git reset --hard` เราต้องรู้ทันทีว่า **งานจะหายทั้งหมด** ก่อนกด Yes · บน VM (วันที่ 5) ไม่มีหน้าจอ · log ของ CI (วันที่ 4) เป็นคำสั่ง git ล้วน
+**ทำไมต้องรู้คำสั่ง git ทั้งที่ใช้ GitHub Desktop?** เพราะ Claude Code ใช้ git ผ่าน command line — ตอนที่ Claude ขอรัน `git reset --hard` เราต้องรู้ทันทีว่า **งานจะหายทั้งหมด** ก่อนกด Yes · บน VM (วันที่ 5) ไม่มีหน้าจอ · log ของ CI (วันที่ 5) เป็นคำสั่ง git ล้วน
 
 ทุกภารกิจทำใน Terminal **และ** เปิด GitHub Desktop คู่กันไว้ (File → Add local repository → เลือก `~/vibe-playground`) ดูว่าคำสั่งแต่ละตัวทำให้หน้าจอ Desktop เปลี่ยนอย่างไร
 
@@ -464,15 +388,15 @@ git log --oneline --graph
 
 ---
 
-## 🐳 4. Lab: Docker Desktop (ใช้ผ่านหน้าจอ)
+## 🐳 3. Lab: Docker Desktop (ใช้ผ่านหน้าจอ)
 
-วันนี้แค่ **รันได้และดูผ่านหน้าจอ Docker Desktop** — แนวคิด (image, volume, network) และคำสั่งทั้งหมด **ลงลึกวันที่ 2**
+วันนี้แค่ **รันได้และดูผ่านหน้าจอ Docker Desktop** — แนวคิด (image, volume, network) และคำสั่งทั้งหมด **ลงลึกวันที่ 3**
 
 ใช้ไฟล์ตัวอย่าง [`examples/hello-compose/`](examples/hello-compose/) — มี 2 ส่วน: เว็บ (nginx) และฐานข้อมูล (PostgreSQL)
 
 ### ▶️ ขั้นที่ 1 — รันด้วยคำสั่งเดียว
 
-เปิดโฟลเดอร์ `day-1-setup/examples/hello-compose` ใน VSCode แล้ว **ให้ Claude รันให้** (อยู่ในโหมด Manual — อ่านคำสั่งก่อนกด Yes):
+เปิดโฟลเดอร์ `day-2-bootcamp/examples/hello-compose` ใน VSCode แล้ว **ให้ Claude รันให้** (อยู่ในโหมด Manual — อ่านคำสั่งก่อนกด Yes):
 
 ```
 คัดลอก .env.example เป็น .env แล้วรัน docker compose up -d ในโฟลเดอร์นี้
@@ -497,9 +421,9 @@ docker compose up -d
 | 5 | กลับไปหน้า Containers กดปุ่ม **Stop** ที่กลุ่ม `hello-compose` | สถานะเป็นสีเทา · รีเฟรชเว็บ → เปิดไม่ได้ |
 | 6 | กด **Start** อีกครั้ง | เว็บกลับมา ข้อมูลใน DB ยังอยู่ |
 | 7 | เมนู **Images** | `nginx` และ `postgres` ที่ดาวน์โหลดมา |
-| 8 | เมนู **Volumes** | `hello-compose_db-data` — ที่เก็บข้อมูลของ DB (อธิบายวันที่ 2) |
+| 8 | เมนู **Volumes** | `hello-compose_db-data` — ที่เก็บข้อมูลของ DB (อธิบายวันที่ 3) |
 
-> 💡 ภาพรวมแบบง่าย: **Image** = ตัวติดตั้งโปรแกรม · **Container** = โปรแกรมที่กำลังรัน · **Volume** = ที่เก็บข้อมูล · **8080:80** = เปิดเครื่องเราพอร์ต 8080 แล้วส่งต่อเข้าโปรแกรม — รายละเอียดวันที่ 2
+> 💡 ภาพรวมแบบง่าย: **Image** = ตัวติดตั้งโปรแกรม · **Container** = โปรแกรมที่กำลังรัน · **Volume** = ที่เก็บข้อมูล · **8080:80** = เปิดเครื่องเราพอร์ต 8080 แล้วส่งต่อเข้าโปรแกรม — รายละเอียดวันที่ 3
 
 ### 🎮 ขั้นที่ 3 — ให้ Claude อธิบาย
 
@@ -507,32 +431,24 @@ docker compose up -d
 อธิบาย @docker-compose.yml นี้แบบคนเพิ่งเริ่ม ไม่เกิน 10 บรรทัด ยังไม่ต้องแก้อะไร
 ```
 
-เก็บไว้รันต่อได้ หรือกด **Stop** ที่กลุ่ม `hello-compose` ก่อนไปทำ VM (ประหยัด RAM) — **อย่ากด Delete ที่ Volumes**
+เก็บไว้รันต่อได้ หรือกด **Stop** ที่กลุ่ม `hello-compose` เพื่อประหยัด RAM — **อย่ากด Delete ที่ Volumes**
 
 ---
 
-## 🖥️ 5. สร้าง Server จำลองด้วย VirtualBox
+## 💡 4. Workshop: เขียน Prompt App Idea
 
-ทำตามคู่มือ **[virtualbox-vm.md](virtualbox-vm.md)** — สร้าง VM Ubuntu Server, ตั้ง Network (NAT + Host-only), SSH เข้า, ติดตั้ง Docker ด้วย [`examples/vm-setup.sh`](examples/vm-setup.sh) แล้ว Take Snapshot
+แอปที่จะสร้างควร **เล็กพอทำเสร็จ แต่ใหญ่พอให้ได้ใช้ครบ** (UI + API + DB) — เริ่มจาก "ปัญหาที่อยากแก้" ที่แต่ละคนเล่าตอนแนะนำตัววันที่ 1
 
-VM นี้จะเป็นเป้าสแกน Nessus ในวันที่ 3 และเป็นเครื่อง Deploy ในวันที่ 5 (เปิดออกเน็ตด้วย Cloudflare Tunnel โดยไม่ต้องมีโดเมน)
+> ⚠️ เวลาสร้างแอปจริงมี **วันที่ 3 (scaffold) + Sprint ครึ่งวันในวันที่ 5** — ให้ Must have มีแค่ 1 resource หลัก + CRUD + ฟีเจอร์เด่น 1 อย่าง
 
-> 💡 ระหว่างรอ Ubuntu ติดตั้ง (~10–15 นาที) ให้กลับไปทำ Lab Docker Compose หรือภารกิจ Git ที่ค้างไว้
-
----
-
-## 💡 6. Workshop: เขียน Prompt App Idea
-
-แอปที่จะสร้างตลอด 5 วันควร **เล็กพอทำเสร็จ แต่ใหญ่พอให้ได้ใช้ครบ** (UI + API + DB + Login ถ้ามีเวลา)
-
-ใช้แม่แบบ [`templates/app-idea.md`](../templates/app-idea.md) กรอกให้ครบ แล้วลองให้ Claude ช่วยขัดเกลา (ใช้ **Plan mode** ที่เรียนใน Session 2):
+ใช้แม่แบบ [`templates/app-idea.md`](../templates/app-idea.md) กรอกให้ครบ แล้วลองให้ Claude ช่วยขัดเกลา (ใช้ **Plan mode** ที่เรียนช่วงเช้า):
 
 ```
 นี่คือไอเดียแอปของฉัน: <วางเนื้อหา app-idea.md>
 
 ช่วย:
 1. ถามคำถามที่ยังไม่ชัดเจนไม่เกิน 5 ข้อ
-2. ตัด scope ให้ทำเสร็จได้ใน 3 วัน (Sprint 1–3) ด้วย Svelte + Express + PostgreSQL
+2. ตัด scope ให้ Must have ทำเสร็จได้ในวันที่ 3 + Sprint ครึ่งวันวันที่ 5 ด้วย Svelte + Express + PostgreSQL
 3. เสนอ data model (ตาราง/คอลัมน์) และรายการ API endpoint
 ยังไม่ต้องเขียนโค้ด
 ```
@@ -541,15 +457,49 @@ VM นี้จะเป็นเป้าสแกน Nessus ในวันท
 
 ---
 
+## 📝 5. CLAUDE.md + เตรียม repo โปรเจกต์
+
+`CLAUDE.md` คือไฟล์ที่ Claude Code **อ่านอัตโนมัติทุกครั้ง** ที่เริ่มทำงานในโปรเจกต์ เปรียบเหมือน "คู่มือพนักงานใหม่" — สิ่งที่เขียนไว้ในนี้ไม่ต้องพิมพ์ซ้ำในทุก Prompt
+
+### 📋 ควรมีอะไรบ้าง
+
+| หัวข้อ | ตัวอย่าง |
+|---|---|
+| โปรเจกต์นี้คืออะไร | "ระบบจองห้องประชุมสำหรับคณะ ผู้ใช้คือบุคลากร ~200 คน" |
+| Tech stack + เวอร์ชัน | Svelte 5, Express 5, PostgreSQL 17, Node LTS |
+| โครงสร้างโฟลเดอร์ | `frontend/`, `backend/`, `backend/migrations/` |
+| คำสั่งที่ใช้บ่อย | `docker compose up -d`, `npm test`, `npm run migrate up` |
+| มาตรฐานโค้ด | ESM, async/await, validate input ทุก endpoint |
+| สิ่งที่ห้ามทำ | ห้าม commit `.env`, ห้ามต่อ SQL ด้วย string concat |
+| Definition of Done | Test ผ่าน, lint ผ่าน, อัปเดต README |
+
+### 💡 เคล็ดลับ
+- **สั้นและเจาะจง** ดีกว่ายาวและกว้าง — Claude อ่านทุกครั้ง ข้อความที่ไม่จำเป็นกินบริบท
+- เขียนเป็น **คำสั่ง** ("ใช้ parameterized query เสมอ") ไม่ใช่คำอธิบายยาว
+- **อัปเดตเมื่อ Claude ทำผิดซ้ำ** — ถ้าต้องบอกเรื่องเดิมสองครั้ง ให้ใส่ลง `CLAUDE.md`
+- ใช้คำสั่ง `/init` ใน Claude Code เพื่อสร้างร่างแรกจากโค้ดที่มีอยู่ แล้วแก้ต่อ
+
+แม่แบบพร้อมใช้: [`templates/CLAUDE.md.template`](../templates/CLAUDE.md.template)
+
+### 🎒 เตรียม repo โปรเจกต์ของตัวเอง (พร้อมเริ่ม Scaffold เช้าวันที่ 3)
+
+1. สร้าง repo ใหม่บน GitHub (เช่น `room-booking`) แบบ Private หรือ Public — ติ๊ก *Add README* และ `.gitignore` = Node
+2. Clone ลงเครื่องด้วย GitHub Desktop แล้วเปิดใน VSCode
+3. คัดลอก [`templates/CLAUDE.md.template`](../templates/CLAUDE.md.template) มาเป็น `CLAUDE.md` แล้วแก้ส่วน `<...>` ให้ตรงกับแอปของตัวเอง (ให้ Claude ช่วยได้: `อ่าน docs/app-idea.md แล้วช่วยกรอก CLAUDE.md ส่วน Project ให้กระชับ`)
+4. วาง `app-idea.md` จาก Workshop ไว้ใน `docs/app-idea.md`
+5. คัดลอก [`templates/claude/settings.json`](../templates/claude/settings.json) ไปเป็น `.claude/settings.json`
+6. Commit + Push: `chore: add CLAUDE.md, app idea and claude settings`
+
+---
+
 ## ✅ Checklist ท้ายวัน
 
-- [ ] รัน `scripts/check-env.ps1` (หรือ `.sh`) แล้วไม่มี FAIL
-- [ ] 🎮 Claude Code Bootcamp: ลองคำสั่ง `/` ระดับ 1–2 ครบ, `npm test` ผ่าน 5/5, มี `CLAUDE.md`, `.claude/settings.json`, `/check`
+- [ ] รัน `scripts/check-env.ps1` (หรือ `.sh`) แล้วไม่มี FAIL (ยกเว้น VirtualBox ที่ใช้วันที่ 4)
+- [ ] 🎮 Claude Code Bootcamp: รู้ว่าตัวเองอยู่โหมดไหน, ลองคำสั่ง `/` ระดับ 1–2 ครบ, `npm test` ผ่าน 5/5, มี `/check`
 - [ ] 🌱 Git Bootcamp: repo `vibe-playground` บน GitHub มี ≥ 3 commit ไม่มี `.env`
-- [ ] `hello-compose` รันได้ และสำรวจใน Docker Desktop ครบ 8 ข้อ (เปิดเว็บ, ดู Logs, Exec query, Stop/Start)
-- [ ] SSH เข้า VM ได้ และ `docker run --rm hello-world` บน VM ผ่าน
-- [ ] Take Snapshot `clean-docker` ของ VM แล้ว
-- [ ] มีไฟล์ `app-idea.md` ของตัวเองที่ผ่านการขัดเกลากับ Claude แล้ว
+- [ ] 🐳 `hello-compose` รันได้ และสำรวจใน Docker Desktop ครบ 8 ข้อ
+- [ ] 💡 มี `app-idea.md` ที่ตัด scope แล้ว
+- [ ] 📝 มี repo โปรเจกต์บน GitHub ที่มี `CLAUDE.md`, `docs/app-idea.md`, `.claude/settings.json`
 
 ## 🛠️ Troubleshooting
 
@@ -563,11 +513,10 @@ VM นี้จะเป็นเป้าสแกน Nessus ในวันท
 | Claude ยังอ่าน `.env` ได้ | ตรวจว่าไฟล์อยู่ที่ `.claude/settings.json` (มีจุดหน้า `.claude`) แล้ว `/clear` เริ่มใหม่, ดูกฎด้วย `/permissions` |
 | `git push` ถามรหัสผ่าน | GitHub ไม่รับรหัสผ่านแล้ว — ล็อกอินผ่าน GitHub Desktop ก่อน (จะตั้ง credential ให้) หรือใช้ Personal Access Token |
 | `npm` ไม่พบคำสั่งหลังติดตั้ง Node | ปิดแล้วเปิด VSCode/Terminal ใหม่ (ให้โหลด PATH ใหม่) |
-| ปัญหา VirtualBox / VM | ดูตาราง Troubleshooting ใน [virtualbox-vm.md](virtualbox-vm.md#️-troubleshooting) |
 
 ## 📚 อ้างอิง
-ดู [CREDITS.md](../CREDITS.md) หัวข้อ "แนวคิด Vibe Coding", "Claude / Anthropic" และ "เครื่องมือพัฒนา"
+ดู [CREDITS.md](../CREDITS.md) หัวข้อ "Claude / Anthropic" และ "เครื่องมือพัฒนา"
 
 ---
 
-<p align="center">⬅️ — · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../day-2-scaffold/README.md">🏗️ วันที่ 2 ➡️</a></p>
+<p align="center"><a href="../day-1-intro/README.md">⬅️ 🧰 วันที่ 1</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../day-3-scaffold/README.md">🏗️ วันที่ 3 ➡️</a></p>

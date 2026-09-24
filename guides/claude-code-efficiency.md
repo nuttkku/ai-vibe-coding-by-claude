@@ -38,13 +38,13 @@
 
 | วัน | ช่วงใช้ AI หนัก | ช่วงทำเองได้ (ไม่ใช้โควต้า) |
 |---|---|---|
-| 1 | Workshop App Idea (สั้น) | ติดตั้งเครื่องมือ, สร้าง VM |
-| 2 | **Scaffold + UI** (หนักที่สุดวันหนึ่ง) | ทดสอบด้วยมือ, ตั้งค่า GitHub |
-| 3 | เขียน test, แก้ตามผลสแกน | รอ Nessus ดาวน์โหลด plugin/สแกน, อ่าน report |
-| 4 | **Sprint 1–2** (หนักที่สุด) | ตั้ง secrets, ดูผล Pipeline, review diff |
-| 5 | ปิดงาน, deploy script | Deploy ตามขั้นตอน, ซ้อม Demo |
+| 1 | ลองสั่งงานครั้งแรก (สั้น) | แนะนำตัว, ติดตั้งเครื่องมือ |
+| 2 | Bootcamp (ลองคำสั่ง), App Idea, CLAUDE.md | Git Bootcamp, Docker Desktop |
+| 3 | **Scaffold + UI** (หนักที่สุดวันหนึ่ง) | ทดสอบด้วยมือ, ตั้งค่า GitHub |
+| 4 | เขียน test, แก้ตามผลสแกน | รอ Nessus ดาวน์โหลด plugin, สร้าง VM, อ่าน report |
+| 5 | **CI + Sprint** (หนักที่สุด), deploy script | ตั้ง secrets, ดูผล Pipeline, Deploy ตามขั้นตอน, ซ้อม Demo |
 
-**เคล็ดลับวันหนัก (2 และ 4):** เริ่มเช้าด้วย `/clear` และแผนงานใน Plan mode, commit ทุก task, `/clear` ทุกครั้งที่เปลี่ยน task
+**เคล็ดลับวันหนัก (3 และ 5):** เริ่มเช้าด้วย `/clear` และแผนงานใน Plan mode, commit ทุก task, `/clear` ทุกครั้งที่เปลี่ยน task
 
 ## 🆘 4. เมื่อชนขีดจำกัด (Plan B)
 
