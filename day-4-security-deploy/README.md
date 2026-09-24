@@ -6,7 +6,7 @@
 - 🛰️ สแกนระดับ **Host/Infrastructure ด้วย Nessus** และเห็นผลของการลด attack surface
 - 🌍 **Deploy แอปขึ้น VM** และได้ URL HTTPS ผ่าน Cloudflare Tunnel (ไม่ต้องมีโดเมน)
 - 🏃 Sprint ปิด Must have + Polish + แก้บั๊ก แล้วอัปเดตขึ้น Server
-- 🎤 เตรียมสไลด์และซ้อมนำเสนอสำหรับ Demo Day
+- 🎤 เตรียมสไลด์และซ้อมนำเสนอสำหรับ **Demo Day (วันที่ 5 — นำเสนอทั้งวัน ไม่มีการสอน)**
 
 > ⚠️ **จริยธรรมและกฎหมาย:** สแกนเฉพาะแอปและเครื่องของตัวเอง หรือที่ได้รับอนุญาตเป็นลายลักษณ์อักษรเท่านั้น
 > การสแกนระบบของผู้อื่นโดยไม่ได้รับอนุญาตอาจผิด พ.ร.บ.คอมพิวเตอร์ฯ
@@ -272,7 +272,7 @@ git push -u origin feat/booking-create
 4. ทดลอง `restore.sh` 1 ครั้ง ให้แน่ใจว่า backup ใช้ได้
 
 ### 🎬 เตรียมสไลด์ + ซ้อม (15:30–16:00)
-- กรอกแม่แบบ [`templates/demo-presentation.md`](../templates/demo-presentation.md) — ให้ Claude ช่วยร่างจาก `git log` และ `docs/app-idea.md` ได้:
+- กรอกแม่แบบ [`templates/demo-presentation.md`](../templates/demo-presentation.md) — ท้ายไฟล์มี **รูปแบบ 10 นาที, เกณฑ์ประเมิน, สิ่งที่ต้องเช็กเช้าวันนำเสนอ และแผนสำรอง** · ให้ Claude ช่วยร่างจาก `git log` และ `docs/app-idea.md` ได้:
   ```
   อ่าน docs/app-idea.md, README.md และ git log --oneline แล้วช่วยกรอก templates/demo-presentation.md
   สำหรับนำเสนอ 8 นาที เน้นปัญหา → Demo → เบื้องหลัง → Prompt ที่ได้ผล ภาษาไทย กระชับ
@@ -310,4 +310,4 @@ git push -u origin feat/booking-create
 
 ---
 
-<p align="center"><a href="../day-3-build-test/README.md">⬅️ 🏗️ วันที่ 3</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../day-5-demo-day/README.md">🎤 วันที่ 5 ➡️</a></p>
+<p align="center"><a href="../day-3-build-test/README.md">⬅️ 🏗️ วันที่ 3</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../templates/demo-presentation.md">🎤 วันที่ 5: Demo Day ➡️</a></p>

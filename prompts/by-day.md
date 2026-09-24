@@ -28,5 +28,5 @@
 - 🐞 แก้บั๊กแบบ test-first: `เขียน test ที่ reproduce บั๊กนี้ (ต้อง fail) แล้วแก้โค้ดให้ผ่าน`
 - 🎤 ร่างสไลด์ Demo: `อ่าน docs/app-idea.md, README.md และ git log --oneline แล้วช่วยกรอก templates/demo-presentation.md` → [day-4 §5](../day-4-security-deploy/README.md#-5-อัปเดต-server--เตรียมนำเสนอ)
 
-## 🎤 วันที่ 5 — Demo Day
-- ไม่มี Prompt ใหม่ — แชร์ Prompt ที่ได้ผลที่สุดของตัวเองใน [community.md](community.md)
+## 🎤 วันที่ 5 — Demo Day (ไม่มีการสอน)
+- แชร์ Prompt ที่ได้ผลที่สุดของตัวเองใน [community.md](community.md)

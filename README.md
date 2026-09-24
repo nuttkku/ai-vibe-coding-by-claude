@@ -31,7 +31,7 @@
 | 🎮 2 | [Bootcamp + App Idea + เริ่มสร้างแอป](day-2-bootcamp/README.md) | **🎮 Claude Code Bootcamp** (โหมด, โมเดล, คำสั่ง `/`), **🌱 Git Bootcamp** (คำสั่ง git ↔ GitHub Desktop), Docker Desktop + **🐳 Docker ลงลึก**, Workshop App Idea, `CLAUDE.md`, **Scaffold** Svelte + Express + PostgreSQL จาก Prompt เดียว |
 | 🏗️ 3 | [สร้างแอป + Test + Security Scan + CI](day-3-build-test/README.md) | Svelte UI เชื่อม API, E2E, Unit + Integration Test + อ่าน Coverage, **Snyk**, **OWASP ZAP**, **GitHub Actions** (Test → Snyk → Build → Push) |
 | 🚀 4 | [Server จำลอง + Nessus + Deploy + Sprint](day-4-security-deploy/README.md) | สร้าง **VirtualBox VM**, **Nessus** สแกน VM, Deploy ขึ้น VM + **Cloudflare Tunnel** ได้ URL HTTPS, Sprint ปิดฟีเจอร์ + Polish, เตรียมสไลด์ + ซ้อม |
-| 🎤 5 | [Demo Day](day-5-demo-day/README.md) | **ไม่มีการสอน** — ผู้อบรมทุกคนนำเสนอแอปที่สร้างด้วย Vibe Coding บน URL จริง + แชร์ Prompt/Strategy + ปิดหลักสูตร |
+| 🎤 5 | Demo Day | **ไม่มีการสอน / ไม่มีหน้าบทเรียน** — ผู้อบรมทุกคนนำเสนอแอปที่สร้างด้วย Vibe Coding บน URL จริง + แชร์ Prompt/Strategy + ปิดหลักสูตร — รูปแบบและเกณฑ์อยู่ใน [`templates/demo-presentation.md`](templates/demo-presentation.md) |
 
 ## 📂 โครงสร้าง Repository
 
@@ -45,7 +45,6 @@
 ├── day-4-security-deploy/    # วันที่ 4: VM + Nessus + Deploy + Sprint + เตรียมนำเสนอ
 │   ├── virtualbox-vm.md          # คู่มือสร้าง Server จำลอง (Ubuntu VM)
 │   └── examples/                 # vm-setup.sh, docker-compose.prod.yml, Caddyfile, backup/restore
-├── day-5-demo-day/           # วันที่ 5: Demo Day — นำเสนอผลงาน (ไม่มีการสอน)
 ├── guides/                   # Cheat sheet Claude Code, Git, Docker, โหมด·โมเดล·ค่าใช้จ่าย, คู่มือโควต้า
 ├── scripts/                  # check-env.ps1 / check-env.sh ตรวจเครื่องก่อนเรียน
 ├── templates/                # แม่แบบ CLAUDE.md, App Idea, Demo
