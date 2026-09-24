@@ -32,7 +32,7 @@ services:
   backend:
     image: ${IMAGE_PREFIX}-backend:latest
     restart: unless-stopped
-    # The backend image runs `npm run migrate up` before starting (see Day 3), so schema changes
+    # The backend image runs `npm run migrate up` before starting (see Day 2), so schema changes
     # ship with each new image and existing data is kept.
     environment:
       DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}

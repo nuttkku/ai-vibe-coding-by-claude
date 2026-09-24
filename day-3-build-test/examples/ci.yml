@@ -1,7 +1,7 @@
 # Example pipeline: Test -> Snyk -> ZAP -> Build & Push image to GHCR.
 # Copy to .github/workflows/ci.yml in YOUR project repo (not this course repo).
 # Required repo secret: SNYK_TOKEN (Settings > Secrets and variables > Actions).
-# Assumes project layout from Day 3: backend/ (with node-pg-migrate "migrate" script), frontend/,
+# Assumes project layout from Day 2: backend/ (with node-pg-migrate "migrate" script), frontend/,
 # docker-compose.yml, .env.example.
 
 name: CI

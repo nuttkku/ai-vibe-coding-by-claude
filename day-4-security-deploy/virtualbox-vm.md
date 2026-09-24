@@ -4,9 +4,9 @@ VM นี้คือ "Server จริง" ของผู้เรียนต
 
 | วัน | ใช้ VM ทำอะไร |
 |---|---|
-| 4 (บ่าย) | สร้าง VM, ติดตั้ง Docker, SSH เข้าได้ |
-| 4 (บ่าย) | เป้าหมายสแกน **Nessus** (เครื่องของตัวเอง — สแกนได้โดยไม่ผิดกฎ) |
-| 5 | **Deploy** แอปขึ้น VM แล้วเปิดสู่อินเทอร์เน็ตด้วย **Cloudflare Tunnel** |
+| 4 (เช้า) | สร้าง VM, ติดตั้ง Docker, SSH เข้าได้ |
+| 4 (เช้า) | เป้าหมายสแกน **Nessus** (เครื่องของตัวเอง — สแกนได้โดยไม่ผิดกฎ) |
+| 4 (ก่อนเที่ยง–บ่าย) | **Deploy** แอปขึ้น VM แล้วเปิดสู่อินเทอร์เน็ตด้วย **Cloudflare Tunnel** |
 
 > 💡 **ทำก่อนเข้าเรียน (Pre-course):** ดาวน์โหลด VirtualBox และไฟล์ ISO ของ Ubuntu Server LTS (~3 GB) ไว้ล่วงหน้า เพื่อไม่ให้เครือข่ายในห้องอบรมช้า
 
@@ -71,7 +71,7 @@ Windows PowerShell ไม่มี `ssh-copy-id` — ให้ Claude ช่ว�
 
 ```bash
 # บนเครื่องเรา
-scp day-4-testing-security/examples/vm-setup.sh <user>@192.168.56.101:~
+scp day-4-security-deploy/examples/vm-setup.sh <user>@192.168.56.101:~
 # บน VM
 bash ~/vm-setup.sh
 exit   # ล็อกอินใหม่เพื่อให้ group docker มีผล
@@ -100,4 +100,4 @@ VirtualBox → เลือก VM → **Snapshots → Take** ตั้งชื�
 
 ---
 
-<p align="center"><a href="README.md#️-5-สร้าง-server-จำลองด้วย-virtualbox-13001415">⬅️ กลับไปบทเรียนวันที่ 4</a> · <a href="../README.md">🏠 หน้าหลัก</a></p>
+<p align="center"><a href="README.md#️-1-สร้าง-server-จำลองด้วย-virtualbox">⬅️ กลับไปบทเรียนวันที่ 4</a> · <a href="../README.md">🏠 หน้าหลัก</a></p>

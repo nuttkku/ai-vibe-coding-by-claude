@@ -34,10 +34,10 @@
 | วัน | หัวข้อ | ผลลัพธ์ |
 |---|---|---|
 | 🧰 1 | เปิดหลักสูตร + Vibe Coding + ติดตั้งเครื่องมือ | VSCode + Claude Code + Git พร้อมใช้ |
-| 🎮 2 | Claude Code + Git Bootcamp, Docker, App Idea | ใช้เครื่องมือคล่อง + มีไอเดียแอปของตัวเอง |
-| 🏗️ 3 | Scaffold แอปจริง | แอป Svelte + Express + PostgreSQL รันบน Docker ขึ้น GitHub |
-| 🛡️ 4 | Testing + Security + Server จำลอง | มี test, สแกนช่องโหว่แล้ว, มี VM |
-| 🚀 5 | CI/CD + Sprint + Deploy + Demo | แอปออนไลน์มี URL และนำเสนอ Demo |
+| 🎮 2 | Bootcamp + App Idea + เริ่มสร้างแอป | ใช้เครื่องมือคล่อง + แอปของตัวเองรันบน Docker ขึ้น GitHub |
+| 🏗️ 3 | สร้างแอป + Test + Security Scan + CI | แอป CRUD ครบ มี test, สแกนช่องโหว่แล้ว, Pipeline เขียว |
+| 🚀 4 | Server จำลอง + Nessus + Deploy + Sprint | แอปออนไลน์มี URL + สไลด์พร้อมนำเสนอ |
+| 🎤 5 | **Demo Day** (ไม่มีการสอน) | ทุกคนนำเสนอผลงาน Vibe Coding ของตัวเอง |
 
 ### 📜 กติกาในห้อง
 - 🔑 **ห้ามวางรหัสผ่าน / API key / ข้อมูลส่วนบุคคลจริง ลงใน Prompt**
@@ -195,7 +195,7 @@ repo นี้คืออะไร มีโฟลเดอร์อะไร�
 <details>
 <summary>📝 <b>บัญชีที่ต้องสมัครล่วงหน้า</b></summary>
 
-- [Snyk](https://snyk.io) (ฟรี) — ใช้วันที่ 4–5
+- [Snyk](https://snyk.io) (ฟรี) — ใช้วันที่ 3
 - Activation Code ของ [Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials) (ฟรี ส่งทางอีเมล) — ใช้วันที่ 4
 
 </details>

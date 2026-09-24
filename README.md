@@ -20,31 +20,32 @@
 - 🧪 ให้ Claude เขียน Unit/Integration Test และอ่านผลเพื่อแก้บั๊ก
 - 🛡️ สแกนความปลอดภัยด้วย **Snyk**, **OWASP ZAP**, **Nessus**
 - ⚙️ สร้าง Pipeline **GitHub Actions**: Test → Security Scan → Build → Push Image
-- 🌍 สร้าง Server จำลองด้วย **VirtualBox** แล้ว Deploy แอปขึ้นไป เปิดสู่อินเทอร์เน็ตด้วย **Cloudflare Tunnel** (ไม่ต้องมีโดเมน) และนำเสนอ Demo พร้อม URL
+- 🌍 สร้าง Server จำลองด้วย **VirtualBox** แล้ว Deploy แอปขึ้นไป เปิดสู่อินเทอร์เน็ตด้วย **Cloudflare Tunnel** (ไม่ต้องมีโดเมน)
+- 🎤 นำเสนอแอปของตัวเองบน URL จริงใน **Demo Day** (วันที่ 5)
 
 ## 🗓️ ตารางหลักสูตร
 
 | วัน | หัวข้อ | เนื้อหา |
 |---|---|---|
 | 🧰 1 | [เปิดหลักสูตร + Vibe Coding + ติดตั้งเครื่องมือ](day-1-intro/README.md) | เช้า: เปิดหลักสูตร, แนะนำตัวผู้สอนและผู้อบรม, สาธิตสด · บ่าย: Vibe Coding คืออะไร, ติดตั้ง **VSCode + Claude Code Extension** และ **Git + GitHub Desktop** · การบ้าน: ติดตั้ง Docker, Node.js, VirtualBox |
-| 🎮 2 | [Claude Code + Git Bootcamp](day-2-bootcamp/README.md) | **🎮 Claude Code Bootcamp** (โหมด, โมเดล, คำสั่ง `/`), **🌱 Git Bootcamp** (คำสั่ง git ↔ GitHub Desktop), Docker Desktop ผ่านหน้าจอ, Workshop App Idea, `CLAUDE.md` + เตรียม repo โปรเจกต์ |
-| 🏗️ 3 | [สร้าง Scaffold โปรเจกต์จริง](day-3-scaffold/README.md) | **🐳 Docker ลงลึก** (image, volume, network, คำสั่ง compose), Scaffold Svelte + Express + Docker Compose จาก Prompt เดียว, UI เชื่อม API, ทดสอบ E2E, Push ขึ้น GitHub |
-| 🛡️ 4 | [Testing, Security + Server จำลอง](day-4-testing-security/README.md) | Unit + Integration Test + อ่าน Report, Snyk, OWASP ZAP, สร้าง **VirtualBox VM**, Nessus (สแกน VM ของตัวเอง) |
-| 🚀 5 | [CI/CD + Sprint + Deploy + Demo](day-5-cicd-deploy-demo/README.md) | GitHub Actions Workflow, Sprint 2 ชั่วโมง (ปิดฟีเจอร์ + Polish), Deploy ขึ้น VM + **Cloudflare Tunnel** ได้ URL HTTPS, Demo รายบุคคล, แชร์ Prompt/Strategy |
+| 🎮 2 | [Bootcamp + App Idea + เริ่มสร้างแอป](day-2-bootcamp/README.md) | **🎮 Claude Code Bootcamp** (โหมด, โมเดล, คำสั่ง `/`), **🌱 Git Bootcamp** (คำสั่ง git ↔ GitHub Desktop), Docker Desktop + **🐳 Docker ลงลึก**, Workshop App Idea, `CLAUDE.md`, **Scaffold** Svelte + Express + PostgreSQL จาก Prompt เดียว |
+| 🏗️ 3 | [สร้างแอป + Test + Security Scan + CI](day-3-build-test/README.md) | Svelte UI เชื่อม API, E2E, Unit + Integration Test + อ่าน Coverage, **Snyk**, **OWASP ZAP**, **GitHub Actions** (Test → Snyk → Build → Push) |
+| 🚀 4 | [Server จำลอง + Nessus + Deploy + Sprint](day-4-security-deploy/README.md) | สร้าง **VirtualBox VM**, **Nessus** สแกน VM, Deploy ขึ้น VM + **Cloudflare Tunnel** ได้ URL HTTPS, Sprint ปิดฟีเจอร์ + Polish, เตรียมสไลด์ + ซ้อม |
+| 🎤 5 | [Demo Day](day-5-demo-day/README.md) | **ไม่มีการสอน** — ผู้อบรมทุกคนนำเสนอแอปที่สร้างด้วย Vibe Coding บน URL จริง + แชร์ Prompt/Strategy + ปิดหลักสูตร |
 
 ## 📂 โครงสร้าง Repository
 
 ```
 .
 ├── day-1-intro/              # วันที่ 1: เปิดหลักสูตร + Vibe Coding + ติดตั้ง VSCode/Claude Code/Git
-├── day-2-bootcamp/           # วันที่ 2: Claude Code + Git Bootcamp, Docker, App Idea, CLAUDE.md
+├── day-2-bootcamp/           # วันที่ 2: Claude Code + Git Bootcamp, Docker, App Idea, CLAUDE.md, Scaffold
 │   └── examples/                 # claude-playground/, hello-compose/
-├── day-3-scaffold/           # วันที่ 3: Docker ลงลึก + Scaffold โปรเจกต์
-├── day-4-testing-security/   # วันที่ 4: Test + Snyk/ZAP + VM + Nessus
+├── day-3-build-test/         # วันที่ 3: UI + E2E + Test + Snyk/ZAP + GitHub Actions
+│   └── examples/                 # ci.yml, zap-rules.tsv, security-notes.md
+├── day-4-security-deploy/    # วันที่ 4: VM + Nessus + Deploy + Sprint + เตรียมนำเสนอ
 │   ├── virtualbox-vm.md          # คู่มือสร้าง Server จำลอง (Ubuntu VM)
-│   └── examples/                 # zap-rules.tsv, security-notes.md, vm-setup.sh
-├── day-5-cicd-deploy-demo/   # วันที่ 5: GitHub Actions + Sprint + Deploy + Demo
-│   └── examples/                 # ci.yml, docker-compose.prod.yml, Caddyfile, backup/restore
+│   └── examples/                 # vm-setup.sh, docker-compose.prod.yml, Caddyfile, backup/restore
+├── day-5-demo-day/           # วันที่ 5: Demo Day — นำเสนอผลงาน (ไม่มีการสอน)
 ├── guides/                   # Cheat sheet Claude Code, Git, Docker, โหมด·โมเดล·ค่าใช้จ่าย, คู่มือโควต้า
 ├── scripts/                  # check-env.ps1 / check-env.sh ตรวจเครื่องก่อนเรียน
 ├── templates/                # แม่แบบ CLAUDE.md, App Idea, Demo
@@ -59,11 +60,11 @@
 
 - คอมพิวเตอร์ Windows 10/11 (รองรับ WSL2), macOS (Intel) หรือ Linux — **RAM 16 GB ขึ้นไป** (ต้องเปิด Docker Desktop และ VM พร้อมกัน), พื้นที่ว่าง ≥ 60 GB, เปิด Virtualization ใน BIOS แล้ว
 - บัญชี [GitHub](https://github.com) และบัญชี [Claude](https://claude.ai) แผน Pro ขึ้นไป (เพื่อใช้ Claude Code)
-- บัญชี [Snyk](https://snyk.io) (ฟรี) — ใช้วันที่ 4–5
+- บัญชี [Snyk](https://snyk.io) (ฟรี) — ใช้วันที่ 3
 - Activation Code ของ [Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials) (ฟรี, ส่งทางอีเมล) — ใช้วันที่ 4
 - สิทธิ์ Admin บนเครื่อง (สำหรับติดตั้ง Docker/WSL2/VirtualBox)
 - 📥 วันที่ 1 ติดตั้ง VSCode + Claude Code + Git ในห้อง · Docker, Node.js, VirtualBox เป็น **การบ้านก่อนวันที่ 2** ตาม [วันที่ 1 ข้อ 7](day-1-intro/README.md#-7-การบ้านก่อนวันที่-2-15301600)
-- **ไม่ต้องมีโดเมนและไม่ต้องมีบัญชี Cloudflare** — วันที่ 5 ใช้ Cloudflare Quick Tunnel ได้ URL `*.trycloudflare.com` ฟรี
+- **ไม่ต้องมีโดเมนและไม่ต้องมีบัญชี Cloudflare** — วันที่ 4 ใช้ Cloudflare Quick Tunnel ได้ URL `*.trycloudflare.com` ฟรี
 
 📦 **ดาวน์โหลดไว้ล่วงหน้าได้เลย** (ไฟล์ใหญ่ ห้องอบรมอาจเน็ตช้า): VSCode, Git, GitHub Desktop, Docker Desktop, Node.js LTS, [VirtualBox](https://www.virtualbox.org/wiki/Downloads), ISO ของ [Ubuntu Server LTS](https://ubuntu.com/download/server) (~3 GB)
 
