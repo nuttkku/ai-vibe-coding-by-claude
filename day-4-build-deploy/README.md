@@ -2,7 +2,7 @@
 
 ## 🎯 เป้าหมายของวัน
 
-- 🎨 ต่อ Svelte UI เข้ากับ API ให้ CRUD ได้ครบ
+- 🎨 ทำ Svelte UI ที่เริ่มไว้วันที่ 3 ให้ CRUD ได้ครบ
 - 🧪 ให้ Claude เขียน Unit + Integration Test อ่าน Coverage แล้วสั่งแก้
 - 🛡️ สแกนความปลอดภัย 3 ระดับ: **Snyk** (dependency) → **OWASP ZAP** (เว็บแอป) → **Nessus** (VM)
 - 🌍 **Deploy แอปขึ้น VM** และได้ URL HTTPS ผ่าน Cloudflare Tunnel
@@ -17,10 +17,10 @@
 | เวลา | กิจกรรม |
 |---|---|
 | 09:00–09:10 | 📥 เริ่มติดตั้ง Nessus ทิ้งไว้ (โหลด plugin 15–30 นาที) |
-| 09:10–10:30 | 🎨 Lab: Svelte UI เชื่อม API + 🖐️ Smoke test |
-| 10:30–11:15 | 🧪 Unit + Integration Test + อ่าน Coverage |
-| 11:15–11:40 | 📦 Snyk: สแกน Dependency |
-| 11:40–12:00 | 🕷️ OWASP ZAP: Baseline Scan |
+| 09:10–10:00 | 🎨 ทำ UI ให้เสร็จ + 🖐️ Smoke test |
+| 10:00–11:00 | 🧪 Unit + Integration Test + อ่าน Coverage |
+| 11:00–11:30 | 📦 Snyk: สแกน Dependency |
+| 11:30–12:00 | 🕷️ OWASP ZAP: Baseline Scan |
 | 13:00–13:30 | 🛰️ Nessus: สแกน VM ก่อน/หลังปิดพอร์ต |
 | 13:30–14:15 | 🌍 Deploy ขึ้น VM + Cloudflare Tunnel (ทางลัด: clone + build บน VM) |
 | 14:15–15:15 | 🏃 Sprint: ปิดฟีเจอร์ + Polish + แก้บั๊ก → **Code freeze 15:15** |
@@ -28,41 +28,19 @@
 | 15:40–16:00 | 🎤 เตรียมสไลด์ + ซ้อมนำเสนอ |
 | ⭐ เสริม | GitHub Actions, Playwright E2E — ทำถ้ามีเวลาหรือเป็นการบ้าน |
 
-> 💡 วันนี้แน่นที่สุด — ใครที่ Scaffold ยังไม่เสร็จจากวันที่ 3 ให้ **ตัด scope** ตั้งแต่เช้า (Demo แอปเล็กที่ใช้งานได้จริงดีกว่าแอปใหญ่ที่พัง)
+> 💡 วันนี้แน่นที่สุด — ใครที่ Scaffold/UI ยังไม่เสร็จจากวันที่ 3 ให้ **ตัด scope** ตั้งแต่เช้า (Demo แอปเล็กที่ใช้งานได้จริงดีกว่าแอปใหญ่ที่พัง)
 
 ---
 
 ## 📥 0. เริ่มติดตั้ง Nessus ไว้ก่อน
 
-Nessus ต้องโหลด plugin นาน — ทำ **ขั้นที่ 1–3 ของ [ข้อ 8](#️-8-nessus--สแกน-infrastructurehost)** แล้วปล่อยทิ้งไว้ — บ่ายจะโหลดเสร็จพอดี
+Nessus ต้องโหลด plugin นาน — ทำ **ขั้นที่ 1–3 ของ [ข้อ 7](#️-7-nessus--สแกน-infrastructurehost)** แล้วปล่อยทิ้งไว้ — บ่ายจะโหลดเสร็จพอดี
 
 ---
 
-## 🎨 1. Lab: Svelte UI เชื่อม API
+## 🔁 1. ทำ UI ให้เสร็จ + ทดสอบระบบแบบ End-to-End
 
-ทำทีละฟีเจอร์ เล็กๆ แล้ว Commit:
-
-```
-สร้างหน้า <resources> ใน Svelte:
-- ตารางแสดงรายการจาก GET /api/<resources>
-- ฟอร์มเพิ่มรายการ (POST) พร้อม validation ฝั่ง client
-- ปุ่มลบ (DELETE) มี confirm ก่อนลบ
-- แสดง loading และ error message ที่อ่านเข้าใจได้
-ตั้ง Vite proxy /api → backend ให้ทำงานได้ทั้งตอน dev และใน Docker
-```
-
-เมื่อเจอ Error — **วางข้อความ error เต็มๆ** พร้อมบอกว่าทำอะไรอยู่:
-```
-กดปุ่มบันทึกแล้วขึ้น error นี้ใน browser console:
-<วาง error>
-และ log ของ backend:
-<วางผลจาก docker compose logs backend --tail 50>
-ช่วยหาสาเหตุและแก้
-```
-
----
-
-## 🔁 2. ทดสอบระบบแบบ End-to-End
+> 🎨 ทำ UI ที่เริ่มไว้เมื่อวานให้ CRUD ได้ครบก่อน — Prompt อยู่ใน [วันที่ 3 ข้อ 4](../day-3-server-scaffold/README.md#-4-lab-svelte-ui-เชื่อม-api-เริ่มวันนี้-ทำต่อวันที่-4)
 
 ### 🖐️ ทดสอบด้วยมือ (Smoke test)
 1. `docker compose down -v && docker compose up -d --build` (เริ่มจากศูนย์)
@@ -78,7 +56,7 @@ Nessus ต้องโหลด plugin นาน — ทำ **ขั้นที
 
 ---
 
-## ☁️ 3. Commit และ Push ขึ้น GitHub
+## ☁️ 2. Commit และ Push ขึ้น GitHub
 
 ก่อน Push ตรวจสอบ:
 ```bash
@@ -96,7 +74,7 @@ git push origin main
 
 ---
 
-## 🧪 4. Unit Test + Integration Test
+## 🧪 3. Unit Test + Integration Test
 
 ### ⚖️ ความต่าง
 
@@ -104,7 +82,7 @@ git push origin main
 |---|---|---|---|
 | Unit | ฟังก์ชันเดี่ยว เช่น validation, คำนวณราคา | Vitest | ไม่ (mock) |
 | Integration | API endpoint จริง ผ่าน HTTP ถึง DB | Vitest + Supertest | ใช่ (DB ทดสอบ) |
-| E2E | ผู้ใช้คลิกบนเบราว์เซอร์ | Playwright (เสริมในข้อ 2) | ใช่ |
+| E2E | ผู้ใช้คลิกบนเบราว์เซอร์ | Playwright (เสริมในข้อ 1) | ใช่ |
 
 ### 💬 Prompt: วางแผนก่อนเขียน
 
@@ -132,7 +110,7 @@ Frontend ก็ทำเช่นเดียวกัน (Vitest + `@testing-li
 
 ---
 
-## 📊 5. อ่าน Report และแก้ไข (ต่อจากข้อ 4)
+## 📊 4. อ่าน Report และแก้ไข (ต่อจากข้อ 3)
 
 ```bash
 cd backend
@@ -155,7 +133,7 @@ Commit: `git commit -m "test: add unit and integration tests"`
 
 ---
 
-## 📦 6. Snyk — สแกน Dependency
+## 📦 5. Snyk — สแกน Dependency
 
 Snyk ตรวจว่า npm package ที่ใช้อยู่มีช่องโหว่ที่รู้จัก (CVE) หรือไม่
 
@@ -178,7 +156,7 @@ snyk code test           # สแกนโค้ดที่เขียนเ�
 
 ---
 
-## 🕷️ 7. OWASP ZAP — Dynamic Scan เว็บแอป
+## 🕷️ 6. OWASP ZAP — Dynamic Scan เว็บแอป
 
 ZAP โจมตีแอปที่ **กำลังรันอยู่** แบบอัตโนมัติ เพื่อหาปัญหาเช่น header ความปลอดภัยที่ขาด, XSS, cookie ไม่ปลอดภัย
 
@@ -216,7 +194,7 @@ docker run --rm -v "${PWD}:/zap/wrk:rw" -t ghcr.io/zaproxy/zaproxy:stable `
 
 ---
 
-## 🛰️ 8. Nessus — สแกน Infrastructure/Host
+## 🛰️ 7. Nessus — สแกน Infrastructure/Host
 
 Nessus ตรวจระดับ **เครื่อง/เซิร์ฟเวอร์**: พอร์ตที่เปิด, บริการที่ล้าสมัย, config ที่ไม่ปลอดภัย
 
@@ -237,7 +215,7 @@ Nessus ตรวจระดับ **เครื่อง/เซิร์ฟเ
 ### 🧪 Lab: เห็นผลต่างก่อน/หลัง
 1. บน VM มี `hello-compose` จากวันที่ 3 อยู่แล้ว (ซึ่ง **เปิดพอร์ต Postgres 5432 ออกมา**) — `cd ~/hello-compose && docker compose up -d` แล้วสแกนรอบที่ 1
 2. ให้ Claude ช่วยแก้ compose ให้ Postgres ไม่ publish port และปิดบริการที่ไม่จำเป็น แล้วสแกนรอบที่ 2
-3. เปรียบเทียบ: พอร์ต/finding ไหนหายไป — นี่คือหลัก *ลด attack surface* ที่จะใช้ตอน deploy ในข้อ 9
+3. เปรียบเทียบ: พอร์ต/finding ไหนหายไป — นี่คือหลัก *ลด attack surface* ที่จะใช้ตอน deploy ในข้อ 8
 
 > ⚠️ ข้อควรรู้: พอร์ตที่ Docker publish (`ports:`) **ข้าม firewall `ufw`** ของ Ubuntu ได้ การปิดพอร์ตจึงต้องทำที่ compose ด้วย ไม่ใช่แค่ที่ firewall
 
@@ -259,7 +237,7 @@ Nessus ตรวจระดับ **เครื่อง/เซิร์ฟเ
 
 ---
 
-## 🌍 9. Deploy ขึ้น Server จริง
+## 🌍 8. Deploy ขึ้น Server จริง
 
 ### 🧭 ทางเลือก — ไม่มีโดเมนก็ได้ URL
 
@@ -307,7 +285,7 @@ docker logs tunnel 2>&1 | grep trycloudflare.com
   ```
 - 🛡️ ตรวจว่า `docker-compose.yml` ของโปรเจกต์ **ไม่ publish พอร์ต DB** (`5432`) — สแกน Nessus ซ้ำหลัง deploy ต้องไม่เห็นพอร์ตนี้
 
-ทางด้านล่าง (**ทางเต็ม**) ใช้ image ที่ CI build ไว้ใน GHCR + Caddy เป็น reverse proxy — ใช้เมื่อตั้ง GitHub Actions ([ข้อ 12](#️-12--เสริม-github-actions-workflow)) สำเร็จแล้ว
+ทางด้านล่าง (**ทางเต็ม**) ใช้ image ที่ CI build ไว้ใน GHCR + Caddy เป็น reverse proxy — ใช้เมื่อตั้ง GitHub Actions ([ข้อ 11](#️-11--เสริม-github-actions-workflow)) สำเร็จแล้ว
 
 ### 🅰️ ทางเต็ม A: image จาก CI + Caddy + Cloudflare Quick Tunnel
 
@@ -391,11 +369,11 @@ VM ใน VirtualBox อยู่หลัง NAT ทำให้ GitHub Actions
 
 ### 🔎 สแกน Production
 - **ZAP baseline** กับ URL ของ Tunnel (ของตัวเองเท่านั้น) — Cloudflare อาจ rate-limit ถ้าสแกนหนัก ใช้ baseline ไม่ใช่ full scan
-- **Nessus Basic Network Scan** กับ IP Host-only ของ VM — ควรเห็นเฉพาะพอร์ต **22** เปิด (Caddy bind แค่ `127.0.0.1`, Postgres ไม่ publish) เทียบกับผลสแกนในข้อ 8
+- **Nessus Basic Network Scan** กับ IP Host-only ของ VM — ควรเห็นเฉพาะพอร์ต **22** เปิด (Caddy bind แค่ `127.0.0.1`, Postgres ไม่ publish) เทียบกับผลสแกนในข้อ 7
 
 ---
 
-## 🏃 10. Sprint — ปิดฟีเจอร์ + Polish + แก้บั๊ก
+## 🏃 9. Sprint — ปิดฟีเจอร์ + Polish + แก้บั๊ก
 
 **เป้าหมาย:** ฟีเจอร์ "Must have" จาก `docs/app-idea.md` ทำงานได้ครบวงจร พร้อม Demo — **Code freeze 15:15** หลังจากนี้ไม่เพิ่มฟีเจอร์ใหม่
 
@@ -466,12 +444,12 @@ git push -u origin feat/booking-create
 
 ---
 
-## 🎤 11. อัปเดต Server + เตรียมนำเสนอ
+## 🎤 10. อัปเดต Server + เตรียมนำเสนอ
 
 ### 🔄 อัปเดตแอปบน Server (15:15–15:40)
 1. Push งาน Sprint ขึ้น GitHub
 2. **Backup ก่อนอัปเดต** — ทางลัด: `cd ~/app && docker compose exec -T db pg_dump -U app -d appdb --format=custom > ~/backup-$(date +%H%M).dump` (ปรับชื่อ user/db ให้ตรง `.env`) · ทางเต็ม: `bash backup.sh`
-3. อัปเดต — ทางลัด: `git pull && docker compose up -d --build` · ทางเต็ม: `pull` + `up -d frontend backend` (ดู [ข้อ 9](#-9-deploy-ขึ้น-server-จริง)) — **อย่ารีสตาร์ท tunnel** URL จะเปลี่ยน
+3. อัปเดต — ทางลัด: `git pull && docker compose up -d --build` · ทางเต็ม: `pull` + `up -d frontend backend` (ดู [ข้อ 8](#-8-deploy-ขึ้น-server-จริง)) — **อย่ารีสตาร์ท tunnel** URL จะเปลี่ยน
 4. เปิด URL จากมือถือ (4G) ไล่ flow หลักที่จะ Demo ให้ผ่านทั้งหมด
 
 ### 🎬 เตรียมสไลด์ + ซ้อม (15:40–16:00)
@@ -488,7 +466,7 @@ git push -u origin feat/booking-create
 
 ---
 
-## ⚙️ 12. ⭐ เสริม: GitHub Actions Workflow
+## ⚙️ 11. ⭐ เสริม: GitHub Actions Workflow
 
 ### 🗺️ ภาพรวม Pipeline
 
@@ -532,7 +510,7 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 
 > 💡 เสริม: Claude Code มี GitHub Action ของตัวเอง ให้ mention `@claude` ใน Issue/PR เพื่อให้ช่วยแก้ได้ — ดูเอกสาร Claude Code GitHub Actions ใน [CREDITS.md](../CREDITS.md)
 
-> ⏱️ **ทำเมื่อมีเวลา หรือเป็นการบ้านหลังวันที่ 4** — ไม่จำเป็นต่อการ Deploy แบบทางลัด · ถ้า job `zap` ยังไม่ผ่าน ให้ปิด job นั้นไว้ก่อน (comment ออก) แล้วให้ `test` → `snyk` → `build-push` เขียวให้ได้ — ZAP สแกนด้วยมือไปแล้วในข้อ 7
+> ⏱️ **ทำเมื่อมีเวลา หรือเป็นการบ้านหลังวันที่ 4** — ไม่จำเป็นต่อการ Deploy แบบทางลัด · ถ้า job `zap` ยังไม่ผ่าน ให้ปิด job นั้นไว้ก่อน (comment ออก) แล้วให้ `test` → `snyk` → `build-push` เขียวให้ได้ — ZAP สแกนด้วยมือไปแล้วในข้อ 6
 
 ---
 
@@ -563,7 +541,7 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 | Coverage ไม่ถึง 70% แต่หมดเวลา | จดไฟล์ที่ต่ำไว้ แล้วให้ Claude เติม test ช่วง Sprint วันที่ 4 |
 | Nessus ยังโหลด plugin ไม่เสร็จตอนบ่าย | สร้าง VM ต่อไปก่อน · ถ้าไม่ทันจริง ใช้ `nmap` สแกนพอร์ต VM ของตัวเองแทนชั่วคราว |
 | Quick Tunnel URL เปลี่ยน | container `tunnel-quick` ถูกรีสตาร์ท — ดู URL ใหม่จาก `logs tunnel-quick` และอย่ารีสตาร์ทหลังส่ง URL ให้ผู้ชมแล้ว |
-| เปิด URL แล้วขึ้น "Blocked request. This host is not allowed" | frontend เป็น Vite dev server — เพิ่ม `server.allowedHosts` ให้ `*.trycloudflare.com` (ดูข้อ 9 ทางลัด) |
+| เปิด URL แล้วขึ้น "Blocked request. This host is not allowed" | frontend เป็น Vite dev server — เพิ่ม `server.allowedHosts` ให้ `*.trycloudflare.com` (ดูข้อ 8 ทางลัด) |
 
 ## 📚 อ้างอิง
 ดู [CREDITS.md](../CREDITS.md) หัวข้อ "Framework & Library", "Security" และ "CI/CD & Deploy"

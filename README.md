@@ -29,9 +29,9 @@
 | วัน | หัวข้อ | เนื้อหา |
 |---|---|---|
 | 🧰 1 | [เปิดหลักสูตร + Vibe Coding + ติดตั้งเครื่องมือ](day-1-intro/README.md) | เช้า: เปิดหลักสูตร, แนะนำตัวผู้สอนและผู้อบรม, สาธิตสด · บ่าย: Vibe Coding คืออะไร, ติดตั้ง **VSCode + Claude Code Extension** และ **Git + GitHub Desktop** · การบ้าน: ติดตั้ง Docker, Node.js, VirtualBox |
-| 🎮 2 | [Claude Code + Git Bootcamp, Docker, ฐานข้อมูล](day-2-bootcamp/README.md) | **🎮 Claude Code Bootcamp** (โหมด, โมเดล, คำสั่ง `/`), **🌱 Git Bootcamp** (คำสั่ง git ↔ GitHub Desktop), Docker Desktop ผ่านหน้าจอ, **🗄️ DBMS + DataGrip / DBeaver** + SQL พื้นฐาน |
-| 🏗️ 3 | [Server จำลอง + Cloudflare Tunnel + เริ่มสร้างแอป](day-3-server-scaffold/README.md) | สร้าง **VirtualBox VM**, เปิดเว็บผ่าน **Cloudflare Quick Tunnel**, Workshop App Idea, `CLAUDE.md`, **🐳 Docker ลงลึก**, **Scaffold** Svelte + Express + PostgreSQL จาก Prompt เดียว |
-| 🚀 4 | [สร้างแอป + Test + Security + Deploy + Sprint](day-4-build-deploy/README.md) | Svelte UI เชื่อม API, Unit + Integration Test, **Snyk**, **OWASP ZAP**, **Nessus**, Deploy ขึ้น VM ได้ URL HTTPS, Sprint ปิดฟีเจอร์, เตรียมสไลด์ · ⭐ เสริม: GitHub Actions |
+| 🎮 2 | [Bootcamp, Docker, App Idea, ฐานข้อมูล](day-2-bootcamp/README.md) | **🎮 Claude Code Bootcamp** (โหมด, โมเดล, คำสั่ง `/`), **🌱 Git Bootcamp**, Docker Desktop + **🐳 Docker ลงลึก**, Workshop App Idea, `CLAUDE.md` + repo โปรเจกต์, **🗄️ DBMS + DataGrip / DBeaver** |
+| 🏗️ 3 | [Server จำลอง + Cloudflare Tunnel + เริ่มสร้างแอป](day-3-server-scaffold/README.md) | เช้า: สร้าง **VirtualBox VM** + เปิดเว็บผ่าน **Cloudflare Quick Tunnel** · บ่าย: **Scaffold** Svelte + Express + PostgreSQL + ตรวจ ER Diagram, เริ่ม UI |
+| 🚀 4 | [ทำแอปให้เสร็จ + Test + Security + Deploy + Sprint](day-4-build-deploy/README.md) | UI ให้ครบ, Unit + Integration Test, **Snyk**, **OWASP ZAP**, **Nessus**, Deploy ขึ้น VM ได้ URL HTTPS, Sprint, เตรียมสไลด์ · ⭐ เสริม: GitHub Actions |
 | 🎤 5 | Demo Day | **ไม่มีการสอน / ไม่มีหน้าบทเรียน** — ผู้อบรมทุกคนนำเสนอแอปที่สร้างด้วย Vibe Coding บน URL จริง + แชร์ Prompt/Strategy + ปิดหลักสูตร — รูปแบบและเกณฑ์อยู่ใน [`templates/demo-presentation.md`](templates/demo-presentation.md) |
 
 ## 📂 โครงสร้าง Repository
@@ -39,9 +39,9 @@
 ```
 .
 ├── day-1-intro/              # วันที่ 1: เปิดหลักสูตร + Vibe Coding + ติดตั้ง VSCode/Claude Code/Git
-├── day-2-bootcamp/           # วันที่ 2: Claude Code + Git Bootcamp, Docker Desktop, DBMS (DataGrip/DBeaver)
+├── day-2-bootcamp/           # วันที่ 2: Claude Code + Git Bootcamp, Docker, App Idea, CLAUDE.md, DBMS
 │   └── examples/                 # claude-playground/, hello-compose/
-├── day-3-server-scaffold/    # วันที่ 3: VM + Cloudflare Tunnel + App Idea + CLAUDE.md + Docker ลงลึก + Scaffold
+├── day-3-server-scaffold/    # วันที่ 3: VM + Cloudflare Tunnel + Scaffold + เริ่ม UI
 │   ├── virtualbox-vm.md          # คู่มือสร้าง Server จำลอง (Ubuntu VM)
 │   └── examples/                 # vm-setup.sh
 ├── day-4-build-deploy/       # วันที่ 4: UI + Test + Snyk/ZAP/Nessus + Deploy + Sprint + เตรียมนำเสนอ
@@ -90,7 +90,7 @@ bash scripts/check-env.sh
 
 ## 🧭 วิธีใช้ Repo นี้
 
-👩‍🎓 **ผู้เรียน:** Fork หรือ Clone repo นี้ไว้อ่านประกอบ แล้วสร้าง **repo แยก** สำหรับโปรเจกต์ของตัวเอง (สร้างบ่ายวันที่ 3) คัดลอกไฟล์จาก `templates/` และ `day-*/examples/` ไปใช้ได้เลย
+👩‍🎓 **ผู้เรียน:** Fork หรือ Clone repo นี้ไว้อ่านประกอบ แล้วสร้าง **repo แยก** สำหรับโปรเจกต์ของตัวเอง (สร้างบ่ายวันที่ 2) คัดลอกไฟล์จาก `templates/` และ `day-*/examples/` ไปใช้ได้เลย
 
 🧑‍🏫 **วิทยากร:** แต่ละวันมีตารางเวลา, เป้าหมาย, Checklist และ Prompt ตัวอย่าง ปรับเวลาได้ตามกลุ่มผู้เรียน — ส่ง `scripts/check-env.*` ให้ผู้เรียนรันเป็นการบ้านหลังวันที่ 1 และอ่าน [guides/claude-code-efficiency.md](guides/claude-code-efficiency.md) เพื่อเตรียมรับมือเมื่อผู้เรียนใช้โควต้า Claude หมด
 

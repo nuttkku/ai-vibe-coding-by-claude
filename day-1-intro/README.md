@@ -34,7 +34,7 @@
 | วัน | หัวข้อ | ผลลัพธ์ |
 |---|---|---|
 | 🧰 1 | เปิดหลักสูตร + Vibe Coding + ติดตั้งเครื่องมือ | VSCode + Claude Code + Git พร้อมใช้ |
-| 🎮 2 | Claude Code + Git Bootcamp, Docker, ฐานข้อมูล | ใช้เครื่องมือคล่อง + เปิดดูฐานข้อมูลด้วย DataGrip/DBeaver ได้ |
+| 🎮 2 | Bootcamp, Docker, App Idea, ฐานข้อมูล | ใช้เครื่องมือคล่อง + มีไอเดียแอปและ repo โปรเจกต์ + เปิดดูฐานข้อมูลด้วย DataGrip/DBeaver ได้ |
 | 🏗️ 3 | Server จำลอง + Cloudflare Tunnel + เริ่มสร้างแอป | มี VM ที่เปิดเว็บออกเน็ตได้ + แอปของตัวเองรันบน Docker ขึ้น GitHub |
 | 🚀 4 | สร้างแอป + Test + Security + Deploy + Sprint | แอปออนไลน์มี URL + สไลด์พร้อมนำเสนอ |
 | 🎤 5 | **Demo Day** (ไม่มีการสอน) | ทุกคนนำเสนอผลงาน Vibe Coding ของตัวเอง |

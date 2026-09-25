@@ -1,11 +1,12 @@
-# 🎮 วันที่ 2 — Claude Code + Git Bootcamp, Docker, ฐานข้อมูล
+# 🎮 วันที่ 2 — Claude Code + Git Bootcamp, Docker, App Idea, ฐานข้อมูล
 
 ## 🎯 เป้าหมายของวัน
 
 เมื่อจบวันนี้ ผู้เรียนจะ:
 - 🎮 **รู้จักโหมด, โมเดล และคำสั่ง `/` ของ Claude Code ที่ต้องใช้** และสร้างคำสั่งของตัวเองได้
 - 🌱 **อ่านและใช้คำสั่ง git หลักได้** และรู้ว่าแต่ละคำสั่งตรงกับปุ่มไหนใน GitHub Desktop
-- 🐳 รันแอปด้วย Docker Compose และดู/หยุด/เริ่ม container ผ่านหน้าจอ Docker Desktop ได้
+- 🐳 ใช้ Docker Desktop และเข้าใจ image/container, port, volume, bind mount, network
+- 💡 มี App Idea ที่ตัด scope แล้ว และ repo โปรเจกต์พร้อม `CLAUDE.md`
 - 🗄️ เข้าใจ **DBMS** เชื่อมต่อ PostgreSQL ด้วย **DataGrip หรือ DBeaver** อ่าน SQL พื้นฐานออก และรู้ข้อควรระวัง
 
 ## ⏰ ตารางเวลา (แนะนำ)
@@ -16,10 +17,12 @@
 | 09:10–10:25 | 🎮 **Claude Code Bootcamp** — โหมด, โมเดล, คำสั่ง `/` ทีละตัว |
 | 10:25–11:25 | 🌱 **Git Bootcamp** — คำสั่ง git ↔ GitHub Desktop |
 | 11:25–12:00 | 🐳 Docker Desktop ผ่านหน้าจอ |
-| 13:00–14:30 | 🗄️ **ฐานข้อมูล (DBMS)** + DataGrip / DBeaver + SQL พื้นฐาน |
-| 14:30–16:00 | 🧪 Lab รวม Claude Code + ทบทวน + เตรียมเครื่องสำหรับ VM วันที่ 3 |
+| 13:00–13:40 | 💡 Workshop: App Idea |
+| 13:40–14:10 | 📝 CLAUDE.md + เตรียม repo โปรเจกต์ |
+| 14:10–14:35 | 🐳 Docker ลงลึก |
+| 14:35–16:00 | 🗄️ **ฐานข้อมูล (DBMS)** + DataGrip / DBeaver + SQL พื้นฐาน |
 
-> 💡 **เตรียมก่อนวันที่ 3:** ติดตั้ง VirtualBox และดาวน์โหลด ISO ของ Ubuntu Server (~3 GB) ให้เสร็จวันนี้ — เช้าวันที่ 3 เริ่มสร้าง VM ทันที
+> 💡 **Lab รวม Claude Code** (แก้บั๊กใน playground) ทำเป็นการบ้านได้ · **เตรียมก่อนวันที่ 3:** ติดตั้ง VirtualBox และดาวน์โหลด ISO ของ Ubuntu Server (~3 GB) — เช้าวันที่ 3 เริ่มสร้าง VM ทันที
 
 ---
 
@@ -389,7 +392,7 @@ git log --oneline --graph
 
 ## 🐳 3. Lab: Docker Desktop (ใช้ผ่านหน้าจอ)
 
-วันนี้แค่ **รันได้และดูผ่านหน้าจอ Docker Desktop** — แนวคิด (image, volume, network) และคำสั่งทั้งหมด **ลงลึกวันที่ 3 ก่อน Scaffold**
+วันนี้แค่ **รันได้และดูผ่านหน้าจอ Docker Desktop** — แนวคิด (image, volume, network) และคำสั่งทั้งหมด **ลงลึกบ่ายนี้ (ข้อ 6)**
 
 ใช้ไฟล์ตัวอย่าง [`examples/hello-compose/`](examples/hello-compose/) — มี 2 ส่วน: เว็บ (nginx) และฐานข้อมูล (PostgreSQL)
 
@@ -420,9 +423,9 @@ docker compose up -d
 | 5 | กลับไปหน้า Containers กดปุ่ม **Stop** ที่กลุ่ม `hello-compose` | สถานะเป็นสีเทา · รีเฟรชเว็บ → เปิดไม่ได้ |
 | 6 | กด **Start** อีกครั้ง | เว็บกลับมา ข้อมูลใน DB ยังอยู่ |
 | 7 | เมนู **Images** | `nginx` และ `postgres` ที่ดาวน์โหลดมา |
-| 8 | เมนู **Volumes** | `hello-compose_db-data` — ที่เก็บข้อมูลของ DB (อธิบายวันที่ 3) |
+| 8 | เมนู **Volumes** | `hello-compose_db-data` — ที่เก็บข้อมูลของ DB (อธิบายในข้อ 6) |
 
-> 💡 ภาพรวมแบบง่าย: **Image** = ตัวติดตั้งโปรแกรม · **Container** = โปรแกรมที่กำลังรัน · **Volume** = ที่เก็บข้อมูล · **8080:80** = เปิดเครื่องเราพอร์ต 8080 แล้วส่งต่อเข้าโปรแกรม — รายละเอียดวันที่ 3
+> 💡 ภาพรวมแบบง่าย: **Image** = ตัวติดตั้งโปรแกรม · **Container** = โปรแกรมที่กำลังรัน · **Volume** = ที่เก็บข้อมูล · **8080:80** = เปิดเครื่องเราพอร์ต 8080 แล้วส่งต่อเข้าโปรแกรม — รายละเอียดในข้อ 6
 
 ### 🎮 ขั้นที่ 3 — ให้ Claude อธิบาย
 
@@ -430,11 +433,124 @@ docker compose up -d
 อธิบาย @docker-compose.yml นี้แบบคนเพิ่งเริ่ม ไม่เกิน 10 บรรทัด ยังไม่ต้องแก้อะไร
 ```
 
-เก็บไว้รันต่อได้ **ปล่อยรันไว้** — ข้อ 4 จะเชื่อมต่อฐานข้อมูลของ hello-compose ด้วย DataGrip/DBeaver · **อย่ากด Delete ที่ Volumes**
+เก็บไว้รันต่อได้ **ปล่อยรันไว้** — ข้อ 6 และ 7 จะใช้ hello-compose ต่อ (ทดลอง volume และเชื่อมต่อฐานข้อมูล) ด้วย DataGrip/DBeaver · **อย่ากด Delete ที่ Volumes**
 
 ---
 
-## 🗄️ 4. ฐานข้อมูล (DBMS) + DataGrip / DBeaver
+## 💡 4. Workshop: เขียน Prompt App Idea
+
+แอปที่จะสร้างควร **เล็กพอทำเสร็จ แต่ใหญ่พอให้ได้ใช้ครบ** (UI + API + DB) — เริ่มจาก "ปัญหาที่อยากแก้" ที่แต่ละคนเล่าตอนแนะนำตัววันที่ 1
+
+> ⚠️ เวลาสร้างแอปจริงมี **บ่ายวันที่ 3 (scaffold + เริ่ม UI) + วันที่ 4 (UI ต่อ + Sprint 1 ชั่วโมง)** แล้ววันที่ 5 นำเสนอ — ให้ Must have มีแค่ 1 resource หลัก + CRUD + ฟีเจอร์เด่น 1 อย่าง
+
+ใช้แม่แบบ [`templates/app-idea.md`](../templates/app-idea.md) กรอกให้ครบ แล้วลองให้ Claude ช่วยขัดเกลา (ใช้ **Plan mode** ที่เรียนช่วงเช้า):
+
+```
+นี่คือไอเดียแอปของฉัน: <วางเนื้อหา app-idea.md>
+
+ช่วย:
+1. ถามคำถามที่ยังไม่ชัดเจนไม่เกิน 5 ข้อ
+2. ตัด scope ให้ Must have ทำเสร็จได้ภายในวันที่ 4 (scaffold + UI + Sprint รวม ~5 ชั่วโมง) ด้วย Svelte + Express + PostgreSQL
+3. เสนอ data model (ตาราง/คอลัมน์) และรายการ API endpoint
+ยังไม่ต้องเขียนโค้ด
+```
+
+ตัวอย่างไอเดียที่เหมาะ: ระบบจองห้องประชุม, ระบบยืม-คืนอุปกรณ์, บันทึกรายรับรายจ่าย, คลังข้อสอบ, ระบบรับเรื่องร้องเรียน, แอปจัดการ Todo ของทีม
+
+---
+
+## 📝 5. CLAUDE.md + เตรียม repo โปรเจกต์
+
+`CLAUDE.md` คือไฟล์ที่ Claude Code **อ่านอัตโนมัติทุกครั้ง** ที่เริ่มทำงานในโปรเจกต์ เปรียบเหมือน "คู่มือพนักงานใหม่" — สิ่งที่เขียนไว้ในนี้ไม่ต้องพิมพ์ซ้ำในทุก Prompt
+
+### 📋 ควรมีอะไรบ้าง
+
+| หัวข้อ | ตัวอย่าง |
+|---|---|
+| โปรเจกต์นี้คืออะไร | "ระบบจองห้องประชุมสำหรับคณะ ผู้ใช้คือบุคลากร ~200 คน" |
+| Tech stack + เวอร์ชัน | Svelte 5, Express 5, PostgreSQL 17, Node LTS |
+| โครงสร้างโฟลเดอร์ | `frontend/`, `backend/`, `backend/migrations/` |
+| คำสั่งที่ใช้บ่อย | `docker compose up -d`, `npm test`, `npm run migrate up` |
+| มาตรฐานโค้ด | ESM, async/await, validate input ทุก endpoint |
+| สิ่งที่ห้ามทำ | ห้าม commit `.env`, ห้ามต่อ SQL ด้วย string concat |
+| Definition of Done | Test ผ่าน, lint ผ่าน, อัปเดต README |
+
+### 💡 เคล็ดลับ
+- **สั้นและเจาะจง** ดีกว่ายาวและกว้าง — Claude อ่านทุกครั้ง ข้อความที่ไม่จำเป็นกินบริบท
+- เขียนเป็น **คำสั่ง** ("ใช้ parameterized query เสมอ") ไม่ใช่คำอธิบายยาว
+- **อัปเดตเมื่อ Claude ทำผิดซ้ำ** — ถ้าต้องบอกเรื่องเดิมสองครั้ง ให้ใส่ลง `CLAUDE.md`
+- ใช้คำสั่ง `/init` ใน Claude Code เพื่อสร้างร่างแรกจากโค้ดที่มีอยู่ แล้วแก้ต่อ
+
+แม่แบบพร้อมใช้: [`templates/CLAUDE.md.template`](../templates/CLAUDE.md.template)
+
+### 🎒 เตรียม repo โปรเจกต์ของตัวเอง (พร้อมเริ่ม Scaffold วันที่ 3)
+
+1. สร้าง repo ใหม่บน GitHub (เช่น `room-booking`) แบบ Private หรือ Public — ติ๊ก *Add README* และ `.gitignore` = Node
+2. Clone ลงเครื่องด้วย GitHub Desktop แล้วเปิดใน VSCode
+3. คัดลอก [`templates/CLAUDE.md.template`](../templates/CLAUDE.md.template) มาเป็น `CLAUDE.md` แล้วแก้ส่วน `<...>` ให้ตรงกับแอปของตัวเอง (ให้ Claude ช่วยได้: `อ่าน docs/app-idea.md แล้วช่วยกรอก CLAUDE.md ส่วน Project ให้กระชับ`)
+4. วาง `app-idea.md` จาก Workshop ไว้ใน `docs/app-idea.md`
+5. คัดลอก [`templates/claude/settings.json`](../templates/claude/settings.json) ไปเป็น `.claude/settings.json`
+6. Commit + Push: `chore: add CLAUDE.md, app idea and claude settings`
+
+---
+
+## 🐳 6. Docker ลงลึก
+
+ช่วงเช้าเราใช้ Docker ผ่านหน้าจอ วันที่ 3 Claude จะสร้าง **Dockerfile + docker-compose.yml** ของแอปจริงให้ — ผู้เรียนต้อง **อ่านออกและแก้ปัญหาได้**
+
+> 📖 เปิด **[Docker Cheat Sheet](../guides/docker-commands.md)** ไว้ข้างจอ
+
+### 🧠 แนวคิด 5 อย่าง (10 นาที)
+
+| คำ | ความหมาย | ทำไมสำคัญวันนี้ |
+|---|---|---|
+| 🧱 **Image → Container** | Image = แม่แบบ (build จาก Dockerfile) · Container = ตัวที่รันจาก image ลบแล้วสร้างใหม่ได้ | แก้โค้ดแล้วต้อง `--build` ใหม่ ไม่งั้น container รันโค้ดเก่า |
+| 🔌 **Port** `3000:3000` | **เครื่องเรา : container** | พอร์ตชน → เปลี่ยนเลขฝั่งซ้าย |
+| 💾 **Named volume** | ที่เก็บข้อมูลที่อยู่รอดแม้ลบ container | ข้อมูล DB อยู่ที่นี่ — `down -v` = ข้อมูลหาย |
+| 📁 **Bind mount** `./src:/app/src` | ผูกโฟลเดอร์ในเครื่องเข้า container | แก้โค้ดแล้วเห็นผลทันทีตอน dev |
+| 🌐 **Network / ชื่อ service** | service ใน compose เดียวกันคุยกันด้วยชื่อ service | backend ต้องต่อ DB ที่ `db:5432` **ไม่ใช่ `localhost`** |
+
+### 🧪 Lab: ทดลองกับ hello-compose (10 นาที)
+
+เปิด Terminal ในโฟลเดอร์ `day-2-bootcamp/examples/hello-compose` แล้วทำทีละข้อ — สังเกตหน้าจอ Docker Desktop คู่กันไปด้วย
+
+```bash
+docker compose up -d
+docker compose ps                    # ใครรันอยู่ healthy ไหม พอร์ตอะไร
+docker compose logs --tail 20 db     # log 20 บรรทัดล่าสุด (แบบที่วางให้ Claude ดูตอนมี error)
+docker compose exec db psql -U app -d appdb -c "INSERT INTO greetings (message) VALUES ('ข้อมูลของฉัน');"
+```
+
+**ทดลอง 1 — Volume รักษาข้อมูล:**
+```bash
+docker compose down                  # ลบ container (volume ยังอยู่)
+docker compose up -d
+docker compose exec db psql -U app -d appdb -c "SELECT * FROM greetings;"   # 'ข้อมูลของฉัน' ยังอยู่ ✅
+```
+
+**ทดลอง 2 — `down -v` ลบข้อมูลจริง:**
+```bash
+docker compose down -v               # ⚠️ ลบ volume ด้วย
+docker compose up -d
+docker compose exec db psql -U app -d appdb -c "SELECT * FROM greetings;"   # เหลือแค่ 2 แถวเริ่มต้น ❌
+```
+→ นี่คือเหตุผลที่ `down -v` อยู่ใน `deny` ของ `settings.json` และต้อง backup ก่อนเสมอ
+
+**ทดลอง 3 — Bind mount:** แก้ข้อความใน `html/index.html` แล้วรีเฟรช <http://localhost:8080> → เปลี่ยนทันทีโดยไม่ต้องรีสตาร์ท (เพราะโฟลเดอร์ `./html` ผูกเข้า container)
+
+**ทดลอง 4 — เปลี่ยนพอร์ต:** แก้ `WEB_PORT=8090` ใน `.env` → `docker compose up -d` → เปิด <http://localhost:8090>
+
+### 📄 อ่านไฟล์ที่ Claude จะสร้าง
+
+ดูตัวอย่างพร้อมคำอธิบายทีละบรรทัดใน [cheat sheet ข้อ 4–5](../guides/docker-commands.md#-4-อ่าน-docker-composeyml-ให้ออก) — สิ่งที่ต้องหาให้เจอในไฟล์ของตัวเองหลัง scaffold:
+- `healthcheck` ของ db + `depends_on: condition: service_healthy` ของ backend
+- backend ใช้ host `db` ใน `DATABASE_URL`
+- รหัสผ่านมาจาก `${...}` ใน `.env` ไม่ได้เขียนตรงๆ
+- DB **ไม่จำเป็นต้อง** publish พอร์ตออกมา (ปลอดภัยกว่า — วันที่ 4 จะเห็นผลใน Nessus)
+
+---
+
+## 🗄️ 7. ฐานข้อมูล (DBMS) + DataGrip / DBeaver
 
 แอปที่จะสร้างเก็บข้อมูลใน **PostgreSQL** — ก่อนให้ Claude สร้างตารางให้ ผู้เรียนต้อง **เปิดดูข้อมูลเองได้ อ่าน SQL ออก และรู้ว่าอะไรอันตราย**
 
@@ -542,7 +658,7 @@ ORDER BY b.starts_at;
 
 1. 🎯 **`UPDATE` / `DELETE` ต้องมี `WHERE` เสมอ** — ไม่มี = แก้/ลบ **ทุกแถว** · ก่อนรันให้ `SELECT` ด้วยเงื่อนไขเดียวกันดูก่อนว่าโดนกี่แถว (ทั้งสองโปรแกรมจะเตือนถ้าไม่มี WHERE — อย่ากดข้าม)
 2. 🔄 **Auto-commit vs Manual transaction** — ค่าเริ่มต้นรันแล้วบันทึกทันที · ตอนทดลองแก้ข้อมูลให้สลับเป็น **Manual** (DataGrip: ตัวเลือก **Tx: Auto/Manual** บนแถบเครื่องมือของ Console · DBeaver: ปุ่ม **Auto-Commit** บนแถบเครื่องมือ) แล้วค่อยกด **Commit** หรือ **Rollback**
-3. 🗃️ **อย่าแก้โครงสร้างตาราง (schema) ด้วย GUI ในโปรเจกต์จริง** — การเพิ่มคอลัมน์ด้วยการคลิกไม่ถูกบันทึกไว้ที่ไหน เพื่อน, CI และ Server จะไม่ได้ตาม · ใช้ **Migration** แทน (เรียนตอน Scaffold วันที่ 3) · ใช้ GUI แค่ **ดู** และ **ตรวจ** schema ที่ Claude สร้าง
+3. 🗃️ **อย่าแก้โครงสร้างตาราง (schema) ด้วย GUI ในโปรเจกต์จริง** — การเพิ่มคอลัมน์ด้วยการคลิกไม่ถูกบันทึกไว้ที่ไหน เพื่อน, CI และ Server จะไม่ได้ตาม · ใช้ **Migration** แทน (Scaffold วันที่ 3 จะใช้ node-pg-migrate — แนวคิดอยู่ในหัวข้อ Migration ตอน Scaffold) · ใช้ GUI แค่ **ดู** และ **ตรวจ** schema ที่ Claude สร้าง
 4. 🗺️ **ใช้ ER Diagram ตรวจงานของ Claude** — DBeaver: เปิดตาราง → แท็บ **ER Diagram** · DataGrip: คลิกขวาที่ schema → **Diagrams → Show Diagram** · ดูว่า PK/FK ถูกไหม ก่อนเขียนโค้ดต่อ
 5. 🔑 **รหัสผ่าน** — อย่าใช้รหัสผ่านจริงใน Lab, อย่า commit ไฟล์ตั้งค่าของ DataGrip (`.idea/`) หรือ DBeaver ที่เก็บ connection ไว้ · ถ้าเชื่อม DB ของคนอื่น/ของจริง ใช้ **บัญชีสิทธิ์อ่านอย่างเดียว**
 6. 🌐 **DB บน Server ห้ามเปิดพอร์ต 5432 สู่ภายนอก** — ถ้าต้องดูข้อมูลบน VM ให้ใช้แท็บ **SSH** (SSH tunnel) ในการตั้งค่า connection ของทั้งสองโปรแกรม (จะเห็นผลตอนสแกน Nessus วันที่ 4)
@@ -562,11 +678,11 @@ ORDER BY b.starts_at;
 ## ✅ Checklist ท้ายวัน
 
 - [ ] รัน `check-env` แล้วไม่มี FAIL
-- [ ] 🎮 รู้ว่าตัวเองอยู่โหมดไหน, ลองคำสั่ง `/` ระดับ 1–2 ครบ, มี `/check`, `npm test` ใน playground ผ่าน 5/5
+- [ ] 🎮 รู้ว่าตัวเองอยู่โหมดไหน, ลองคำสั่ง `/` ระดับ 1–2 ครบ, มี `/check`
 - [ ] 🌱 repo `vibe-playground` บน GitHub มี ≥ 3 commit ไม่มี `.env`
-- [ ] 🐳 สำรวจ hello-compose ใน Docker Desktop ครบ 8 ข้อ
-- [ ] 🗄️ เชื่อมต่อ `appdb` ด้วย DataGrip หรือ DBeaver ได้, อ่าน `SELECT`/`INSERT`/`UPDATE`/`DELETE`/`JOIN` ออก
-- [ ] 🔄 ลอง Manual transaction แล้ว Rollback สำเร็จ และเปิด ER Diagram ได้
+- [ ] 🐳 สำรวจ hello-compose ใน Docker Desktop ครบ และอธิบายได้ว่า `down` กับ `down -v` ต่างกันอย่างไร
+- [ ] 💡 มี repo โปรเจกต์บน GitHub ที่มี `docs/app-idea.md` (ตัด scope แล้ว), `CLAUDE.md`, `.claude/settings.json`
+- [ ] 🗄️ เชื่อมต่อ `appdb` ด้วย DataGrip หรือ DBeaver ได้, อ่าน `SELECT`/`INSERT`/`UPDATE`/`DELETE`/`JOIN` ออก, ลอง Rollback สำเร็จ
 - [ ] 🖥️ ติดตั้ง VirtualBox และมีไฟล์ ISO ของ Ubuntu Server พร้อมสำหรับวันที่ 3
 
 ## 🛠️ Troubleshooting

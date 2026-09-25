@@ -21,7 +21,7 @@
 |---|---|
 | Claude Code Documentation <https://docs.anthropic.com/en/docs/claude-code/overview> | วันที่ 1–5 |
 | Claude Code — IDE integrations (VS Code) <https://docs.anthropic.com/en/docs/claude-code/ide-integrations> | วันที่ 1 |
-| Claude Code — Memory / CLAUDE.md <https://docs.anthropic.com/en/docs/claude-code/memory> | วันที่ 3 (CLAUDE.md) |
+| Claude Code — Memory / CLAUDE.md <https://docs.anthropic.com/en/docs/claude-code/memory> | วันที่ 2 (CLAUDE.md) |
 | Claude Code — Best practices for agentic coding <https://www.anthropic.com/engineering/claude-code-best-practices> | วันที่ 2, 4 |
 | Claude Code GitHub Actions <https://docs.anthropic.com/en/docs/claude-code/github-actions> | วันที่ 4 (เสริม) |
 | Anthropic Prompt Engineering Guide <https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview> | วันที่ 1–2 การเขียน Prompt |
