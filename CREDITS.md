@@ -104,6 +104,8 @@
 | NIST SP 800-63B (Digital Identity Guidelines — Authentication) | <https://pages.nist.gov/800-63-4/sp800-63b.html> |
 | RFC 6238 — TOTP | <https://datatracker.ietf.org/doc/html/rfc6238> |
 | Mailpit (SMTP ทดสอบ) | <https://mailpit.axllent.org/> |
+| 2FA Example Coding (Wanut Padee, MIT) — repo ตัวอย่างที่ให้ Claude เรียนรู้ในวันที่ 3 | <https://github.com/nuttkku/2FA-example-coding> |
+| otplib / qrcode (ใช้ใน repo ตัวอย่าง) | <https://github.com/yeojz/otplib> · <https://github.com/soldair/node-qrcode> |
 | WebAuthn / Passkeys (อ่านเพิ่ม) | <https://webauthn.guide/> |
 
 ## 🛡️ Security
@@ -124,6 +126,7 @@
 | เครื่องมือ | เอกสาร |
 |---|---|
 | GitHub Actions | <https://docs.github.com/en/actions> |
+| Semgrep / Trivy (อ้างถึงจาก repo ตัวอย่าง 2FA) | <https://semgrep.dev/docs/> · <https://trivy.dev/> |
 | docker/build-push-action | <https://github.com/docker/build-push-action> |
 | GitHub Container Registry | <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry> |
 | Caddy (Reverse proxy + HTTPS อัตโนมัติ) | <https://caddyserver.com/docs/> |

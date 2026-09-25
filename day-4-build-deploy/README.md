@@ -1,4 +1,4 @@
-# 🚀 วันที่ 4 — สร้างแอป + Test + Security + Deploy + Sprint
+# 🚀 วันที่ 4 — Test + Security + Deploy + Sprint + CI/CD
 
 ## 🎯 เป้าหมายของวัน
 
@@ -7,6 +7,7 @@
 - 🛡️ สแกนความปลอดภัย 3 ระดับ: **Snyk** (dependency) → **OWASP ZAP** (เว็บแอป) → **Nessus** (VM)
 - 🌍 **Deploy แอปขึ้น VM** และได้ URL HTTPS ผ่าน Cloudflare Tunnel
 - 🏃 Sprint ปิด Must have + Polish แล้วอัปเดตขึ้น Server
+- ⚙️ ปิดท้ายด้วย **CI/CD**: GitHub Actions รัน test + security scan แล้ว build/push image อัตโนมัติ
 - 🎤 เตรียมสไลด์และซ้อมนำเสนอสำหรับ **Demo Day (วันที่ 5 — นำเสนอทั้งวัน ไม่มีการสอน)**
 
 > ⚠️ **จริยธรรมและกฎหมาย:** สแกนเฉพาะแอปและเครื่องของตัวเอง หรือที่ได้รับอนุญาตเป็นลายลักษณ์อักษรเท่านั้น
@@ -23,10 +24,9 @@
 | 11:30–12:00 | 🕷️ OWASP ZAP: Baseline Scan |
 | 13:00–13:30 | 🛰️ Nessus: สแกน VM ก่อน/หลังปิดพอร์ต |
 | 13:30–14:15 | 🌍 Deploy ขึ้น VM + Cloudflare Tunnel (ทางลัด: clone + build บน VM) |
-| 14:15–15:15 | 🏃 Sprint: ปิดฟีเจอร์ + Polish + แก้บั๊ก → **Code freeze 15:15** |
-| 15:15–15:40 | 🔄 Backup + อัปเดตแอปบน Server + ทดสอบ URL จริง |
-| 15:40–16:00 | 🎤 เตรียมสไลด์ + ซ้อมนำเสนอ |
-| ⭐ เสริม | GitHub Actions, Playwright E2E — ทำถ้ามีเวลาหรือเป็นการบ้าน |
+| 14:15–15:00 | 🏃 Sprint: ปิดฟีเจอร์ + Polish + แก้บั๊ก → Backup + อัปเดตแอปบน Server → **Code freeze 15:00** |
+| 15:00–16:00 | ⚙️ **CI/CD ด้วย GitHub Actions**: Test → Snyk → Build → Push Image |
+| 🌙 การบ้าน | 🎤 เตรียมสไลด์ + ซ้อมนำเสนอสำหรับ Demo Day · ⭐ เสริม: Playwright E2E |
 
 > 💡 วันนี้แน่นที่สุด — ใครที่ UI หรือ Login/MFA ยังไม่เสร็จ ให้ **ตัด scope** ตั้งแต่เช้า (Demo แอปเล็กที่ใช้งานได้จริงดีกว่าแอปใหญ่ที่พัง)
 
@@ -286,7 +286,7 @@ docker logs tunnel 2>&1 | grep trycloudflare.com
   ```
 - 🛡️ ตรวจว่า `docker-compose.yml` ของโปรเจกต์ **ไม่ publish พอร์ต DB** (`5432`) — สแกน Nessus ซ้ำหลัง deploy ต้องไม่เห็นพอร์ตนี้
 
-ทางด้านล่าง (**ทางเต็ม**) ใช้ image ที่ CI build ไว้ใน GHCR + Caddy เป็น reverse proxy — ใช้เมื่อตั้ง GitHub Actions ([ข้อ 11](#️-11--เสริม-github-actions-workflow)) สำเร็จแล้ว
+ทางด้านล่าง (**ทางเต็ม**) ใช้ image ที่ CI build ไว้ใน GHCR + Caddy เป็น reverse proxy — ใช้เมื่อตั้ง GitHub Actions ([ข้อ 11](#️-11-cicd-ด้วย-github-actions-15001600)) สำเร็จแล้ว
 
 ### 🅰️ ทางเต็ม A: image จาก CI + Caddy + Cloudflare Quick Tunnel
 
@@ -376,7 +376,7 @@ VM ใน VirtualBox อยู่หลัง NAT ทำให้ GitHub Actions
 
 ## 🏃 9. Sprint — ปิดฟีเจอร์ + Polish + แก้บั๊ก
 
-**เป้าหมาย:** ฟีเจอร์ "Must have" จาก `docs/app-idea.md` ทำงานได้ครบวงจร พร้อม Demo — **Code freeze 15:15** หลังจากนี้ไม่เพิ่มฟีเจอร์ใหม่
+**เป้าหมาย:** ฟีเจอร์ "Must have" จาก `docs/app-idea.md` ทำงานได้ครบวงจร พร้อม Demo — **Code freeze 15:00** หลังจากนี้ไม่เพิ่มฟีเจอร์ใหม่
 
 **ลำดับความสำคัญ** (ทำจากบนลงล่าง หมดเวลาตรงไหนหยุดตรงนั้น):
 1. 🔴 Must have ที่ยังไม่เสร็จ
@@ -389,7 +389,7 @@ VM ใน VirtualBox อยู่หลัง NAT ทำให้ GitHub Actions
 1. **วางแผน (Plan mode)** — ให้ Claude เสนอแผนก่อน ยังไม่แก้โค้ด
    ```
    อ่าน docs/app-idea.md หัวข้อ Must have
-   วางแผน Sprint (1 ชั่วโมง) เป็น task ย่อยที่แต่ละ task commit ได้เอง เรียงตามลำดับความสำคัญ
+   วางแผน Sprint (45 นาที) เป็น task ย่อยที่แต่ละ task commit ได้เอง เรียงตามลำดับความสำคัญ
    ระบุไฟล์ที่ต้องแก้, migration DB, endpoint, หน้าจอ, และ test ของแต่ละ task
    ```
 2. **ทำทีละ task** → รัน test → commit → `/clear` ก่อนเริ่ม task ถัดไป (ประหยัดโควต้า — ดู [guides/claude-code-efficiency.md](../guides/claude-code-efficiency.md))
@@ -425,7 +425,7 @@ git push -u origin feat/booking-create
    เขียน test ที่ reproduce บั๊กนี้ (ต้อง fail) แล้วแก้โค้ดให้ผ่าน
    ```
 
-### 🏁 ตรวจก่อน Code freeze (15:00)
+### 🏁 ตรวจก่อน Code freeze (14:45)
 
 ```
 ตรวจทั้งโปรเจกต์เพื่อเตรียม demo:
@@ -445,15 +445,15 @@ git push -u origin feat/booking-create
 
 ---
 
-## 🎤 10. อัปเดต Server + เตรียมนำเสนอ
+## 🎤 10. อัปเดต Server + เตรียมนำเสนอ (การบ้าน)
 
-### 🔄 อัปเดตแอปบน Server (15:15–15:40)
+### 🔄 อัปเดตแอปบน Server (ท้าย Sprint ก่อน 15:00)
 1. Push งาน Sprint ขึ้น GitHub
 2. **Backup ก่อนอัปเดต** — ทางลัด: `cd ~/app && docker compose exec -T db pg_dump -U app -d appdb --format=custom > ~/backup-$(date +%H%M).dump` (ปรับชื่อ user/db ให้ตรง `.env`) · ทางเต็ม: `bash backup.sh`
 3. อัปเดต — ทางลัด: `git pull && docker compose up -d --build` · ทางเต็ม: `pull` + `up -d frontend backend` (ดู [ข้อ 8](#-8-deploy-ขึ้น-server-จริง)) — **อย่ารีสตาร์ท tunnel** URL จะเปลี่ยน
 4. เปิด URL จากมือถือ (4G) ไล่ flow หลักที่จะ Demo ให้ผ่านทั้งหมด
 
-### 🎬 เตรียมสไลด์ + ซ้อม (15:40–16:00)
+### 🎬 เตรียมสไลด์ + ซ้อม (🌙 การบ้านคืนนี้)
 - กรอกแม่แบบ [`templates/demo-presentation.md`](../templates/demo-presentation.md) — ท้ายไฟล์มี **รูปแบบ 10 นาที, เกณฑ์ประเมิน, สิ่งที่ต้องเช็กเช้าวันนำเสนอ และแผนสำรอง** · ให้ Claude ช่วยร่างจาก `git log` และ `docs/app-idea.md` ได้:
   ```
   อ่าน docs/app-idea.md, README.md และ git log --oneline แล้วช่วยกรอก templates/demo-presentation.md
@@ -467,7 +467,7 @@ git push -u origin feat/booking-create
 
 ---
 
-## ⚙️ 11. ⭐ เสริม: GitHub Actions Workflow
+## ⚙️ 11. CI/CD ด้วย GitHub Actions (15:00–16:00)
 
 ### 🗺️ ภาพรวม Pipeline
 
@@ -511,7 +511,19 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 
 > 💡 เสริม: Claude Code มี GitHub Action ของตัวเอง ให้ mention `@claude` ใน Issue/PR เพื่อให้ช่วยแก้ได้ — ดูเอกสาร Claude Code GitHub Actions ใน [CREDITS.md](../CREDITS.md)
 
-> ⏱️ **ทำเมื่อมีเวลา หรือเป็นการบ้านหลังวันที่ 4** — ไม่จำเป็นต่อการ Deploy แบบทางลัด · ถ้า job `zap` ยังไม่ผ่าน ให้ปิด job นั้นไว้ก่อน (comment ออก) แล้วให้ `test` → `snyk` → `build-push` เขียวให้ได้ — ZAP สแกนด้วยมือไปแล้วในข้อ 6
+> ⏱️ **มีเวลา 1 ชั่วโมง:** ถ้า job `zap` ยังไม่ผ่าน ให้ปิด job นั้นไว้ก่อน (comment ออก) แล้วให้ `test` → `snyk` → `build-push` เขียวให้ได้ — ZAP สแกนด้วยมือไปแล้วในข้อ 6
+
+### 🚚 CD: ส่งของขึ้น Server
+
+- **CI** (Continuous Integration) = ทุก push ต้องผ่าน test + security scan อัตโนมัติ
+- **CD** (Continuous Delivery/Deployment) = build image ที่ผ่าน CI แล้วส่งไปพร้อมใช้งาน — job `build-push` ส่ง image ขึ้น **GHCR** แล้ว
+- VM ใน VirtualBox อยู่หลัง NAT → GitHub Actions SSH เข้ามาไม่ได้ → ใช้วิธีให้ VM **ดึง image ใหม่เอง** (cron) ตามหัวข้อ "Deploy อัตโนมัติจาก CI" ใน [ข้อ 8](#-8-deploy-ขึ้น-server-จริง) หรืออัปเดตด้วยมือแบบทางลัด
+
+> 📦 **ดูตัวอย่างจริง:** repo [2FA-example-coding](https://github.com/nuttkku/2FA-example-coding) (จากวันที่ 3) มี `CI-CD.md` และ `.github/workflows/ci.yml` + `cd.yml` ที่ใช้ npm audit, **Semgrep**, **Trivy** (สแกน image), smoke test และ CD ที่ publish image เมื่อสร้าง tag `vX.Y.Z` — ให้ Claude อ่านเทียบกับ workflow ของเราได้:
+> ```
+> อ่าน ~/2fa-example/CI-CD.md และ .github/workflows/ แล้วเปรียบเทียบกับ .github/workflows/ci.yml ของฉัน
+> เสนอว่าควรเพิ่มอะไร 1–2 อย่างที่คุ้มที่สุด (เช่น Trivy scan image) ยังไม่ต้องแก้
+> ```
 
 ---
 
@@ -525,8 +537,8 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 - [ ] 🏃 ฟีเจอร์ Must have ใช้งานได้ครบ และ schema เปลี่ยนผ่าน migration ใหม่เท่านั้น
 - [ ] 💾 Backup DB บน VM แล้วอย่างน้อย 1 ครั้ง · 🔒 Postgres ไม่เปิดพอร์ตออกภายนอก
 - [ ] 📄 README ของโปรเจกต์มี URL, วิธีรัน, สถาปัตยกรรม
-- [ ] 🎤 สไลด์ Demo พร้อม และซ้อมจับเวลาแล้ว
-- [ ] ⭐ (เสริม) Pipeline GitHub Actions เขียว, Playwright E2E ผ่าน
+- [ ] ⚙️ `.github/workflows/ci.yml` รัน `test` → `snyk` → `build-push` เขียว และมี image ใน ghcr.io
+- [ ] 🌙 (การบ้าน) สไลด์ Demo พร้อม และซ้อมจับเวลาแล้ว · ⭐ (เสริม) Playwright E2E ผ่าน
 
 ## 🛠️ Troubleshooting
 

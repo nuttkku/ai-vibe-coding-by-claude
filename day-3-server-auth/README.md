@@ -1,11 +1,11 @@
-# 🏗️ วันที่ 3 — Server จำลอง + Cloudflare Tunnel + Login ผ่าน Email + MFA
+# 🏗️ วันที่ 3 — Server จำลอง + Cloudflare Tunnel + Login ผ่าน Email + 2FA
 
 ## 🎯 เป้าหมายของวัน
 
 - 🖥️ มี **Server จำลอง (VirtualBox VM, Ubuntu Server)** ที่ SSH เข้าได้และมี Docker
 - ☁️ เปิดเว็บใน VM ให้คนภายนอกเข้าได้ด้วย **Cloudflare Quick Tunnel** (ไม่ต้องมีโดเมน) — **เสร็จก่อนเที่ยง**
 - 📧 แอปของตัวเองมีระบบ **สมัคร → ยืนยันอีเมล → ล็อกอิน → ล็อกเอาต์** ที่ทำตามหลักความปลอดภัย
-- 🔑 เพิ่ม **MFA แบบ TOTP** (แอป Authenticator) พร้อม recovery codes
+- 🔑 เพิ่ม **2FA แบบ TOTP** (แอป Authenticator) พร้อม backup codes — ให้ Claude เรียนจาก [repo ตัวอย่าง](https://github.com/nuttkku/2FA-example-coding) แล้วนำมาใส่ในแอป
 
 ## ⏰ ตารางเวลา (แนะนำ)
 
@@ -14,7 +14,7 @@
 | 09:00–10:30 | 🖥️ สร้าง VirtualBox VM + ติดตั้ง Docker บน VM + Snapshot |
 | 10:30–12:00 | ☁️ Cloudflare Quick Tunnel กับ hello-compose บน VM → เปิดจากมือถือ (4G) ให้ได้ทุกคน |
 | 13:00–14:30 | 📧 Login ผ่าน Email (สมัคร, ยืนยันอีเมลผ่าน Mailpit, ล็อกอิน, ล็อกเอาต์) |
-| 14:30–16:00 | 🔑 MFA แบบ TOTP + recovery codes |
+| 14:30–16:00 | 🔑 2FA แบบ TOTP — ให้ Claude เรียนจาก repo ตัวอย่างแล้ว implement ในแอป |
 
 > 💡 **ช่วงเช้าให้เวลาเต็ม 3 ชั่วโมงสำหรับ VM + Tunnel** — ใครติดตั้ง Ubuntu ไม่ผ่าน ให้จับคู่ใช้ VM ของเพื่อนทำ Tunnel ไปก่อน · ช่วงบ่ายทำในเครื่องตัวเอง (VM ใช้ต่อวันที่ 4)
 
@@ -159,66 +159,67 @@ SMTP พอร์ต 1025 (ใช้ภายใน compose), หน้าเว
 
 ---
 
-## 🔑 4. MFA — ยืนยันตัวตน 2 ชั้น (14:30–16:00)
+## 🔑 4. 2FA / MFA — ให้ Claude เรียนจาก repo ตัวอย่าง (14:30–16:00)
 
-**MFA (Multi-Factor Authentication)** = ล็อกอินต้องใช้ **มากกว่า 1 อย่าง**: สิ่งที่รู้ (รหัสผ่าน) + สิ่งที่มี (มือถือ) — รหัสผ่านรั่วก็ยังเข้าไม่ได้
+**MFA (Multi-Factor Authentication)** = ล็อกอินต้องใช้ **มากกว่า 1 อย่าง**: สิ่งที่รู้ (รหัสผ่าน) + สิ่งที่มี (มือถือ) — รหัสผ่านรั่วก็ยังเข้าไม่ได้ · วันนี้ใช้ **TOTP** (แอป Authenticator สร้างรหัส 6 หลักใหม่ทุก 30 วินาที)
 
-### 🧠 เลือกแบบไหน
+> 📦 **repo ตัวอย่าง:** <https://github.com/nuttkku/2FA-example-coding> (Svelte + Express + PostgreSQL เหมือนแอปของเรา) — แทนที่จะเขียน Prompt ยาวๆ เอง เราให้ Claude **อ่านโค้ดที่ทำงานได้จริง แล้วนำแนวทางมาใส่ในแอปของเรา** ซึ่งเป็นทักษะ Vibe Coding ที่ใช้บ่อยมากในงานจริง
 
-| แบบ | วิธีทำงาน | ความปลอดภัย | ในหลักสูตร |
-|---|---|---|---|
-| 📱 **TOTP (แอป Authenticator)** | สแกน QR ครั้งเดียว แล้วแอปสร้างรหัส 6 หลักใหม่ทุก 30 วินาที (มาตรฐาน RFC 6238) | ดี · ไม่ต้องมีเน็ตบนมือถือ | ✅ **ทำ** |
-| 📧 OTP ทางอีเมล | ส่งรหัสไปที่อีเมล | พอใช้ · ถ้าอีเมลโดนแฮ็กก็จบ | ทางเลือกเสริม |
-| 💬 OTP ทาง SMS | ส่งรหัสทาง SMS | อ่อน · โดนสลับซิม/ดักได้ | ❌ ไม่แนะนำ |
-| 🔐 Passkey / WebAuthn | ใช้ลายนิ้วมือ/ใบหน้า/กุญแจ USB | ดีที่สุด · กัน phishing | ขั้นสูง (อ่านเพิ่ม) |
-
-**แอป Authenticator ที่ใช้ได้:** Google Authenticator, Microsoft Authenticator, 2FAS, Authy — ให้ผู้เรียนติดตั้งบนมือถือก่อนเริ่ม
-
-### 🔄 Flow ของ TOTP
+### 🔄 Flow สั้นๆ
 
 ```
-เปิดใช้ MFA:  สร้าง secret ──► แสดง QR (otpauth://...) ──► ผู้ใช้สแกนด้วยแอป
-              ──► ผู้ใช้กรอกรหัส 6 หลักเพื่อยืนยัน ──► บันทึก secret + แสดง recovery codes 1 ครั้ง
-
-ล็อกอิน:     อีเมล + รหัสผ่านถูก ──► session สถานะ "รอ MFA" (ยังเข้าหน้าอื่นไม่ได้)
-              ──► กรอกรหัส 6 หลัก (หรือ recovery code) ──► session เต็มรูปแบบ
+เปิดใช้ 2FA:  สร้าง secret ──► แสดง QR ──► สแกนด้วยแอป ──► กรอกรหัส 6 หลักยืนยัน ──► ได้ backup codes (แสดงครั้งเดียว)
+ล็อกอิน:     อีเมล + รหัสผ่านถูก ──► ขั้นที่ 2: กรอกรหัส 6 หลัก (หรือ backup code) ──► เข้าระบบ
 ```
 
-### 🔐 สิ่งที่ต้องรู้
+**แอป Authenticator:** Google Authenticator, Microsoft Authenticator, 2FAS — ติดตั้งบนมือถือก่อนเริ่ม
 
-| เรื่อง | ทำแบบนี้ ✅ |
-|---|---|
-| Secret ของ TOTP | สุ่มด้วย library, **เข้ารหัสก่อนเก็บใน DB** (ด้วย key จาก env) — ห้ามส่ง secret กลับไปที่ frontend หลังตั้งค่าเสร็จ |
-| ขั้นยืนยันตอนเปิดใช้ | บังคับให้กรอกรหัสที่ถูกก่อน 1 ครั้งจึงเปิดใช้ (กันผู้ใช้ล็อกตัวเองออก) |
-| Recovery codes | สร้าง 8–10 รหัส แสดง **ครั้งเดียว**, เก็บเป็น hash, ใช้แล้วใช้ซ้ำไม่ได้ |
-| ตรวจรหัส | ยอมเวลาคลาดเคลื่อน ±1 ช่วง (30 วินาที), **rate limit** การกรอกรหัส, รหัสเดิมใช้ซ้ำไม่ได้ในช่วงเวลาเดียวกัน |
-| session ระหว่างทาง | หลังรหัสผ่านถูกแต่ยังไม่ผ่าน MFA ห้ามเข้าถึง API อื่น |
-| ปิด MFA | ต้องยืนยันด้วยรหัสผ่าน + รหัส TOTP ก่อน |
+### 🎬 1. ดูของจริงก่อน (วิทยากรสาธิต 10 นาที)
 
-### 💬 Prompt: วางแผนก่อน (Plan mode)
+วิทยากรรัน repo ตัวอย่างตาม Quick Start ใน README แล้วสาธิต: สแกน QR → กรอกรหัส → ได้ backup codes → ล็อกเอาต์ → ล็อกอินใหม่ต้องกรอกรหัส → ใช้ backup code แทน
 
-```
-อ่าน CLAUDE.md และระบบ Login ที่มีอยู่ แล้ววางแผนเพิ่ม MFA แบบ TOTP ยังไม่ต้องแก้โค้ด:
-- migration ใหม่: เพิ่ม mfa_secret_encrypted, mfa_enabled_at ใน users และตาราง mfa_recovery_codes (code_hash, used_at)
-- POST /api/mfa/setup (สร้าง secret + ส่ง QR เป็น data URL), POST /api/mfa/enable (ยืนยันรหัสแรก แล้วคืน recovery codes 10 อัน ครั้งเดียว),
-  POST /api/mfa/verify (ขั้นที่ 2 ตอนล็อกอิน รับ TOTP หรือ recovery code), POST /api/mfa/disable (ต้องใส่รหัสผ่าน + TOTP)
-- login: ถ้าผู้ใช้เปิด MFA ให้ session อยู่สถานะ mfa_pending และทุก API ที่ต้องล็อกอินต้องปฏิเสธจนกว่าจะผ่าน verify
-- เข้ารหัส secret ด้วย key จาก env (MFA_ENCRYPTION_KEY) เก็บ recovery codes เป็น hash, rate limit ที่ verify
-- หน้า Svelte: ตั้งค่า MFA (แสดง QR + ช่องกรอกรหัส + แสดง recovery codes ให้บันทึก), หน้ากรอกรหัส 6 หลักตอนล็อกอิน
-ใช้ library TOTP และ QR code ที่ได้รับการยอมรับ บอกชื่อและเหตุผล ห้ามเขียนอัลกอริทึม TOTP เอง
+### 📥 2. ให้ Claude เข้าถึง repo ตัวอย่าง
+
+```bash
+git clone https://github.com/nuttkku/2FA-example-coding.git ~/2fa-example     # clone ไว้นอกโปรเจกต์
 ```
 
-### 🧪 Lab: ทดสอบเองให้ครบ
+ใน Claude Code ของ **โปรเจกต์ตัวเอง**: `/add-dir` → เลือกโฟลเดอร์ `~/2fa-example` (ให้ Claude อ่านได้ แต่เราจะแก้เฉพาะโปรเจกต์ตัวเอง)
 
-1. ล็อกอิน → หน้าตั้งค่า MFA → สแกน QR ด้วยแอป Authenticator บนมือถือ → กรอกรหัส → ได้ recovery codes (จดไว้)
-2. ล็อกเอาต์ → ล็อกอินใหม่ → ต้องถามรหัส 6 หลัก → ลองเรียก API หน้า CRUD ตรงๆ ก่อนกรอกรหัส → ต้องถูกปฏิเสธ
-3. กรอกรหัสผิด → ไม่ผ่าน · กรอกรหัสจากแอป → ผ่าน
-4. ลองล็อกอินด้วย **recovery code** 1 อัน → ผ่าน → ใช้อันเดิมซ้ำ → ต้องไม่ผ่าน
-5. ดูตาราง `users` ใน DataGrip/DBeaver → `mfa_secret_encrypted` ต้องไม่ใช่ secret ตรงๆ
-6. (สนุก) เปิดแอปผ่าน **Cloudflare Tunnel** แล้วให้เพื่อนลองล็อกอินด้วยบัญชีทดสอบจากมือถือของเขา
-7. Commit + Push → `/security-review` อีกครั้ง
+### 💬 3. Prompt: เรียนแล้ววางแผน (Plan mode)
 
-> ⚠️ **ใช้บัญชีทดสอบเท่านั้น** — อย่าผูก MFA ของแอปทดลองกับบัญชีจริงใดๆ และเก็บ `MFA_ENCRYPTION_KEY` ไว้ใน `.env` เท่านั้น (หายแล้วถอด secret ไม่ได้ ผู้ใช้ทุกคนต้องตั้ง MFA ใหม่)
+```
+อ่านโปรเจกต์ตัวอย่างใน ~/2fa-example เฉพาะส่วน 2FA:
+- README หัวข้อ "ขั้นตอนการทำงานของ 2FA" และ "ความลับถูกเก็บอย่างไร: hash vs encrypt"
+- backend/src/services/twofa.service.js, backend/src/utils/crypto.js, backend/src/utils/backupCodes.js
+- frontend/src/pages/Setup2FA.svelte, Verify2FA.svelte, BackupCodes.svelte
+
+แล้ววางแผนนำ TOTP 2FA + backup codes มาใส่ในแอปของฉัน (ยังไม่ต้องแก้โค้ด):
+- ปรับให้เข้ากับระบบ Login ผ่าน Email ที่มีอยู่แล้ว (ใช้ session แบบเดิม ไม่ต้องเปลี่ยนเป็น JWT)
+- ให้ผู้ใช้เลือกเปิด 2FA เองได้ (ไม่ต้องบังคับทุกคนแบบตัวอย่าง)
+- ไม่เอา RBAC, SSO, Keycloak มา
+- schema ใหม่ต้องเป็น migration ใหม่ของโปรเจกต์ฉัน, key เข้ารหัสอ่านจาก env
+สรุปให้ด้วยว่าตัวอย่างทำอะไรบ้าง และส่วนไหนที่ต้องปรับให้เข้ากับแอปฉัน
+```
+
+**ก่อนอนุมัติแผน ตรวจว่ามี 4 ข้อนี้:**
+- 🔒 TOTP secret **เข้ารหัส** ก่อนเก็บ (key จาก env) — backup codes เก็บเป็น **hash** และใช้ได้ครั้งเดียว
+- ✅ ต้องกรอกรหัสที่ถูก 1 ครั้งก่อนเปิดใช้ 2FA จริง
+- 🚧 หลังรหัสผ่านถูกแต่ยังไม่ผ่านขั้นที่ 2 → **เรียก API อื่นไม่ได้**
+- ⏱️ มี rate limit ที่การกรอกรหัส 6 หลัก
+
+อนุมัติ → ให้ Claude ทำทีละส่วน (backend → frontend) → commit แต่ละส่วน
+
+### 🧪 4. ทดสอบเอง
+
+1. เปิด 2FA → สแกน QR ด้วยมือถือ → กรอกรหัส → ได้ backup codes (จดไว้)
+2. ล็อกเอาต์ → ล็อกอินใหม่ → ต้องถามรหัส 6 หลัก · ใส่รหัสผิด → ไม่ผ่าน
+3. ใช้ backup code 1 อัน → ผ่าน → ใช้อันเดิมซ้ำ → ต้องไม่ผ่าน
+4. เปิด DataGrip/DBeaver ดูตาราง → secret ต้องไม่ใช่ข้อความ base32 ตรงๆ และ backup codes เป็น hash
+5. Commit + Push → `/security-review`
+
+> ⚠️ ใช้ **บัญชีทดสอบเท่านั้น** และเก็บ key เข้ารหัสไว้ใน `.env` — key หายแล้วถอด secret ไม่ได้ ผู้ใช้ทุกคนต้องตั้ง 2FA ใหม่
+> 💡 **อ่านต่อ:** repo ตัวอย่างมีเรื่อง RBAC, SSO (OIDC/LINE/Facebook/Keycloak) และ CI/CD ที่ใช้ Semgrep + Trivy ให้ศึกษาเพิ่ม · แบบอื่นของ MFA: OTP ทางอีเมล (พอใช้), SMS (ไม่แนะนำ), Passkey/WebAuthn (ปลอดภัยที่สุด)
 
 ---
 
@@ -228,7 +229,7 @@ SMTP พอร์ต 1025 (ใช้ภายใน compose), หน้าเว
 - [ ] ☁️ เปิด hello-compose ผ่าน URL `*.trycloudflare.com` จากมือถือ (4G) ได้ **ก่อนเที่ยง**
 - [ ] 📧 สมัคร → ได้อีเมลยืนยันใน Mailpit → ล็อกอินได้เฉพาะหลังยืนยัน · ลิงก์ยืนยันใช้ซ้ำไม่ได้
 - [ ] 🔐 รหัสผ่านใน DB เป็น hash (`$argon2id$...`), cookie session เป็น HttpOnly, login มี rate limit
-- [ ] 🔑 เปิด MFA ด้วยแอป Authenticator ได้, ล็อกอินต้องกรอกรหัส 6 หลัก, recovery code ใช้ได้ครั้งเดียว
+- [ ] 🔑 เปิด 2FA ด้วยแอป Authenticator ได้, ล็อกอินต้องกรอกรหัส 6 หลัก, backup code ใช้ได้ครั้งเดียว
 - [ ] 📦 migration ใหม่สำหรับ users / tokens / MFA อยู่ในโปรเจกต์ และ push ขึ้น GitHub แล้ว
 
 ## 🛠️ Troubleshooting
@@ -242,7 +243,7 @@ SMTP พอร์ต 1025 (ใช้ภายใน compose), หน้าเว
 | ล็อกอินแล้วรีเฟรชหลุด / cookie ไม่ถูกเก็บ | ตั้ง `Secure` เฉพาะตอนเป็น HTTPS (dev ใช้ http) · frontend ต้องเรียก API ผ่าน Vite proxy (origin เดียวกัน) และส่ง `credentials` |
 | รหัส TOTP ไม่ผ่านตลอด | เวลาในมือถือหรือเครื่อง/คอนเทนเนอร์ไม่ตรง — เปิดตั้งเวลาอัตโนมัติบนมือถือ · ตรวจว่า backend ยอมคลาดเคลื่อน ±1 ช่วง |
 | สแกน QR ไม่ได้ | ขยาย QR ให้ใหญ่ขึ้น หรือกรอก secret ด้วยมือในแอป Authenticator (แสดงเฉพาะตอนตั้งค่า) |
-| ล็อกตัวเองออก (ไม่มีมือถือ) | ใช้ recovery code · ในเครื่อง dev ปิด MFA ของบัญชีทดสอบผ่าน DataGrip/DBeaver ได้ (ห้ามทำแบบนี้กับระบบจริง) |
+| ล็อกตัวเองออก (ไม่มีมือถือ) | ใช้ backup code · ในเครื่อง dev ปิด MFA ของบัญชีทดสอบผ่าน DataGrip/DBeaver ได้ (ห้ามทำแบบนี้กับระบบจริง) |
 
 ## 📚 อ้างอิง
 ดู [CREDITS.md](../CREDITS.md) หัวข้อ "เครื่องมือพัฒนา" (VirtualBox, Ubuntu), "CI/CD & Deploy" (Cloudflare Tunnel) และ "Authentication & MFA"

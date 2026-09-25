@@ -35,8 +35,8 @@
 |---|---|---|
 | 🧰 1 | เปิดหลักสูตร + Vibe Coding + ติดตั้งเครื่องมือ | VSCode + Claude Code + Git พร้อมใช้ |
 | 🎮 2 | Bootcamp, Docker, App Idea, ฐานข้อมูล, Scaffold + UI | ใช้เครื่องมือคล่อง + แอปของตัวเองรันบน Docker มีหน้า UI เชื่อม API ขึ้น GitHub |
-| 🏗️ 3 | Server จำลอง + Cloudflare Tunnel + Login + MFA | มี VM ที่เปิดเว็บออกเน็ตได้ + แอปมีระบบล็อกอินด้วยอีเมลและ MFA |
-| 🚀 4 | สร้างแอป + Test + Security + Deploy + Sprint | แอปออนไลน์มี URL + สไลด์พร้อมนำเสนอ |
+| 🏗️ 3 | Server จำลอง + Cloudflare Tunnel + Login + 2FA | มี VM ที่เปิดเว็บออกเน็ตได้ + แอปมีระบบล็อกอินด้วยอีเมลและ 2FA |
+| 🚀 4 | Test + Security + Deploy + Sprint + CI/CD | แอปออนไลน์มี URL + Pipeline CI/CD เขียว |
 | 🎤 5 | **Demo Day** (ไม่มีการสอน) | ทุกคนนำเสนอผลงาน Vibe Coding ของตัวเอง |
 
 ### 📜 กติกาในห้อง
