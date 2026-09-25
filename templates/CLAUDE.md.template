@@ -27,6 +27,7 @@ Full idea and scope: docs/app-idea.md
 - Read secrets and config only from environment variables. Never hard-code secrets.
 - Keep changes small and focused; do not refactor unrelated files.
 - Schema changes go in a NEW migration file with both Up and Down sections. Never edit a migration that has already been applied.
+- Auth: hash passwords with argon2id, use HttpOnly + SameSite cookies for sessions, rate limit login/register/MFA, return generic auth errors, never log passwords/tokens/MFA secrets. Use well-known libraries; never implement crypto or TOTP yourself.
 
 ## Never
 - Never commit `.env`, credentials, or tokens.

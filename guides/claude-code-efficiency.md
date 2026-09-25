@@ -39,8 +39,8 @@
 | วัน | ช่วงใช้ AI หนัก | ช่วงทำเองได้ (ไม่ใช้โควต้า) |
 |---|---|---|
 | 1 | ลองสั่งงานครั้งแรก (สั้น) | แนะนำตัว, ติดตั้งเครื่องมือ |
-| 2 | Bootcamp (ลองคำสั่ง), App Idea, CLAUDE.md, อธิบาย SQL | Git Bootcamp, Docker Desktop, DataGrip/DBeaver |
-| 3 | **Scaffold + UI** (บ่าย) | สร้าง VM, Cloudflare Tunnel (เช้า) |
+| 2 | Bootcamp, App Idea, CLAUDE.md, **Scaffold + UI** (หนัก) | Git Bootcamp, Docker Desktop, DataGrip/DBeaver |
+| 3 | **Login + MFA** (บ่าย — ใช้ Plan mode) | สร้าง VM, Cloudflare Tunnel (เช้า) |
 | 4 | **UI + test + แก้ตามผลสแกน + Sprint** (หนักที่สุด) | ทดสอบด้วยมือ, รอ Nessus, Deploy ตามขั้นตอน, ซ้อม Demo |
 | 5 | — (Demo Day) | นำเสนอ |
 

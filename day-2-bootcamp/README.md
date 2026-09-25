@@ -1,4 +1,4 @@
-# 🎮 วันที่ 2 — Claude Code + Git Bootcamp, Docker, App Idea, ฐานข้อมูล
+# 🎮 วันที่ 2 — Bootcamp, Docker, App Idea, ฐานข้อมูล, Scaffold + UI
 
 ## 🎯 เป้าหมายของวัน
 
@@ -7,22 +7,18 @@
 - 🌱 **อ่านและใช้คำสั่ง git หลักได้** และรู้ว่าแต่ละคำสั่งตรงกับปุ่มไหนใน GitHub Desktop
 - 🐳 ใช้ Docker Desktop และเข้าใจ image/container, port, volume, bind mount, network
 - 💡 มี App Idea ที่ตัด scope แล้ว และ repo โปรเจกต์พร้อม `CLAUDE.md`
-- 🗄️ เข้าใจ **DBMS** เชื่อมต่อ PostgreSQL ด้วย **DataGrip หรือ DBeaver** อ่าน SQL พื้นฐานออก และรู้ข้อควรระวัง
+- 🗄️ เข้าใจ **DBMS** ใช้ **DataGrip หรือ DBeaver** อ่าน SQL พื้นฐานออก และรู้ข้อควรระวัง
+- 🏗️ **Scaffold แอป Svelte + Express + PostgreSQL** ตรวจตารางด้วย ER Diagram และมีหน้า UI เชื่อม API แล้ว push ขึ้น GitHub
 
-## ⏰ ตารางเวลา (แนะนำ)
+## ⏰ ลำดับที่สอน (แนะนำ)
 
-| เวลา | กิจกรรม |
+| ช่วง | กิจกรรม |
 |---|---|
-| 09:00–09:10 | 🩺 ตรวจการบ้าน (`check-env`) |
-| 09:10–10:25 | 🎮 **Claude Code Bootcamp** — โหมด, โมเดล, คำสั่ง `/` ทีละตัว |
-| 10:25–11:25 | 🌱 **Git Bootcamp** — คำสั่ง git ↔ GitHub Desktop |
-| 11:25–12:00 | 🐳 Docker Desktop ผ่านหน้าจอ |
-| 13:00–13:40 | 💡 Workshop: App Idea |
-| 13:40–14:10 | 📝 CLAUDE.md + เตรียม repo โปรเจกต์ |
-| 14:10–14:35 | 🐳 Docker ลงลึก |
-| 14:35–16:00 | 🗄️ **ฐานข้อมูล (DBMS)** + DataGrip / DBeaver + SQL พื้นฐาน |
+| เช้า | 🩺 ตรวจการบ้าน → 🎮 Claude Code Bootcamp → 🌱 Git Bootcamp → 🐳 Docker Desktop → 🎨 Svelte UI เชื่อม API + Push |
+| บ่าย | 💡 App Idea → 📝 CLAUDE.md + repo → 🐳 Docker ลงลึก → 🗄️ DBMS + DataGrip / DBeaver → 🧪 Scaffold + ตรวจ ER Diagram |
 
-> 💡 **Lab รวม Claude Code** (แก้บั๊กใน playground) ทำเป็นการบ้านได้ · **เตรียมก่อนวันที่ 3:** ติดตั้ง VirtualBox และดาวน์โหลด ISO ของ Ubuntu Server (~3 GB) — เช้าวันที่ 3 เริ่มสร้าง VM ทันที
+> 💡 หัวข้อในหน้านี้เรียงตามลำดับเนื้อหา (Scaffold ข้อ 8 มาก่อน UI ข้อ 9) — ปรับลำดับการสอนได้ตามห้อง · **Lab รวม Claude Code** ทำเป็นการบ้านได้
+> **เตรียมก่อนวันที่ 3:** ติดตั้ง VirtualBox, ดาวน์โหลด ISO ของ Ubuntu Server (~3 GB) และติดตั้งแอป **Authenticator** (Google/Microsoft Authenticator หรือ 2FAS) บนมือถือ
 
 ---
 
@@ -441,7 +437,7 @@ docker compose up -d
 
 แอปที่จะสร้างควร **เล็กพอทำเสร็จ แต่ใหญ่พอให้ได้ใช้ครบ** (UI + API + DB) — เริ่มจาก "ปัญหาที่อยากแก้" ที่แต่ละคนเล่าตอนแนะนำตัววันที่ 1
 
-> ⚠️ เวลาสร้างแอปจริงมี **บ่ายวันที่ 3 (scaffold + เริ่ม UI) + วันที่ 4 (UI ต่อ + Sprint 1 ชั่วโมง)** แล้ววันที่ 5 นำเสนอ — ให้ Must have มีแค่ 1 resource หลัก + CRUD + ฟีเจอร์เด่น 1 อย่าง
+> ⚠️ เวลาสร้างแอปจริงมี **วันนี้ (scaffold + UI) + บ่ายวันที่ 3 (เพิ่ม Login + MFA) + วันที่ 4 (ทำต่อ + Sprint 1 ชั่วโมง)** แล้ววันที่ 5 นำเสนอ — ระบบ Login/MFA ไม่ต้องใส่ใน Must have เพราะทุกคนทำวันที่ 3 — ให้ Must have มีแค่ 1 resource หลัก + CRUD + ฟีเจอร์เด่น 1 อย่าง
 
 ใช้แม่แบบ [`templates/app-idea.md`](../templates/app-idea.md) กรอกให้ครบ แล้วลองให้ Claude ช่วยขัดเกลา (ใช้ **Plan mode** ที่เรียนช่วงเช้า):
 
@@ -483,7 +479,7 @@ docker compose up -d
 
 แม่แบบพร้อมใช้: [`templates/CLAUDE.md.template`](../templates/CLAUDE.md.template)
 
-### 🎒 เตรียม repo โปรเจกต์ของตัวเอง (พร้อมเริ่ม Scaffold วันที่ 3)
+### 🎒 เตรียม repo โปรเจกต์ของตัวเอง (พร้อมเริ่ม Scaffold ในข้อ 8)
 
 1. สร้าง repo ใหม่บน GitHub (เช่น `room-booking`) แบบ Private หรือ Public — ติ๊ก *Add README* และ `.gitignore` = Node
 2. Clone ลงเครื่องด้วย GitHub Desktop แล้วเปิดใน VSCode
@@ -496,7 +492,7 @@ docker compose up -d
 
 ## 🐳 6. Docker ลงลึก
 
-ช่วงเช้าเราใช้ Docker ผ่านหน้าจอ วันที่ 3 Claude จะสร้าง **Dockerfile + docker-compose.yml** ของแอปจริงให้ — ผู้เรียนต้อง **อ่านออกและแก้ปัญหาได้**
+ช่วงเช้าเราใช้ Docker ผ่านหน้าจอ ใน Scaffold (ข้อ 8) Claude จะสร้าง **Dockerfile + docker-compose.yml** ของแอปจริงให้ — ผู้เรียนต้อง **อ่านออกและแก้ปัญหาได้**
 
 > 📖 เปิด **[Docker Cheat Sheet](../guides/docker-commands.md)** ไว้ข้างจอ
 
@@ -658,7 +654,7 @@ ORDER BY b.starts_at;
 
 1. 🎯 **`UPDATE` / `DELETE` ต้องมี `WHERE` เสมอ** — ไม่มี = แก้/ลบ **ทุกแถว** · ก่อนรันให้ `SELECT` ด้วยเงื่อนไขเดียวกันดูก่อนว่าโดนกี่แถว (ทั้งสองโปรแกรมจะเตือนถ้าไม่มี WHERE — อย่ากดข้าม)
 2. 🔄 **Auto-commit vs Manual transaction** — ค่าเริ่มต้นรันแล้วบันทึกทันที · ตอนทดลองแก้ข้อมูลให้สลับเป็น **Manual** (DataGrip: ตัวเลือก **Tx: Auto/Manual** บนแถบเครื่องมือของ Console · DBeaver: ปุ่ม **Auto-Commit** บนแถบเครื่องมือ) แล้วค่อยกด **Commit** หรือ **Rollback**
-3. 🗃️ **อย่าแก้โครงสร้างตาราง (schema) ด้วย GUI ในโปรเจกต์จริง** — การเพิ่มคอลัมน์ด้วยการคลิกไม่ถูกบันทึกไว้ที่ไหน เพื่อน, CI และ Server จะไม่ได้ตาม · ใช้ **Migration** แทน (Scaffold วันที่ 3 จะใช้ node-pg-migrate — แนวคิดอยู่ในหัวข้อ Migration ตอน Scaffold) · ใช้ GUI แค่ **ดู** และ **ตรวจ** schema ที่ Claude สร้าง
+3. 🗃️ **อย่าแก้โครงสร้างตาราง (schema) ด้วย GUI ในโปรเจกต์จริง** — การเพิ่มคอลัมน์ด้วยการคลิกไม่ถูกบันทึกไว้ที่ไหน เพื่อน, CI และ Server จะไม่ได้ตาม · ใช้ **Migration** แทน (Scaffold ในข้อ 8 ใช้ node-pg-migrate — ดูหัวข้อ Migration ในข้อ 8) · ใช้ GUI แค่ **ดู** และ **ตรวจ** schema ที่ Claude สร้าง
 4. 🗺️ **ใช้ ER Diagram ตรวจงานของ Claude** — DBeaver: เปิดตาราง → แท็บ **ER Diagram** · DataGrip: คลิกขวาที่ schema → **Diagrams → Show Diagram** · ดูว่า PK/FK ถูกไหม ก่อนเขียนโค้ดต่อ
 5. 🔑 **รหัสผ่าน** — อย่าใช้รหัสผ่านจริงใน Lab, อย่า commit ไฟล์ตั้งค่าของ DataGrip (`.idea/`) หรือ DBeaver ที่เก็บ connection ไว้ · ถ้าเชื่อม DB ของคนอื่น/ของจริง ใช้ **บัญชีสิทธิ์อ่านอย่างเดียว**
 6. 🌐 **DB บน Server ห้ามเปิดพอร์ต 5432 สู่ภายนอก** — ถ้าต้องดูข้อมูลบน VM ให้ใช้แท็บ **SSH** (SSH tunnel) ในการตั้งค่า connection ของทั้งสองโปรแกรม (จะเห็นผลตอนสแกน Nessus วันที่ 4)
@@ -668,10 +664,115 @@ ORDER BY b.starts_at;
 ### 🧪 Lab (20 นาที)
 
 1. เชื่อมต่อ `appdb` ด้วย DataGrip หรือ DBeaver → `SELECT * FROM greetings;` ต้องเห็น 2 แถว
-2. `INSERT` ข้อความของตัวเอง → เปิดเว็บ <http://localhost:8080> ไม่เปลี่ยน (หน้าเว็บ hello-compose เป็น HTML นิ่ง ไม่ได้อ่าน DB — แอปจริงวันที่ 3 จะอ่าน)
+2. `INSERT` ข้อความของตัวเอง → เปิดเว็บ <http://localhost:8080> ไม่เปลี่ยน (หน้าเว็บ hello-compose เป็น HTML นิ่ง ไม่ได้อ่าน DB — แอปจริงในข้อ 8 จะอ่าน)
 3. สลับเป็น **Manual transaction** → `DELETE FROM greetings WHERE id = 1;` → `SELECT` ดูว่าหาย → **Rollback** → `SELECT` อีกครั้ง ข้อมูลกลับมา ✅
 4. สร้างตาราง `rooms` และ `bookings` จากตัวอย่างด้านบน → เปิด **ER Diagram** ดูเส้นเชื่อม FK → `DROP TABLE bookings; DROP TABLE rooms;` (ลองได้เพราะเป็น Lab — โปรเจกต์จริงใช้ Migration)
 5. ถาม Claude ให้เขียน query นับข้อความต่อวัน → อ่านให้เข้าใจก่อน → รันดู
+
+---
+
+## 🧪 8. Lab: Scaffold จาก Prompt เดียว
+
+### 🎒 เตรียม
+เปิด repo โปรเจกต์ที่สร้างในข้อ 5 ใน VSCode แล้วตรวจว่ามีครบ:
+- `CLAUDE.md` (กรอกส่วน `<...>` แล้ว) — ยังไม่มี: กลับไป [ข้อ 5](#-5-claudemd--เตรียม-repo-โปรเจกต์)
+- `docs/app-idea.md` ที่ตัด scope แล้ว
+- `.claude/settings.json` (กันอ่าน `.env` และคำสั่งอันตราย)
+- 🗄️ หลัง scaffold เสร็จ เปิด DataGrip/DBeaver เชื่อม DB ของโปรเจกต์ แล้วดู **ER Diagram** ว่าตารางที่ Claude สร้างตรงกับ data model ใน `app-idea.md` ไหม
+- โหมด Claude Code เป็น **Manual** หรือ **Plan** — ไม่ใช่ Auto
+
+### 💬 Prompt Scaffold
+
+```
+อ่าน CLAUDE.md และ docs/app-idea.md แล้วสร้าง Scaffold ของโปรเจกต์:
+
+- frontend/: Svelte 5 + Vite, หน้าแรกแสดงรายการ <resource หลัก> ดึงจาก API
+- backend/: Express (ESM) มี GET /api/health และ CRUD /api/<resources>
+  ใช้ pg ต่อ PostgreSQL ด้วย parameterized query, อ่าน config จาก env
+- backend/migrations/: ใช้ node-pg-migrate (ไฟล์ SQL) สร้างตารางตาม data model
+  migration แรก = สร้างตาราง, migration ที่สอง = ข้อมูลตัวอย่าง 5 แถว
+  เพิ่ม npm script "migrate" และให้ container backend รัน migrate up ก่อน start server
+- Dockerfile แยกสำหรับ frontend และ backend
+- docker-compose.yml: frontend, backend, db (มี healthcheck), ใช้ .env
+- .env.example, .gitignore (ต้องมี .env และ node_modules)
+- README.md วิธีรัน
+
+เสร็จแล้วรัน docker compose up -d --build และ curl /api/health ให้ดูว่าผ่าน
+ถ้ามี error ให้แก้จนผ่านก่อนรายงาน
+```
+
+### 👀 ขณะ Claude ทำงาน — สิ่งที่ผู้เรียนควรทำ
+- **อ่านแผน** ที่ Claude เสนอก่อนกดอนุญาต ถ้าไม่ตรงใจให้แก้ตั้งแต่ตอนนี้
+- สังเกตคำสั่งที่ Claude ขอรัน — อย่ากดอนุญาตคำสั่งที่ไม่เข้าใจ ให้ถามก่อน
+- เมื่อเสร็จ ให้ **รันเองอีกรอบ** เพื่อยืนยัน
+- วันนี้ใช้โควต้าหนัก: commit แล้ว `/clear` ทุกครั้งที่จบ task (ดู [guides/claude-code-efficiency.md](../guides/claude-code-efficiency.md))
+
+### 🗃️ ทำไมใช้ Migration แทน `init.sql`
+
+hello-compose (ข้อ 3) ใช้ `init.sql` ซึ่ง **รันแค่ครั้งแรกตอน volume ของ Postgres ยังว่าง** — พอ Sprint วันที่ 4 ต้องเพิ่มคอลัมน์ แก้ `init.sql` ไปก็ไม่มีผล ต้องลบข้อมูลทิ้ง (`down -v`) ซึ่งทำบน Server จริงไม่ได้
+
+**Migration** = ไฟล์ที่บันทึกการเปลี่ยนแปลง schema ทีละขั้น เรียงลำดับตามเวลา เครื่องมือจะจำว่ารันไปถึงไฟล์ไหนแล้ว (ในตาราง `pgmigrations`) และรันเฉพาะไฟล์ใหม่
+
+```
+backend/migrations/
+├── 1727000000000_create-bookings.sql     ← รันแล้ว
+├── 1727000100000_seed-bookings.sql       ← รันแล้ว
+└── 1727100000000_add-room-capacity.sql   ← ใหม่: migrate up จะรันแค่ไฟล์นี้
+```
+
+ตัวอย่างไฟล์ migration แบบ SQL:
+```sql
+-- Up Migration
+ALTER TABLE rooms ADD COLUMN capacity INTEGER NOT NULL DEFAULT 10;
+
+-- Down Migration
+ALTER TABLE rooms DROP COLUMN capacity;
+```
+
+คำสั่งที่ใช้:
+```bash
+cd backend
+npx node-pg-migrate create add-room-capacity --migration-file-language sql   # สร้างไฟล์ใหม่
+npm run migrate up      # รัน migration ที่ยังไม่ได้รัน (ต้องตั้ง DATABASE_URL)
+npm run migrate down    # ย้อน migration ล่าสุด 1 ไฟล์
+```
+
+**กฎทอง 3 ข้อ** (ใส่ไว้ใน `CLAUDE.md` แล้วในแม่แบบ):
+1. **ห้ามแก้ไฟล์ migration ที่รันไปแล้ว** — ต้องการเปลี่ยนอะไร ให้สร้างไฟล์ใหม่
+2. ทุก migration ต้องมี **Down** ที่ย้อนกลับได้
+3. Commit ไฟล์ migration พร้อมโค้ดที่ใช้ schema ใหม่ใน commit เดียวกัน
+
+### 📦 Commit แรก
+```bash
+git add .
+git commit -m "chore: scaffold svelte + express + postgres"
+```
+
+> 💡 เป้าหมาย: `docker compose up -d --build` ขึ้นครบ 3 service และ `/api/health` ตอบ 200 แล้ว commit + push — แล้วค่อยไปต่อ UI (ข้อ 9)
+
+---
+
+## 🎨 9. Lab: Svelte UI เชื่อม API
+
+ทำทีละฟีเจอร์ เล็กๆ แล้ว Commit:
+
+```
+สร้างหน้า <resources> ใน Svelte:
+- ตารางแสดงรายการจาก GET /api/<resources>
+- ฟอร์มเพิ่มรายการ (POST) พร้อม validation ฝั่ง client
+- ปุ่มลบ (DELETE) มี confirm ก่อนลบ
+- แสดง loading และ error message ที่อ่านเข้าใจได้
+ตั้ง Vite proxy /api → backend ให้ทำงานได้ทั้งตอน dev และใน Docker
+```
+
+เมื่อเจอ Error — **วางข้อความ error เต็มๆ** พร้อมบอกว่าทำอะไรอยู่:
+```
+กดปุ่มบันทึกแล้วขึ้น error นี้ใน browser console:
+<วาง error>
+และ log ของ backend:
+<วางผลจาก docker compose logs backend --tail 50>
+ช่วยหาสาเหตุและแก้
+```
 
 ---
 
@@ -680,10 +781,12 @@ ORDER BY b.starts_at;
 - [ ] รัน `check-env` แล้วไม่มี FAIL
 - [ ] 🎮 รู้ว่าตัวเองอยู่โหมดไหน, ลองคำสั่ง `/` ระดับ 1–2 ครบ, มี `/check`
 - [ ] 🌱 repo `vibe-playground` บน GitHub มี ≥ 3 commit ไม่มี `.env`
-- [ ] 🐳 สำรวจ hello-compose ใน Docker Desktop ครบ และอธิบายได้ว่า `down` กับ `down -v` ต่างกันอย่างไร
-- [ ] 💡 มี repo โปรเจกต์บน GitHub ที่มี `docs/app-idea.md` (ตัด scope แล้ว), `CLAUDE.md`, `.claude/settings.json`
-- [ ] 🗄️ เชื่อมต่อ `appdb` ด้วย DataGrip หรือ DBeaver ได้, อ่าน `SELECT`/`INSERT`/`UPDATE`/`DELETE`/`JOIN` ออก, ลอง Rollback สำเร็จ
-- [ ] 🖥️ ติดตั้ง VirtualBox และมีไฟล์ ISO ของ Ubuntu Server พร้อมสำหรับวันที่ 3
+- [ ] 🐳 อธิบายได้ว่า `down` กับ `down -v` ต่างกันอย่างไร
+- [ ] 💡 repo โปรเจกต์มี `docs/app-idea.md` (ตัด scope แล้ว), `CLAUDE.md`, `.claude/settings.json`
+- [ ] 🗄️ เชื่อมต่อ DB ด้วย DataGrip หรือ DBeaver ได้, อ่าน SQL พื้นฐานออก, ลอง Rollback สำเร็จ
+- [ ] 🏗️ `docker compose up -d --build` ขึ้นครบ 3 service, `/api/health` ตอบ 200, ER Diagram ตรงกับ data model
+- [ ] 🎨 หน้าเว็บแสดงรายการจาก API ได้ และ push ขึ้น GitHub แล้ว ไม่มี `.env`
+- [ ] 🖥️ ติดตั้ง VirtualBox + มี ISO ของ Ubuntu Server + แอป Authenticator บนมือถือ พร้อมสำหรับวันที่ 3
 
 ## 🛠️ Troubleshooting
 
@@ -701,10 +804,14 @@ ORDER BY b.starts_at;
 | `password authentication failed for user "app"` | ใช้รหัสผ่านจาก `.env` · ถ้าเปลี่ยนรหัสใน `.env` หลังรันครั้งแรก ต้อง `docker compose down -v` แล้ว `up -d` ใหม่ (รหัสถูกตั้งตอนสร้าง volume ครั้งแรก) |
 | ดาวน์โหลด driver ไม่ได้ | เน็ตของหน่วยงานบล็อก — ลองเครือข่ายอื่น หรือให้วิทยากรแจกไฟล์ driver |
 | PostgreSQL ในเครื่องชนพอร์ต 5432 | ใช้ `DB_PORT=5433` ใน `.env` แล้วเชื่อมต่อพอร์ต 5433 |
+| คำสั่ง docker อื่นๆ / container `Exited` / ดิสก์เต็ม | ดู [Docker Cheat Sheet ข้อ 7](../guides/docker-commands.md#-7-แก้ปัญหาที่เจอบ่อย) |
+| Backend ต่อ DB ไม่ได้ (`ECONNREFUSED`) | ใน Docker ต้องใช้ host ชื่อ service (`db`) ไม่ใช่ `localhost`, และใช้ `depends_on: condition: service_healthy` |
+| แก้โค้ดแล้วไม่เปลี่ยน | รัน `docker compose up -d --build` หรือใช้ volume mount ตอน dev |
+| แก้ schema แล้วตารางไม่เปลี่ยน | อย่าแก้ migration เดิม — สร้างไฟล์ใหม่แล้ว `npm run migrate up` (ดูหัวข้อ Migration) |
 
 ## 📚 อ้างอิง
-ดู [CREDITS.md](../CREDITS.md) หัวข้อ "Claude / Anthropic", "เครื่องมือพัฒนา" และ "ฐานข้อมูล"
+ดู [CREDITS.md](../CREDITS.md) หัวข้อ "Claude / Anthropic", "เครื่องมือพัฒนา", "ฐานข้อมูล" และ "Framework & Library"
 
 ---
 
-<p align="center"><a href="../day-1-intro/README.md">⬅️ 🧰 วันที่ 1</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../day-3-server-scaffold/README.md">🏗️ วันที่ 3 ➡️</a></p>
+<p align="center"><a href="../day-1-intro/README.md">⬅️ 🧰 วันที่ 1</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../day-3-server-auth/README.md">🏗️ วันที่ 3 ➡️</a></p>

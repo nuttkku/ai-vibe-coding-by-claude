@@ -71,7 +71,7 @@ Windows PowerShell ไม่มี `ssh-copy-id` — ให้ Claude ช่ว�
 
 ```bash
 # บนเครื่องเรา
-scp day-3-server-scaffold/examples/vm-setup.sh <user>@192.168.56.101:~
+scp day-3-server-auth/examples/vm-setup.sh <user>@192.168.56.101:~
 # บน VM
 bash ~/vm-setup.sh
 exit   # ล็อกอินใหม่เพื่อให้ group docker มีผล

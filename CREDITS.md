@@ -92,6 +92,20 @@
 | JetBrains — Non-commercial licensing FAQ | <https://sales.jetbrains.com/hc/en-gb/articles/18950890312210-The-free-non-commercial-licensing-FAQ> |
 | DBeaver Community | <https://dbeaver.io/> · <https://dbeaver.com/docs/dbeaver/> |
 
+## 🔑 Authentication & MFA
+
+| แหล่ง | ใช้ในส่วน |
+|---|---|
+| OWASP Authentication Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html> |
+| OWASP Password Storage Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html> |
+| OWASP Session Management Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html> |
+| OWASP Multifactor Authentication Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html> |
+| OWASP Forgot Password Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html> |
+| NIST SP 800-63B (Digital Identity Guidelines — Authentication) | <https://pages.nist.gov/800-63-4/sp800-63b.html> |
+| RFC 6238 — TOTP | <https://datatracker.ietf.org/doc/html/rfc6238> |
+| Mailpit (SMTP ทดสอบ) | <https://mailpit.axllent.org/> |
+| WebAuthn / Passkeys (อ่านเพิ่ม) | <https://webauthn.guide/> |
+
 ## 🛡️ Security
 
 | เครื่องมือ | เอกสาร |

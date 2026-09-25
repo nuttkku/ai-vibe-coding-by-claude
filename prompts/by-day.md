@@ -13,11 +13,14 @@
 - 💡 ขัดเกลา App Idea → [day-2 §4](../day-2-bootcamp/README.md#-4-workshop-เขียน-prompt-app-idea)
 - 📝 สร้าง CLAUDE.md ร่างแรก: `/init` หรือ `อ่าน docs/app-idea.md แล้วช่วยกรอก CLAUDE.md ส่วน Project ให้กระชับ`
 - 🗄️ อธิบาย SQL: `อธิบาย SQL นี้ทีละบรรทัดแบบคนเพิ่งเริ่ม และบอกว่ามีความเสี่ยงอะไรไหม: <SQL>` → [day-2 §7](../day-2-bootcamp/README.md#️-7-ฐานข้อมูล-dbms--datagrip--dbeaver)
+- 🧪 Scaffold จาก Prompt เดียว → [day-2 §8](../day-2-bootcamp/README.md#-8-lab-scaffold-จาก-prompt-เดียว)
+- 🎨 UI เชื่อม API → [day-2 §9](../day-2-bootcamp/README.md#-9-lab-svelte-ui-เชื่อม-api)
 
 ## 🏗️ วันที่ 3
-- ☁️ แก้ปัญหา Tunnel: `ฉันรัน cloudflared quick tunnel บน Ubuntu VM ด้วย docker แล้ว URL เปิดไม่ได้ ... ช่วยไล่หาสาเหตุทีละขั้น` → [day-3 §2](../day-3-server-scaffold/README.md#️-2-cloudflare-tunnel--เปิดเว็บใน-vm-ให้คนภายนอกเข้าได้)
-- 🧪 Scaffold จาก Prompt เดียว → [day-3 §3](../day-3-server-scaffold/README.md#-3-lab-scaffold-จาก-prompt-เดียว)
-- 🎨 UI เชื่อม API → [day-3 §4](../day-3-server-scaffold/README.md#-4-lab-svelte-ui-เชื่อม-api-เริ่มวันนี้-ทำต่อวันที่-4)
+- ☁️ แก้ปัญหา Tunnel: `ฉันรัน cloudflared quick tunnel บน Ubuntu VM ด้วย docker แล้ว URL เปิดไม่ได้ ... ช่วยไล่หาสาเหตุทีละขั้น` → [day-3 §2](../day-3-server-auth/README.md#️-2-cloudflare-tunnel--เปิดเว็บใน-vm-ให้คนภายนอกเข้าได้)
+- 📧 วางแผน Login ผ่าน Email (Plan mode) → [day-3 §3](../day-3-server-auth/README.md#-3-login-ผ่าน-email-13001430)
+- 🔑 วางแผน MFA แบบ TOTP (Plan mode) → [day-3 §4](../day-3-server-auth/README.md#-4-mfa--ยืนยันตัวตน-2-ชั้น-14301600)
+- 🔍 ตรวจงาน auth: `/security-review`
 
 ## 🚀 วันที่ 4
 - 🧪 วางแผน test → [day-4 §3](../day-4-build-deploy/README.md#-3-unit-test--integration-test)

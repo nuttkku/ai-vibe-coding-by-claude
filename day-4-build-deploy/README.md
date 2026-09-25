@@ -2,7 +2,7 @@
 
 ## 🎯 เป้าหมายของวัน
 
-- 🎨 ทำ Svelte UI ที่เริ่มไว้วันที่ 3 ให้ CRUD ได้ครบ
+- 🎨 ทำ Svelte UI (เริ่มวันที่ 2) ให้ CRUD ได้ครบ ร่วมกับระบบ Login + MFA (วันที่ 3)
 - 🧪 ให้ Claude เขียน Unit + Integration Test อ่าน Coverage แล้วสั่งแก้
 - 🛡️ สแกนความปลอดภัย 3 ระดับ: **Snyk** (dependency) → **OWASP ZAP** (เว็บแอป) → **Nessus** (VM)
 - 🌍 **Deploy แอปขึ้น VM** และได้ URL HTTPS ผ่าน Cloudflare Tunnel
@@ -28,7 +28,7 @@
 | 15:40–16:00 | 🎤 เตรียมสไลด์ + ซ้อมนำเสนอ |
 | ⭐ เสริม | GitHub Actions, Playwright E2E — ทำถ้ามีเวลาหรือเป็นการบ้าน |
 
-> 💡 วันนี้แน่นที่สุด — ใครที่ Scaffold/UI ยังไม่เสร็จจากวันที่ 3 ให้ **ตัด scope** ตั้งแต่เช้า (Demo แอปเล็กที่ใช้งานได้จริงดีกว่าแอปใหญ่ที่พัง)
+> 💡 วันนี้แน่นที่สุด — ใครที่ UI หรือ Login/MFA ยังไม่เสร็จ ให้ **ตัด scope** ตั้งแต่เช้า (Demo แอปเล็กที่ใช้งานได้จริงดีกว่าแอปใหญ่ที่พัง)
 
 ---
 
@@ -40,7 +40,7 @@ Nessus ต้องโหลด plugin นาน — ทำ **ขั้นที
 
 ## 🔁 1. ทำ UI ให้เสร็จ + ทดสอบระบบแบบ End-to-End
 
-> 🎨 ทำ UI ที่เริ่มไว้เมื่อวานให้ CRUD ได้ครบก่อน — Prompt อยู่ใน [วันที่ 3 ข้อ 4](../day-3-server-scaffold/README.md#-4-lab-svelte-ui-เชื่อม-api-เริ่มวันนี้-ทำต่อวันที่-4)
+> 🎨 ทำ UI ที่เริ่มไว้วันที่ 2 ให้ CRUD ได้ครบก่อน (รวมหน้าที่ต้องล็อกอินจากวันที่ 3) — Prompt อยู่ใน [วันที่ 2 ข้อ 9](../day-2-bootcamp/README.md#-9-lab-svelte-ui-เชื่อม-api)
 
 ### 🖐️ ทดสอบด้วยมือ (Smoke test)
 1. `docker compose down -v && docker compose up -d --build` (เริ่มจากศูนย์)
@@ -89,6 +89,7 @@ git push origin main
 ```
 อ่านโค้ดใน backend/ แล้วเสนอแผน test (ยังไม่ต้องเขียน):
 - รายการ unit test ของฟังก์ชัน validation และ business logic
+- รายการ integration test ของ auth: สมัคร, ยืนยันอีเมล (token หมดอายุ/ใช้ซ้ำ), ล็อกอินผิด/ถูก, rate limit, MFA (รหัสผิด, recovery code ใช้ซ้ำ, เข้า API ตอนยัง mfa_pending)
 - รายการ integration test ของทุก endpoint ครอบคลุม:
   success, input ไม่ถูกต้อง (400), ไม่พบ (404), และ edge case
 ใช้ Vitest + Supertest, integration test ต่อ PostgreSQL แยก (db ชื่อ appdb_test)
@@ -548,4 +549,4 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 
 ---
 
-<p align="center"><a href="../day-3-server-scaffold/README.md">⬅️ 🏗️ วันที่ 3</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../templates/demo-presentation.md">🎤 วันที่ 5: Demo Day ➡️</a></p>
+<p align="center"><a href="../day-3-server-auth/README.md">⬅️ 🏗️ วันที่ 3</a> · <a href="../README.md">🏠 หน้าหลัก</a> · <a href="../templates/demo-presentation.md">🎤 วันที่ 5: Demo Day ➡️</a></p>
