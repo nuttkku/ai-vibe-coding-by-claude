@@ -20,7 +20,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 # Run docker without sudo (takes effect after re-login)
 sudo usermod -aG docker "$USER"
 
-# Firewall: only SSH inbound. Cloudflare Tunnel (Day 4) is outbound-only, so no web ports are needed.
+# Firewall: only SSH inbound. Cloudflare Tunnel (Day 3-4) is outbound-only, so no web ports are needed.
 # Note: ports published by Docker (`ports:` in compose) bypass ufw, so avoid publishing ports you do not need.
 sudo ufw allow OpenSSH
 sudo ufw --force enable

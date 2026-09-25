@@ -17,6 +17,7 @@
 - 🌱 ใช้ git ได้ทั้ง command line และ GitHub Desktop — อ่านคำสั่ง git ที่ Claude ขอรันออก
 - 📝 เขียน `CLAUDE.md` และ Prompt ที่ทำให้ Claude สร้างโค้ดได้ตรงใจ
 - 🏗️ สร้างแอป **Svelte + Express + PostgreSQL** รันด้วย **Docker Compose**
+- 🗄️ ใช้ DBMS (PostgreSQL) ผ่าน **DataGrip** / **DBeaver** อ่าน SQL พื้นฐานออก
 - 🧪 ให้ Claude เขียน Unit/Integration Test และอ่านผลเพื่อแก้บั๊ก
 - 🛡️ สแกนความปลอดภัยด้วย **Snyk**, **OWASP ZAP**, **Nessus**
 - ⚙️ สร้าง Pipeline **GitHub Actions**: Test → Security Scan → Build → Push Image
@@ -28,9 +29,9 @@
 | วัน | หัวข้อ | เนื้อหา |
 |---|---|---|
 | 🧰 1 | [เปิดหลักสูตร + Vibe Coding + ติดตั้งเครื่องมือ](day-1-intro/README.md) | เช้า: เปิดหลักสูตร, แนะนำตัวผู้สอนและผู้อบรม, สาธิตสด · บ่าย: Vibe Coding คืออะไร, ติดตั้ง **VSCode + Claude Code Extension** และ **Git + GitHub Desktop** · การบ้าน: ติดตั้ง Docker, Node.js, VirtualBox |
-| 🎮 2 | [Bootcamp + App Idea + เริ่มสร้างแอป](day-2-bootcamp/README.md) | **🎮 Claude Code Bootcamp** (โหมด, โมเดล, คำสั่ง `/`), **🌱 Git Bootcamp** (คำสั่ง git ↔ GitHub Desktop), Docker Desktop + **🐳 Docker ลงลึก**, Workshop App Idea, `CLAUDE.md`, **Scaffold** Svelte + Express + PostgreSQL จาก Prompt เดียว |
-| 🏗️ 3 | [สร้างแอป + Test + Security Scan + CI](day-3-build-test/README.md) | Svelte UI เชื่อม API, E2E, Unit + Integration Test + อ่าน Coverage, **Snyk**, **OWASP ZAP**, **GitHub Actions** (Test → Snyk → Build → Push) |
-| 🚀 4 | [Server จำลอง + Nessus + Deploy + Sprint](day-4-security-deploy/README.md) | สร้าง **VirtualBox VM**, **Nessus** สแกน VM, Deploy ขึ้น VM + **Cloudflare Tunnel** ได้ URL HTTPS, Sprint ปิดฟีเจอร์ + Polish, เตรียมสไลด์ + ซ้อม |
+| 🎮 2 | [Claude Code + Git Bootcamp, Docker, ฐานข้อมูล](day-2-bootcamp/README.md) | **🎮 Claude Code Bootcamp** (โหมด, โมเดล, คำสั่ง `/`), **🌱 Git Bootcamp** (คำสั่ง git ↔ GitHub Desktop), Docker Desktop ผ่านหน้าจอ, **🗄️ DBMS + DataGrip / DBeaver** + SQL พื้นฐาน |
+| 🏗️ 3 | [Server จำลอง + Cloudflare Tunnel + เริ่มสร้างแอป](day-3-server-scaffold/README.md) | สร้าง **VirtualBox VM**, เปิดเว็บผ่าน **Cloudflare Quick Tunnel**, Workshop App Idea, `CLAUDE.md`, **🐳 Docker ลงลึก**, **Scaffold** Svelte + Express + PostgreSQL จาก Prompt เดียว |
+| 🚀 4 | [สร้างแอป + Test + Security + Deploy + Sprint](day-4-build-deploy/README.md) | Svelte UI เชื่อม API, Unit + Integration Test, **Snyk**, **OWASP ZAP**, **Nessus**, Deploy ขึ้น VM ได้ URL HTTPS, Sprint ปิดฟีเจอร์, เตรียมสไลด์ · ⭐ เสริม: GitHub Actions |
 | 🎤 5 | Demo Day | **ไม่มีการสอน / ไม่มีหน้าบทเรียน** — ผู้อบรมทุกคนนำเสนอแอปที่สร้างด้วย Vibe Coding บน URL จริง + แชร์ Prompt/Strategy + ปิดหลักสูตร — รูปแบบและเกณฑ์อยู่ใน [`templates/demo-presentation.md`](templates/demo-presentation.md) |
 
 ## 📂 โครงสร้าง Repository
@@ -38,13 +39,13 @@
 ```
 .
 ├── day-1-intro/              # วันที่ 1: เปิดหลักสูตร + Vibe Coding + ติดตั้ง VSCode/Claude Code/Git
-├── day-2-bootcamp/           # วันที่ 2: Claude Code + Git Bootcamp, Docker, App Idea, CLAUDE.md, Scaffold
+├── day-2-bootcamp/           # วันที่ 2: Claude Code + Git Bootcamp, Docker Desktop, DBMS (DataGrip/DBeaver)
 │   └── examples/                 # claude-playground/, hello-compose/
-├── day-3-build-test/         # วันที่ 3: UI + E2E + Test + Snyk/ZAP + GitHub Actions
-│   └── examples/                 # ci.yml, zap-rules.tsv, security-notes.md
-├── day-4-security-deploy/    # วันที่ 4: VM + Nessus + Deploy + Sprint + เตรียมนำเสนอ
+├── day-3-server-scaffold/    # วันที่ 3: VM + Cloudflare Tunnel + App Idea + CLAUDE.md + Docker ลงลึก + Scaffold
 │   ├── virtualbox-vm.md          # คู่มือสร้าง Server จำลอง (Ubuntu VM)
-│   └── examples/                 # vm-setup.sh, docker-compose.prod.yml, Caddyfile, backup/restore
+│   └── examples/                 # vm-setup.sh
+├── day-4-build-deploy/       # วันที่ 4: UI + Test + Snyk/ZAP/Nessus + Deploy + Sprint + เตรียมนำเสนอ
+│   └── examples/                 # ci.yml, zap-rules.tsv, security-notes.md, docker-compose.prod.yml, Caddyfile, backup/restore
 ├── guides/                   # Cheat sheet Claude Code, Git, Docker, โหมด·โมเดล·ค่าใช้จ่าย, คู่มือโควต้า
 ├── scripts/                  # check-env.ps1 / check-env.sh ตรวจเครื่องก่อนเรียน
 ├── templates/                # แม่แบบ CLAUDE.md, App Idea, Demo
@@ -59,11 +60,11 @@
 
 - คอมพิวเตอร์ Windows 10/11 (รองรับ WSL2), macOS (Intel) หรือ Linux — **RAM 16 GB ขึ้นไป** (ต้องเปิด Docker Desktop และ VM พร้อมกัน), พื้นที่ว่าง ≥ 60 GB, เปิด Virtualization ใน BIOS แล้ว
 - บัญชี [GitHub](https://github.com) และบัญชี [Claude](https://claude.ai) แผน Pro ขึ้นไป (เพื่อใช้ Claude Code)
-- บัญชี [Snyk](https://snyk.io) (ฟรี) — ใช้วันที่ 3
+- บัญชี [Snyk](https://snyk.io) (ฟรี) — ใช้วันที่ 4
 - Activation Code ของ [Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials) (ฟรี, ส่งทางอีเมล) — ใช้วันที่ 4
 - สิทธิ์ Admin บนเครื่อง (สำหรับติดตั้ง Docker/WSL2/VirtualBox)
 - 📥 วันที่ 1 ติดตั้ง VSCode + Claude Code + Git ในห้อง · Docker, Node.js, VirtualBox เป็น **การบ้านก่อนวันที่ 2** ตาม [วันที่ 1 ข้อ 7](day-1-intro/README.md#-7-การบ้านก่อนวันที่-2-15301600)
-- **ไม่ต้องมีโดเมนและไม่ต้องมีบัญชี Cloudflare** — วันที่ 4 ใช้ Cloudflare Quick Tunnel ได้ URL `*.trycloudflare.com` ฟรี
+- **ไม่ต้องมีโดเมนและไม่ต้องมีบัญชี Cloudflare** — วันที่ 3–4 ใช้ Cloudflare Quick Tunnel ได้ URL `*.trycloudflare.com` ฟรี
 
 📦 **ดาวน์โหลดไว้ล่วงหน้าได้เลย** (ไฟล์ใหญ่ ห้องอบรมอาจเน็ตช้า): VSCode, Git, GitHub Desktop, Docker Desktop, Node.js LTS, [VirtualBox](https://www.virtualbox.org/wiki/Downloads), ISO ของ [Ubuntu Server LTS](https://ubuntu.com/download/server) (~3 GB)
 
@@ -89,7 +90,7 @@ bash scripts/check-env.sh
 
 ## 🧭 วิธีใช้ Repo นี้
 
-👩‍🎓 **ผู้เรียน:** Fork หรือ Clone repo นี้ไว้อ่านประกอบ แล้วสร้าง **repo แยก** สำหรับโปรเจกต์ของตัวเอง (สร้างท้ายวันที่ 2) คัดลอกไฟล์จาก `templates/` และ `day-*/examples/` ไปใช้ได้เลย
+👩‍🎓 **ผู้เรียน:** Fork หรือ Clone repo นี้ไว้อ่านประกอบ แล้วสร้าง **repo แยก** สำหรับโปรเจกต์ของตัวเอง (สร้างบ่ายวันที่ 3) คัดลอกไฟล์จาก `templates/` และ `day-*/examples/` ไปใช้ได้เลย
 
 🧑‍🏫 **วิทยากร:** แต่ละวันมีตารางเวลา, เป้าหมาย, Checklist และ Prompt ตัวอย่าง ปรับเวลาได้ตามกลุ่มผู้เรียน — ส่ง `scripts/check-env.*` ให้ผู้เรียนรันเป็นการบ้านหลังวันที่ 1 และอ่าน [guides/claude-code-efficiency.md](guides/claude-code-efficiency.md) เพื่อเตรียมรับมือเมื่อผู้เรียนใช้โควต้า Claude หมด
 

@@ -34,9 +34,9 @@
 | วัน | หัวข้อ | ผลลัพธ์ |
 |---|---|---|
 | 🧰 1 | เปิดหลักสูตร + Vibe Coding + ติดตั้งเครื่องมือ | VSCode + Claude Code + Git พร้อมใช้ |
-| 🎮 2 | Bootcamp + App Idea + เริ่มสร้างแอป | ใช้เครื่องมือคล่อง + แอปของตัวเองรันบน Docker ขึ้น GitHub |
-| 🏗️ 3 | สร้างแอป + Test + Security Scan + CI | แอป CRUD ครบ มี test, สแกนช่องโหว่แล้ว, Pipeline เขียว |
-| 🚀 4 | Server จำลอง + Nessus + Deploy + Sprint | แอปออนไลน์มี URL + สไลด์พร้อมนำเสนอ |
+| 🎮 2 | Claude Code + Git Bootcamp, Docker, ฐานข้อมูล | ใช้เครื่องมือคล่อง + เปิดดูฐานข้อมูลด้วย DataGrip/DBeaver ได้ |
+| 🏗️ 3 | Server จำลอง + Cloudflare Tunnel + เริ่มสร้างแอป | มี VM ที่เปิดเว็บออกเน็ตได้ + แอปของตัวเองรันบน Docker ขึ้น GitHub |
+| 🚀 4 | สร้างแอป + Test + Security + Deploy + Sprint | แอปออนไลน์มี URL + สไลด์พร้อมนำเสนอ |
 | 🎤 5 | **Demo Day** (ไม่มีการสอน) | ทุกคนนำเสนอผลงาน Vibe Coding ของตัวเอง |
 
 ### 📜 กติกาในห้อง
@@ -186,7 +186,7 @@ repo นี้คืออะไร มีโฟลเดอร์อะไร�
 </details>
 
 <details>
-<summary>🖥️ <b>VirtualBox + ISO ของ Ubuntu Server</b> (ใช้วันที่ 4)</summary>
+<summary>🖥️ <b>VirtualBox + ISO ของ Ubuntu Server</b> (ใช้เช้าวันที่ 3)</summary>
 
 ดาวน์โหลด VirtualBox <https://www.virtualbox.org/wiki/Downloads> และ ISO ของ Ubuntu Server LTS <https://ubuntu.com/download/server> (~3 GB) ไว้ในโฟลเดอร์ Downloads
 
@@ -195,7 +195,7 @@ repo นี้คืออะไร มีโฟลเดอร์อะไร�
 <details>
 <summary>📝 <b>บัญชีที่ต้องสมัครล่วงหน้า</b></summary>
 
-- [Snyk](https://snyk.io) (ฟรี) — ใช้วันที่ 3
+- [Snyk](https://snyk.io) (ฟรี) — ใช้วันที่ 4
 - Activation Code ของ [Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials) (ฟรี ส่งทางอีเมล) — ใช้วันที่ 4
 
 </details>

@@ -39,12 +39,12 @@
 | วัน | ช่วงใช้ AI หนัก | ช่วงทำเองได้ (ไม่ใช้โควต้า) |
 |---|---|---|
 | 1 | ลองสั่งงานครั้งแรก (สั้น) | แนะนำตัว, ติดตั้งเครื่องมือ |
-| 2 | Bootcamp (ลองคำสั่ง), App Idea, **Scaffold** | Git Bootcamp, Docker Desktop |
-| 3 | **UI + test + แก้ตามผลสแกน + CI** (หนักที่สุด) | ทดสอบด้วยมือ, อ่าน report, ตั้ง secrets |
-| 4 | **Sprint**, deploy script | สร้าง VM, รอ Nessus, Deploy ตามขั้นตอน, ซ้อม Demo |
+| 2 | Bootcamp (ลองคำสั่ง), เขียน/อธิบาย SQL | Git Bootcamp, Docker Desktop, DataGrip/DBeaver |
+| 3 | App Idea, **Scaffold** | สร้าง VM, Cloudflare Tunnel |
+| 4 | **UI + test + แก้ตามผลสแกน + Sprint** (หนักที่สุด) | ทดสอบด้วยมือ, รอ Nessus, Deploy ตามขั้นตอน, ซ้อม Demo |
 | 5 | — (Demo Day) | นำเสนอ |
 
-**เคล็ดลับวันหนัก (2–4):** เริ่มเช้าด้วย `/clear` และแผนงานใน Plan mode, commit ทุก task, `/clear` ทุกครั้งที่เปลี่ยน task
+**เคล็ดลับวันหนัก (3–4):** เริ่มเช้าด้วย `/clear` และแผนงานใน Plan mode, commit ทุก task, `/clear` ทุกครั้งที่เปลี่ยน task
 
 ## 🆘 4. เมื่อชนขีดจำกัด (Plan B)
 

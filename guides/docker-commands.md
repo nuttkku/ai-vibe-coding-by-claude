@@ -1,6 +1,6 @@
 # 🐳 Docker Cheat Sheet
 
-คู่มืออ้างอิงสำหรับบ่ายวันที่ 2 เป็นต้นไป — ช่วงเช้าวันที่ 2 ใช้แค่หน้าจอ Docker Desktop
+คู่มืออ้างอิงสำหรับวันที่ 3 เป็นต้นไป — วันที่ 2 ใช้แค่หน้าจอ Docker Desktop
 
 ---
 
@@ -119,7 +119,7 @@ CMD ["node", "src/server.js"] # คำสั่งที่รันเมื่
 | backend `ECONNREFUSED 127.0.0.1:5432` | ใช้ `localhost` ใน container — เปลี่ยนเป็นชื่อ service `db` |
 | backend รันก่อน DB พร้อม แล้ว crash | เพิ่ม `healthcheck` ให้ db และ `depends_on: condition: service_healthy` |
 | แก้โค้ดแล้วไม่เปลี่ยน | `docker compose up -d --build` หรือใช้ bind mount ตอน dev |
-| แก้ `init.sql` แล้วตารางไม่เปลี่ยน | init script รันเฉพาะตอน volume ว่าง — ใช้ migration (วันที่ 2) หรือ `down -v` ถ้ายอมให้ข้อมูลหาย |
+| แก้ `init.sql` แล้วตารางไม่เปลี่ยน | init script รันเฉพาะตอน volume ว่าง — ใช้ migration (วันที่ 3) หรือ `down -v` ถ้ายอมให้ข้อมูลหาย |
 | ดิสก์เต็ม | `docker system df` ดูก่อน แล้ว `docker system prune` |
 | container ขึ้น `Exited (1)` | `docker compose logs <service>` ดูบรรทัดสุดท้าย แล้ววางให้ Claude |
 

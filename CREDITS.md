@@ -21,9 +21,9 @@
 |---|---|
 | Claude Code Documentation <https://docs.anthropic.com/en/docs/claude-code/overview> | วันที่ 1–5 |
 | Claude Code — IDE integrations (VS Code) <https://docs.anthropic.com/en/docs/claude-code/ide-integrations> | วันที่ 1 |
-| Claude Code — Memory / CLAUDE.md <https://docs.anthropic.com/en/docs/claude-code/memory> | วันที่ 2 (CLAUDE.md) |
+| Claude Code — Memory / CLAUDE.md <https://docs.anthropic.com/en/docs/claude-code/memory> | วันที่ 3 (CLAUDE.md) |
 | Claude Code — Best practices for agentic coding <https://www.anthropic.com/engineering/claude-code-best-practices> | วันที่ 2, 4 |
-| Claude Code GitHub Actions <https://docs.anthropic.com/en/docs/claude-code/github-actions> | วันที่ 3 (เสริม) |
+| Claude Code GitHub Actions <https://docs.anthropic.com/en/docs/claude-code/github-actions> | วันที่ 4 (เสริม) |
 | Anthropic Prompt Engineering Guide <https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview> | วันที่ 1–2 การเขียน Prompt |
 | Claude plans & pricing <https://claude.com/pricing> | วันที่ 1, คู่มือโหมด·โมเดล·ค่าใช้จ่าย |
 | Claude API Pricing <https://platform.claude.com/docs/en/about-claude/pricing> | คู่มือโหมด·โมเดล·ค่าใช้จ่าย (ราคา token, cache, batch) |
@@ -82,6 +82,16 @@
 | Supertest | <https://github.com/ladjs/supertest> |
 | Playwright | <https://playwright.dev> |
 
+## 🗄️ ฐานข้อมูล
+
+| เครื่องมือ | เอกสาร |
+|---|---|
+| PostgreSQL Tutorial (SQL พื้นฐาน) | <https://www.postgresql.org/docs/current/tutorial.html> |
+| DataGrip | <https://www.jetbrains.com/datagrip/> · <https://www.jetbrains.com/help/datagrip/> |
+| DataGrip — ฟรีสำหรับการใช้งานที่ไม่ใช่การค้า | <https://blog.jetbrains.com/datagrip/2025/10/01/datagrip-is-now-free-for-non-commercial-use/> |
+| JetBrains — Non-commercial licensing FAQ | <https://sales.jetbrains.com/hc/en-gb/articles/18950890312210-The-free-non-commercial-licensing-FAQ> |
+| DBeaver Community | <https://dbeaver.io/> · <https://dbeaver.com/docs/dbeaver/> |
+
 ## 🛡️ Security
 
 | เครื่องมือ | เอกสาร |
@@ -106,6 +116,7 @@
 | Cloudflare Tunnel | <https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/> |
 | Cloudflare Quick Tunnels (TryCloudflare) | <https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/do-more-with-tunnels/trycloudflare/> |
 | cloudflared Docker image | <https://hub.docker.com/r/cloudflare/cloudflared> |
+| Vite — `server.allowedHosts` | <https://vite.dev/config/server-options#server-allowedhosts> |
 | Let's Encrypt | <https://letsencrypt.org/docs/> |
 
 ## ™️ เครื่องหมายการค้า

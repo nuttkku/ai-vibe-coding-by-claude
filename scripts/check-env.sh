@@ -64,7 +64,7 @@ else fail "Docker" "not found - https://docs.docker.com/get-docker/"; fi
 if has VBoxManage; then
   pass "VirtualBox" "$(VBoxManage --version)"
   if VBoxManage list vms | grep -q vibe-server; then pass "Course VM" "'vibe-server' exists"
-  else warn "Course VM" "'vibe-server' not created yet (done on Day 4)"; fi
+  else warn "Course VM" "'vibe-server' not created yet (done on Day 3)"; fi
 elif has utmctl || [ -d "/Applications/UTM.app" ]; then pass "UTM" "installed"
 elif has multipass; then pass "Multipass" "$(multipass version | head -1)"
 else fail "VM software" "install VirtualBox (or UTM/Multipass on Apple Silicon)"; fi

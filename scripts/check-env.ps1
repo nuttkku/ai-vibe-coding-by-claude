@@ -81,7 +81,7 @@ if ($vbox) {
     Add-Result 'PASS' 'VirtualBox' ((& $vbox --version) -join ' ')
     $vms = (& $vbox list vms) -join "`n"
     if ($vms -match 'vibe-server') { Add-Result 'PASS' 'Course VM' "'vibe-server' exists" }
-    else { Add-Result 'WARN' 'Course VM' "'vibe-server' not created yet (done on Day 4)" }
+    else { Add-Result 'WARN' 'Course VM' "'vibe-server' not created yet (done on Day 3)" }
 } else { Add-Result 'FAIL' 'VirtualBox' 'not found - https://www.virtualbox.org/wiki/Downloads' }
 
 $iso = Get-ChildItem "$env:USERPROFILE\Downloads" -Filter 'ubuntu-*-live-server-*.iso' | Select-Object -First 1
