@@ -18,8 +18,9 @@
 
 ## 🏗️ วันที่ 3
 - ☁️ แก้ปัญหา Tunnel: `ฉันรัน cloudflared quick tunnel บน Ubuntu VM ด้วย docker แล้ว URL เปิดไม่ได้ ... ช่วยไล่หาสาเหตุทีละขั้น` → [day-3 §2](../day-3-server-auth/README.md#️-2-cloudflare-tunnel--เปิดเว็บใน-vm-ให้คนภายนอกเข้าได้)
-- 📧 วางแผน Login ผ่าน Email (Plan mode) → [day-3 §3](../day-3-server-auth/README.md#-3-login-ผ่าน-email-13001430)
-- 🔑 เรียนจาก repo ตัวอย่างแล้ววางแผน 2FA: `อ่านโปรเจกต์ตัวอย่างใน ~/2fa-example เฉพาะส่วน 2FA ... แล้ววางแผนนำ TOTP 2FA + backup codes มาใส่ในแอปของฉัน` → [day-3 §4](../day-3-server-auth/README.md#-4-2fa--mfa--ให้-claude-เรียนจาก-repo-ตัวอย่าง-14301600)
+- 📧 วางแผน Login ผ่าน Email (Plan mode) → [day-3 §3](../day-3-server-auth/README.md#-3-login-ผ่าน-email-13001415)
+- 🔑 เรียนจาก repo ตัวอย่างแล้ววางแผน 2FA: `อ่านโปรเจกต์ตัวอย่างใน ~/2fa-example เฉพาะส่วน 2FA ... แล้ววางแผนนำ TOTP 2FA + backup codes มาใส่ในแอปของฉัน` → [day-3 §4](../day-3-server-auth/README.md#-4-2fa--mfa--ให้-claude-เรียนจาก-repo-ตัวอย่าง-14151515)
+- 👮 เรียนจาก repo ตัวอย่างแล้ววางแผน RBAC: `อ่านโปรเจกต์ตัวอย่างใน ~/2fa-example เฉพาะส่วน RBAC ... แล้ววางแผนเพิ่ม RBAC ให้แอปของฉัน` → [day-3 §5](../day-3-server-auth/README.md#-5-rbac--กำหนดสิทธิ์ตามบทบาท-15151600)
 - 🔍 ตรวจงาน auth: `/security-review`
 
 ## 🚀 วันที่ 4

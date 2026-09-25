@@ -1,4 +1,4 @@
-# 🏗️ วันที่ 3 — Server จำลอง + Cloudflare Tunnel + Login ผ่าน Email + 2FA
+# 🏗️ วันที่ 3 — Server จำลอง + Cloudflare Tunnel + Login + 2FA + RBAC
 
 ## 🎯 เป้าหมายของวัน
 
@@ -6,6 +6,7 @@
 - ☁️ เปิดเว็บใน VM ให้คนภายนอกเข้าได้ด้วย **Cloudflare Quick Tunnel** (ไม่ต้องมีโดเมน) — **เสร็จก่อนเที่ยง**
 - 📧 แอปของตัวเองมีระบบ **สมัคร → ยืนยันอีเมล → ล็อกอิน → ล็อกเอาต์** ที่ทำตามหลักความปลอดภัย
 - 🔑 เพิ่ม **2FA แบบ TOTP** (แอป Authenticator) พร้อม backup codes — ให้ Claude เรียนจาก [repo ตัวอย่าง](https://github.com/nuttkku/2FA-example-coding) แล้วนำมาใส่ในแอป
+- 👮 เพิ่ม **RBAC**: บทบาท admin / user ตรวจสิทธิ์ที่ backend ทุก endpoint และผู้ใช้แก้ได้เฉพาะข้อมูลของตัวเอง
 
 ## ⏰ ตารางเวลา (แนะนำ)
 
@@ -13,8 +14,9 @@
 |---|---|
 | 09:00–10:30 | 🖥️ สร้าง VirtualBox VM + ติดตั้ง Docker บน VM + Snapshot |
 | 10:30–12:00 | ☁️ Cloudflare Quick Tunnel กับ hello-compose บน VM → เปิดจากมือถือ (4G) ให้ได้ทุกคน |
-| 13:00–14:30 | 📧 Login ผ่าน Email (สมัคร, ยืนยันอีเมลผ่าน Mailpit, ล็อกอิน, ล็อกเอาต์) |
-| 14:30–16:00 | 🔑 2FA แบบ TOTP — ให้ Claude เรียนจาก repo ตัวอย่างแล้ว implement ในแอป |
+| 13:00–14:15 | 📧 Login ผ่าน Email (สมัคร, ยืนยันอีเมลผ่าน Mailpit, ล็อกอิน, ล็อกเอาต์) |
+| 14:15–15:15 | 🔑 2FA แบบ TOTP — ให้ Claude เรียนจาก repo ตัวอย่างแล้ว implement ในแอป |
+| 15:15–16:00 | 👮 RBAC (admin / user + ตรวจความเป็นเจ้าของข้อมูล) — เรียนจาก repo ตัวอย่างเดิม |
 
 > 💡 **ช่วงเช้าให้เวลาเต็ม 3 ชั่วโมงสำหรับ VM + Tunnel** — ใครติดตั้ง Ubuntu ไม่ผ่าน ให้จับคู่ใช้ VM ของเพื่อนทำ Tunnel ไปก่อน · ช่วงบ่ายทำในเครื่องตัวเอง (VM ใช้ต่อวันที่ 4)
 
@@ -85,7 +87,7 @@ VM นี้คือ "Server จริง" ของเรา: วันนี�
 
 ---
 
-## 📧 3. Login ผ่าน Email (13:00–14:30)
+## 📧 3. Login ผ่าน Email (13:00–14:15)
 
 เพิ่มระบบ **สมัครสมาชิก → ยืนยันอีเมล → ล็อกอิน → ล็อกเอาต์** ให้แอปของตัวเอง โดยให้ Claude เขียน แต่ **เราต้องรู้ว่าอะไรคือวิธีที่ปลอดภัย** เพราะระบบ login คือจุดที่ถูกโจมตีบ่อยที่สุด
 
@@ -159,7 +161,7 @@ SMTP พอร์ต 1025 (ใช้ภายใน compose), หน้าเว
 
 ---
 
-## 🔑 4. 2FA / MFA — ให้ Claude เรียนจาก repo ตัวอย่าง (14:30–16:00)
+## 🔑 4. 2FA / MFA — ให้ Claude เรียนจาก repo ตัวอย่าง (14:15–15:15)
 
 **MFA (Multi-Factor Authentication)** = ล็อกอินต้องใช้ **มากกว่า 1 อย่าง**: สิ่งที่รู้ (รหัสผ่าน) + สิ่งที่มี (มือถือ) — รหัสผ่านรั่วก็ยังเข้าไม่ได้ · วันนี้ใช้ **TOTP** (แอป Authenticator สร้างรหัส 6 หลักใหม่ทุก 30 วินาที)
 
@@ -223,6 +225,62 @@ git clone https://github.com/nuttkku/2FA-example-coding.git ~/2fa-example     # 
 
 ---
 
+## 👮 5. RBAC — กำหนดสิทธิ์ตามบทบาท (15:15–16:00)
+
+**RBAC (Role-Based Access Control)** = ผู้ใช้แต่ละคนมี **บทบาท (role)** เช่น `admin`, `user` และแต่ละบทบาททำได้เฉพาะ **สิทธิ์ (permission)** ที่กำหนด — เช่น ผู้ใช้ทั่วไปจองห้องได้ แต่เฉพาะ admin เพิ่ม/ลบห้องได้
+
+> 📦 ใช้ repo ตัวอย่างเดิม [2FA-example-coding](https://github.com/nuttkku/2FA-example-coding) (clone ไว้ที่ `~/2fa-example` แล้วตอนทำ 2FA) — มี RBAC 3 บทบาท (`admin`, `manager`, `user`) พร้อมหน้าจัดการผู้ใช้
+
+### 🧠 หลักการ
+
+```
+ผู้ใช้ ──► role (เก็บใน DB) ──► permission map กลาง ──► middleware ตรวจทุก request ฝั่ง backend
+                                 'rooms:write': ['admin']            ผ่าน → ทำงาน · ไม่ผ่าน → 403
+```
+
+| เรื่อง | ทำแบบนี้ ✅ | ห้ามทำ ❌ |
+|---|---|---|
+| ตรวจสิทธิ์ที่ไหน | **backend ทุก endpoint** — frontend ซ่อนปุ่มได้แค่เพื่อความสะดวก | ซ่อนปุ่มใน Svelte แล้วคิดว่าปลอดภัย (ยิง API ตรงได้) |
+| role มาจากไหน | อ่านจาก DB/session ฝั่ง server | เชื่อ role ที่ frontend ส่งมา |
+| ค่าเริ่มต้น | **ปฏิเสธไว้ก่อน** — permission ที่ไม่มีในแผนที่ = ไม่อนุญาต · สมัครใหม่ได้ role ต่ำสุด | สมัครแล้วเลือก role เองได้ |
+| เป็นเจ้าของข้อมูล | ผู้ใช้ทั่วไปแก้/ลบได้เฉพาะ **ข้อมูลของตัวเอง** (ตรวจ `owner_id`) | ใครก็แก้ `/api/bookings/15` ได้ถ้ารู้เลข id (ช่องโหว่ IDOR) |
+| admin คนแรก | สร้างจาก seed / env / สั่งผ่าน DB | หน้าเว็บให้ใครก็ได้ตั้งตัวเองเป็น admin |
+| เปลี่ยน role | เฉพาะ admin + บันทึก audit log | แก้ role แล้วไม่มีร่องรอย |
+
+### 💬 Prompt: เรียนแล้ววางแผน (Plan mode)
+
+```
+อ่านโปรเจกต์ตัวอย่างใน ~/2fa-example เฉพาะส่วน RBAC:
+- README หัวข้อ "RBAC ทำงานอย่างไร"
+- backend/src/config/permissions.js, backend/src/middleware/rbac.middleware.js, backend/src/routes/admin.routes.js
+- คอลัมน์ role ใน backend/src/db/migrations/001_init.sql
+- frontend/src/lib/guards.js และ frontend/src/pages/AdminUsers.svelte
+
+แล้ววางแผนเพิ่ม RBAC ให้แอปของฉัน (ยังไม่ต้องแก้โค้ด):
+- 2 บทบาท: admin และ user (สมัครใหม่ได้ user เสมอ) — เพิ่มผ่าน migration ใหม่
+- permission map กลางไฟล์เดียว แบบตัวอย่าง ครอบคลุม resource หลักของแอปฉัน (ดู docs/app-idea.md)
+- user แก้/ลบได้เฉพาะข้อมูลของตัวเอง (ตรวจเจ้าของ) · admin จัดการได้ทั้งหมด
+- หน้า admin ง่ายๆ: รายชื่อผู้ใช้ + เปลี่ยน role
+- สร้าง admin คนแรกจาก seed ที่อ่านอีเมลจาก env (ห้าม seed ตอน NODE_ENV=production)
+- frontend ซ่อนเมนูตาม role แต่ backend ต้องตรวจทุก endpoint
+ไม่ต้องทำ manager, SSO หรือ audit log เต็มรูปแบบ บอกว่าส่วนไหนเอามาจากตัวอย่าง ส่วนไหนปรับ
+```
+
+**ก่อนอนุมัติแผน ตรวจว่า:** ตรวจสิทธิ์ที่ backend ทุก endpoint · ค่าเริ่มต้นคือปฏิเสธ · มีการตรวจความเป็นเจ้าของข้อมูล · ผู้ใช้เลือก role เองไม่ได้
+
+### 🧪 ทดสอบเอง
+
+1. สมัครบัญชีใหม่ → ต้องเป็น `user` → ไม่เห็นเมนู admin
+2. **ลองยิง API admin ตรงๆ** ด้วยบัญชี user (DevTools → Console: `fetch('/api/admin/users').then(r => r.status)`) → ต้องได้ **403** ไม่ใช่ 200
+3. ด้วยบัญชี user A ลองแก้ข้อมูลของ user B โดยเปลี่ยน id ใน request → ต้องถูกปฏิเสธ
+4. ล็อกอินเป็น admin (จาก seed) → เปลี่ยน role ของ user คนหนึ่งเป็น admin → ล็อกอินบัญชีนั้นใหม่ → เห็นเมนู admin
+5. เปิด DataGrip/DBeaver ดูคอลัมน์ `role` ในตาราง `users`
+6. Commit + Push → `/security-review`
+
+> 💡 **เวลาไม่พอ?** ทำแค่ข้อ 1–3 (backend ตรวจสิทธิ์ + ตรวจเจ้าของ) ให้ผ่านก่อน — หน้า admin ทำต่อใน Sprint วันที่ 4 ได้
+
+---
+
 ## ✅ Checklist ท้ายวัน
 
 - [ ] 🖥️ SSH เข้า VM ได้, `docker run --rm hello-world` บน VM ผ่าน และ Take Snapshot `clean-docker` แล้ว
@@ -230,7 +288,8 @@ git clone https://github.com/nuttkku/2FA-example-coding.git ~/2fa-example     # 
 - [ ] 📧 สมัคร → ได้อีเมลยืนยันใน Mailpit → ล็อกอินได้เฉพาะหลังยืนยัน · ลิงก์ยืนยันใช้ซ้ำไม่ได้
 - [ ] 🔐 รหัสผ่านใน DB เป็น hash (`$argon2id$...`), cookie session เป็น HttpOnly, login มี rate limit
 - [ ] 🔑 เปิด 2FA ด้วยแอป Authenticator ได้, ล็อกอินต้องกรอกรหัส 6 หลัก, backup code ใช้ได้ครั้งเดียว
-- [ ] 📦 migration ใหม่สำหรับ users / tokens / MFA อยู่ในโปรเจกต์ และ push ขึ้น GitHub แล้ว
+- [ ] 👮 บัญชี user เรียก API admin ได้ **403** และแก้ข้อมูลของคนอื่นไม่ได้ · admin เปลี่ยน role ได้
+- [ ] 📦 migration ใหม่สำหรับ users / tokens / 2FA / role อยู่ในโปรเจกต์ และ push ขึ้น GitHub แล้ว
 
 ## 🛠️ Troubleshooting
 
@@ -244,9 +303,10 @@ git clone https://github.com/nuttkku/2FA-example-coding.git ~/2fa-example     # 
 | รหัส TOTP ไม่ผ่านตลอด | เวลาในมือถือหรือเครื่อง/คอนเทนเนอร์ไม่ตรง — เปิดตั้งเวลาอัตโนมัติบนมือถือ · ตรวจว่า backend ยอมคลาดเคลื่อน ±1 ช่วง |
 | สแกน QR ไม่ได้ | ขยาย QR ให้ใหญ่ขึ้น หรือกรอก secret ด้วยมือในแอป Authenticator (แสดงเฉพาะตอนตั้งค่า) |
 | ล็อกตัวเองออก (ไม่มีมือถือ) | ใช้ backup code · ในเครื่อง dev ปิด MFA ของบัญชีทดสอบผ่าน DataGrip/DBeaver ได้ (ห้ามทำแบบนี้กับระบบจริง) |
+| เปลี่ยน role แล้วยังใช้สิทธิ์เดิม | session เก็บ role ไว้ตอนล็อกอิน — ให้ล็อกอินใหม่ หรือให้ backend อ่าน role จาก DB ทุก request |
 
 ## 📚 อ้างอิง
-ดู [CREDITS.md](../CREDITS.md) หัวข้อ "เครื่องมือพัฒนา" (VirtualBox, Ubuntu), "CI/CD & Deploy" (Cloudflare Tunnel) และ "Authentication & MFA"
+ดู [CREDITS.md](../CREDITS.md) หัวข้อ "เครื่องมือพัฒนา" (VirtualBox, Ubuntu), "CI/CD & Deploy" (Cloudflare Tunnel) และ "Authentication & MFA" (รวม RBAC)
 
 ---
 

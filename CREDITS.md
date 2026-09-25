@@ -99,12 +99,14 @@
 | OWASP Authentication Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html> |
 | OWASP Password Storage Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html> |
 | OWASP Session Management Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html> |
+| OWASP Authorization Cheat Sheet (RBAC, deny by default) | <https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html> |
+| OWASP Insecure Direct Object Reference (IDOR) Prevention | <https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html> |
 | OWASP Multifactor Authentication Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html> |
 | OWASP Forgot Password Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html> |
 | NIST SP 800-63B (Digital Identity Guidelines — Authentication) | <https://pages.nist.gov/800-63-4/sp800-63b.html> |
 | RFC 6238 — TOTP | <https://datatracker.ietf.org/doc/html/rfc6238> |
 | Mailpit (SMTP ทดสอบ) | <https://mailpit.axllent.org/> |
-| 2FA Example Coding (Wanut Padee, MIT) — repo ตัวอย่างที่ให้ Claude เรียนรู้ในวันที่ 3 | <https://github.com/nuttkku/2FA-example-coding> |
+| 2FA Example Coding (Wanut Padee, MIT) — repo ตัวอย่างที่ให้ Claude เรียนรู้ 2FA และ RBAC ในวันที่ 3 | <https://github.com/nuttkku/2FA-example-coding> |
 | otplib / qrcode (ใช้ใน repo ตัวอย่าง) | <https://github.com/yeojz/otplib> · <https://github.com/soldair/node-qrcode> |
 | WebAuthn / Passkeys (อ่านเพิ่ม) | <https://webauthn.guide/> |
 
