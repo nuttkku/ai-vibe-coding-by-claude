@@ -531,21 +531,21 @@ git push -u origin feat/booking-create
 
 ### 📜 ที่มาที่ไป (15:00–15:15)
 
-> 📖 เนื้อหาเต็มพร้อมแหล่งอ้างอิง: **[History of CI/CD](../guides/cicd-history.md)**
+> 📖 เนื้อหาเต็มพร้อมแหล่งอ้างอิงแบบกดอ่านต้นฉบับได้: **[History of CI/CD](../guides/cicd-history.md)** · กด 📄/🎥 ในตารางเพื่อเปิดต้นฉบับ
 
 **ปัญหาตั้งต้น — "Integration Hell":** สมัยก่อนแต่ละคนเขียนโค้ดแยกกันหลายสัปดาห์แล้วค่อยรวม → โค้ดชนกันเป็นร้อยจุด บั๊กเจอช้า release ปีละไม่กี่ครั้งและน่ากลัว
 
 | ปี | ใคร | เสนออะไร |
 |---|---|---|
-| 1996 | Microsoft / Steve McConnell | **Daily Build and Smoke Test** — build ทั้งระบบทุกวัน + ทดสอบเบื้องต้น |
-| ปลาย 1990s | Kent Beck (Extreme Programming) | **Continuous Integration** — รวมโค้ด + test อัตโนมัติ **หลายครั้งต่อวัน** |
-| 2000 | Martin Fowler | บทความ "Continuous Integration" — แนวปฏิบัติ 11 ข้อ เช่น self-testing build, fix broken builds immediately |
-| ~2001–2011 | CruiseControl → Hudson → Jenkins | เครื่องมือ CI server อัตโนมัติ |
-| 2009 | Timothy Fitz (IMVU) · Allspaw & Hammond (Flickr) | **Continuous Deployment** วันละ 50 ครั้ง · **DevOps** — Dev กับ Ops ทำงานร่วมกัน |
-| 2010 | Jez Humble & David Farley | หนังสือ **Continuous Delivery** — **Deployment Pipeline**, "If it hurts, do it more frequently" |
-| 2013 | Docker | build ครั้งเดียวเป็น image รันเหมือนกันทุกที่ |
-| 2018 | Accelerate / DORA | งานวิจัย: ทีมที่ deploy บ่อย **เสถียรกว่า** — วัดด้วย DORA metrics |
-| 2019 | GitHub Actions | CI/CD อยู่ใน repo เป็นไฟล์ YAML — ในหลักสูตรใช้เป็น **ส่วนเสริม** |
+| 1996 | Microsoft / Steve McConnell | **Daily Build and Smoke Test** — build ทั้งระบบทุกวัน + ทดสอบเบื้องต้น [📄](https://stevemcconnell.com/articles/daily-build-and-smoke-test/) |
+| ปลาย 1990s | Kent Beck (Extreme Programming) | **Continuous Integration** — รวมโค้ด + test อัตโนมัติ **หลายครั้งต่อวัน** [📄](https://martinfowler.com/articles/continuousIntegration.html) |
+| 2000 | Martin Fowler | บทความ "Continuous Integration" — แนวปฏิบัติ 11 ข้อ เช่น self-testing build, fix broken builds immediately [📄](https://martinfowler.com/articles/continuousIntegration.html) |
+| ~2001–2011 | CruiseControl → Hudson → Jenkins | เครื่องมือ CI server อัตโนมัติ [📄](https://en.wikipedia.org/wiki/Hudson_(software)) |
+| 2009 | Timothy Fitz (IMVU) · Allspaw & Hammond (Flickr) | **Continuous Deployment** วันละ 50 ครั้ง [📄](https://timothyfitz.com/2009/02/10/continuous-deployment-at-imvu-doing-the-impossible-fifty-times-a-day/) · **DevOps** — Dev กับ Ops ทำงานร่วมกัน [🎥](https://www.youtube.com/watch?v=LdOe18KhtT4) |
+| 2010 | Jez Humble & David Farley | หนังสือ **Continuous Delivery** — **Deployment Pipeline**, "If it hurts, do it more frequently" [📄](https://continuousdelivery.com/) |
+| 2013 | Docker | build ครั้งเดียวเป็น image รันเหมือนกันทุกที่ [📄](https://en.wikipedia.org/wiki/Docker_(software)) |
+| 2018 | Accelerate / DORA | งานวิจัย: ทีมที่ deploy บ่อย **เสถียรกว่า** — วัดด้วย DORA metrics [📄](https://dora.dev/guides/dora-metrics-four-keys/) |
+| 2019 | GitHub Actions | CI/CD อยู่ใน repo เป็นไฟล์ YAML — ในหลักสูตรใช้เป็น **ส่วนเสริม** [📄](https://github.blog/news-insights/product-news/github-actions-now-supports-ci-cd/) |
 
 **CI vs CD:** **CI** = รวมโค้ดบ่อย + build/test อัตโนมัติทุก push · **Continuous Delivery** = ผ่าน pipeline แล้ว **พร้อม release** (คนกดปุ่ม) · **Continuous Deployment** = ผ่านแล้ว **ขึ้นระบบจริงอัตโนมัติ**
 
