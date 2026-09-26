@@ -128,7 +128,7 @@
 | เครื่องมือ | เอกสาร |
 |---|---|
 | GitHub Actions | <https://docs.github.com/en/actions> |
-| History of CI/CD — แหล่งอ้างอิงทั้งหมด 16 รายการ (Fowler, Beck, McConnell, Humble & Farley, Fitz, Allspaw & Hammond, DORA, GitHub ฯลฯ) | ดู [guides/cicd-history.md](guides/cicd-history.md#-แหล่งอ้างอิง) |
+| History of CI/CD — แหล่งอ้างอิงทั้งหมด 22 รายการ แยกยุค CI · CD · CI/CD (Fowler, Beck, McConnell, Booch, Kawaguchi, Humble & Farley, Fitz, Allspaw & Hammond, Docker, DORA, GitHub, Google SLSA ฯลฯ) | ดู [guides/cicd-history.md](guides/cicd-history.md#-แหล่งอ้างอิง) |
 | Semgrep / Trivy (อ้างถึงจาก repo ตัวอย่าง 2FA) | <https://semgrep.dev/docs/> · <https://trivy.dev/> |
 | docker/build-push-action | <https://github.com/docker/build-push-action> |
 | GitHub Container Registry | <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry> |

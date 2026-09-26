@@ -533,29 +533,42 @@ git push -u origin feat/booking-create
 
 > 📖 เนื้อหาเต็มพร้อมแหล่งอ้างอิงแบบกดอ่านต้นฉบับได้: **[History of CI/CD](../guides/cicd-history.md)** · กด 📄/🎥 ในตารางเพื่อเปิดต้นฉบับ
 
-**ปัญหาตั้งต้น — "Integration Hell":** สมัยก่อนแต่ละคนเขียนโค้ดแยกกันหลายสัปดาห์แล้วค่อยรวม → โค้ดชนกันเป็นร้อยจุด บั๊กเจอช้า release ปีละไม่กี่ครั้งและน่ากลัว
+> ⚠️ **CI กับ CD ไม่ได้เกิดมาพร้อมกัน** — เกิดห่างกันราว 10 ปี และแก้ปัญหาคนละช่วง
+
+**🔵 ยุค CI — ปัญหา "รวมโค้ด"** (แยกกันเขียนนานๆ แล้วรวมตอนท้าย → ชนกัน บั๊กเจอช้า)
 
 | ปี | ใคร | เสนออะไร |
 |---|---|---|
-| 1996 | Microsoft / Steve McConnell | **Daily Build and Smoke Test** — build ทั้งระบบทุกวัน + ทดสอบเบื้องต้น [📄](https://stevemcconnell.com/articles/daily-build-and-smoke-test/) |
-| ปลาย 1990s | Kent Beck (Extreme Programming) | **Continuous Integration** — รวมโค้ด + test อัตโนมัติ **หลายครั้งต่อวัน** [📄](https://martinfowler.com/articles/continuousIntegration.html) |
-| 2000 | Martin Fowler | บทความ "Continuous Integration" — แนวปฏิบัติ 11 ข้อ เช่น self-testing build, fix broken builds immediately [📄](https://martinfowler.com/articles/continuousIntegration.html) |
-| ~2001–2011 | CruiseControl → Hudson → Jenkins | เครื่องมือ CI server อัตโนมัติ [📄](https://en.wikipedia.org/wiki/Hudson_(software)) |
-| 2009 | Timothy Fitz (IMVU) · Allspaw & Hammond (Flickr) | **Continuous Deployment** วันละ 50 ครั้ง [📄](https://timothyfitz.com/2009/02/10/continuous-deployment-at-imvu-doing-the-impossible-fifty-times-a-day/) · **DevOps** — Dev กับ Ops ทำงานร่วมกัน [🎥](https://www.youtube.com/watch?v=LdOe18KhtT4) |
-| 2010 | Jez Humble & David Farley | หนังสือ **Continuous Delivery** — **Deployment Pipeline**, "If it hurts, do it more frequently" [📄](https://continuousdelivery.com/) |
-| 2013 | Docker | build ครั้งเดียวเป็น image รันเหมือนกันทุกที่ [📄](https://en.wikipedia.org/wiki/Docker_(software)) |
-| 2018 | Accelerate / DORA | งานวิจัย: ทีมที่ deploy บ่อย **เสถียรกว่า** — วัดด้วย DORA metrics [📄](https://dora.dev/guides/dora-metrics-four-keys/) |
-| 2019 | GitHub Actions | CI/CD อยู่ใน repo เป็นไฟล์ YAML — ในหลักสูตรใช้เป็น **ส่วนเสริม** [📄](https://github.blog/news-insights/product-news/github-actions-now-supports-ci-cd/) |
+| 1996 | Steve McConnell (แนวปฏิบัติที่ Microsoft) | **Daily Build and Smoke Test** — build ทั้งระบบทุกวัน + ทดสอบเบื้องต้น [📄](https://stevemcconnell.com/articles/daily-build-and-smoke-test/) |
+| ทศวรรษ 1990 | Kent Beck (Extreme Programming) | พัฒนา **Continuous Integration** เป็นแนวปฏิบัติของ XP [📄](https://martinfowler.com/articles/continuousIntegration.html) |
+| 2000 | Martin Fowler | บทความ "Continuous Integration" — แนวปฏิบัติ 11 ข้อ เช่น Make the Build Self-Testing, Fix Broken Builds Immediately [📄](https://martinfowler.com/articles/continuousIntegration.html) |
+| 2004 → 2011 | Kohsuke Kawaguchi | เขียน **Hudson** ที่ Sun (2004) → เปลี่ยนชื่อเป็น **Jenkins** (2011) [📄](https://www.theregister.com/2018/11/09/jenkins_interview/) [📄](https://kohsuke.org/2011/01/11/bye-bye-hudson-hello-jenkins/) |
 
-**CI vs CD:** **CI** = รวมโค้ดบ่อย + build/test อัตโนมัติทุก push · **Continuous Delivery** = ผ่าน pipeline แล้ว **พร้อม release** (คนกดปุ่ม) · **Continuous Deployment** = ผ่านแล้ว **ขึ้นระบบจริงอัตโนมัติ**
+**🟢 ยุค CD — ปัญหา "ส่งโค้ดถึงผู้ใช้"** (รวมโค้ดได้แล้ว แต่การขึ้นระบบจริงยังช้าและทำด้วยมือ)
 
-🗣️ ถามห้อง: *"ทำไม deploy บ่อยขึ้น ระบบถึงพังน้อยลง?"* — แล้วเฉลยด้วยหลัก "งานเล็ก → พังเล็ก → หาสาเหตุง่าย → แก้เร็ว"
+| ปี | ใคร | เสนออะไร |
+|---|---|---|
+| 2009 | Timothy Fitz (IMVU) | **Continuous Deployment** — test ผ่านแล้วขึ้นระบบจริงอัตโนมัติ [📄](https://timothyfitz.com/2009/02/10/continuous-deployment-at-imvu-doing-the-impossible-fifty-times-a-day/) |
+| 2009 | Allspaw & Hammond (Flickr) · devopsdays | "10+ Deploys Per Day" — Dev กับ Ops ร่วมมือกัน [🎥](https://www.youtube.com/watch?v=LdOe18KhtT4) · จุดเริ่มชุมชน **DevOps** [📄](https://devopsdays.org/about) |
+| 2010 | Jez Humble & David Farley | หนังสือ **Continuous Delivery** — ส่งการเปลี่ยนแปลงถึงผู้ใช้ได้ *"safely and quickly in a sustainable way"* [📄](https://continuousdelivery.com/) |
+| 2013 | Martin Fowler · Docker | นิยาม **Deployment Pipeline** และ Delivery ≠ Deployment [📄](https://martinfowler.com/bliki/DeploymentPipeline.html) · Docker เปิดตัวที่ PyCon [📄](https://www.docker.com/blog/docker-nine-years-young/) |
+| 2013 → 2018 | DORA (Forsgren, Humble, Kim) | State of DevOps (2013) → หนังสือ Accelerate (2018) — วัดผลด้วย DORA metrics [📄](https://dora.dev/guides/dora-metrics-four-keys/) |
+
+**🟣 รวมเป็น "CI/CD"**
+
+| ปี | ใคร | เสนออะไร |
+|---|---|---|
+| 2019 | GitHub Actions | CI + CD ในเครื่องมือเดียว — *"you want CI/CD!"* — ในหลักสูตรใช้เป็น **ส่วนเสริม** [📄](https://github.blog/news-insights/product-news/github-actions-now-supports-ci-cd/) |
+
+**CI vs CD:** **CI** = รวมโค้ดบ่อย + build/test อัตโนมัติทุก push · **Continuous Delivery** = ผ่าน pipeline แล้ว **พร้อม release** (คนกดปุ่ม) · **Continuous Deployment** = ผ่านแล้ว **ขึ้นระบบจริงอัตโนมัติ** [📄](https://martinfowler.com/bliki/ContinuousDelivery.html)
+
+🗣️ ถามห้อง: *"ทำไม CD เกิดหลัง CI เกือบ 10 ปี?"* — แล้วเฉลยว่า ถ้ายังรวมโค้ดกันไม่ได้ ก็ส่งมอบบ่อยไม่ได้ · ต่อด้วย Fowler: *"if it hurts, do it more often"* [📄](https://martinfowler.com/bliki/FrequencyReducesDifficulty.html)
 
 ### ⚙️ ลงมือ: สเปก → สคริปต์ → รัน (15:15–16:00)
 
 ### 🧭 หลักคิด: เราออกแบบ Pipeline — AI ลงมือทำตาม
 
-เครื่องมือ CI/CD เปลี่ยนได้เสมอ (Jenkins, GitLab CI, GitHub Actions ฯลฯ) แต่สิ่งที่ทีมต้องตัดสินใจเองคือ **"มีด่านอะไร ผ่านเมื่อไหร่ และกติกาคืออะไร"** — ตรงกับหลักของ Humble & Farley ที่ให้ pipeline อยู่ใน version control และทำซ้ำได้ ([History of CI/CD](../guides/cicd-history.md))
+เครื่องมือ CI/CD เปลี่ยนได้เสมอ (Jenkins, GitLab CI, GitHub Actions ฯลฯ) แต่สิ่งที่ทีมต้องตัดสินใจเองคือ **"มีด่านอะไร ผ่านเมื่อไหร่ และกติกาคืออะไร"** — ตรงกับแนวคิด **Deployment Pipeline** ที่แบ่งงานเป็นด่าน และหลัก CI ที่ให้ทุกอย่างอยู่ใน version control ([History of CI/CD](../guides/cicd-history.md))
 
 ใน Vibe Coding เราจึง **เขียนสเปก pipeline เป็นภาษาคน** → ให้ Claude **สร้างสคริปต์ที่ทำตามเป๊ะ** → รันจากเครื่องตัวเองและ **deploy ขึ้น VM ผ่าน SSH** ได้เลย (เครื่องเราต่อ VM ผ่าน Host-only อยู่แล้ว)
 
