@@ -106,7 +106,7 @@
 | NIST SP 800-63B (Digital Identity Guidelines — Authentication) | <https://pages.nist.gov/800-63-4/sp800-63b.html> |
 | RFC 6238 — TOTP | <https://datatracker.ietf.org/doc/html/rfc6238> |
 | Mailpit (SMTP ทดสอบ) | <https://mailpit.axllent.org/> |
-| 2FA Example Coding (Wanut Padee, MIT) — repo ตัวอย่างที่ให้ Claude เรียนรู้ 2FA และ RBAC ในวันที่ 3 | <https://github.com/nuttkku/2FA-example-coding> |
+| 2FA Example Coding (Wanut Padee, MIT) — repo ตัวอย่างที่ให้ Claude เรียนรู้ 2FA (วันที่ 3) และ RBAC (วันที่ 4) | <https://github.com/nuttkku/2FA-example-coding> |
 | otplib / qrcode (ใช้ใน repo ตัวอย่าง) | <https://github.com/yeojz/otplib> · <https://github.com/soldair/node-qrcode> |
 | WebAuthn / Passkeys (อ่านเพิ่ม) | <https://webauthn.guide/> |
 

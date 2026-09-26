@@ -1,8 +1,9 @@
-# 🚀 วันที่ 4 — Test + Security + Deploy + Sprint + CI/CD
+# 🚀 วันที่ 4 — RBAC + Test + Security + Deploy + Sprint + CI/CD
 
 ## 🎯 เป้าหมายของวัน
 
-- 🎨 ทำ Svelte UI (เริ่มวันที่ 2) ให้ CRUD ได้ครบ ร่วมกับระบบ Login + MFA (วันที่ 3)
+- 👮 เพิ่ม **RBAC**: บทบาท admin / user ตรวจสิทธิ์ที่ backend ทุก endpoint และผู้ใช้แก้ได้เฉพาะข้อมูลของตัวเอง
+- 🎨 ทำ Svelte UI (เริ่มวันที่ 2) ให้ CRUD ได้ครบ ร่วมกับระบบ Login + 2FA (วันที่ 3)
 - 🧪 ให้ Claude เขียน Unit + Integration Test อ่าน Coverage แล้วสั่งแก้
 - 🛡️ สแกนความปลอดภัย 3 ระดับ: **Snyk** (dependency) → **OWASP ZAP** (เว็บแอป) → **Nessus** (VM)
 - 🌍 **Deploy แอปขึ้น VM** และได้ URL HTTPS ผ่าน Cloudflare Tunnel
@@ -18,27 +19,84 @@
 | เวลา | กิจกรรม |
 |---|---|
 | 09:00–09:10 | 📥 เริ่มติดตั้ง Nessus ทิ้งไว้ (โหลด plugin 15–30 นาที) |
-| 09:10–10:00 | 🎨 ทำ UI ให้เสร็จ + 🖐️ Smoke test |
-| 10:00–11:00 | 🧪 Unit + Integration Test + อ่าน Coverage |
-| 11:00–11:30 | 📦 Snyk: สแกน Dependency |
-| 11:30–12:00 | 🕷️ OWASP ZAP: Baseline Scan |
+| 09:10–10:00 | 👮 RBAC — ให้ Claude เรียนจาก repo ตัวอย่างแล้ว implement |
+| 10:00–10:30 | 🎨 ทำ UI ให้เสร็จ + 🖐️ Smoke test |
+| 10:30–11:15 | 🧪 Unit + Integration Test (รวม auth + RBAC) + อ่าน Coverage |
+| 11:15–11:40 | 📦 Snyk: สแกน Dependency |
+| 11:40–12:00 | 🕷️ OWASP ZAP: Baseline Scan |
 | 13:00–13:30 | 🛰️ Nessus: สแกน VM ก่อน/หลังปิดพอร์ต |
 | 13:30–14:15 | 🌍 Deploy ขึ้น VM + Cloudflare Tunnel (ทางลัด: clone + build บน VM) |
 | 14:15–15:00 | 🏃 Sprint: ปิดฟีเจอร์ + Polish + แก้บั๊ก → Backup + อัปเดตแอปบน Server → **Code freeze 15:00** |
 | 15:00–16:00 | ⚙️ **CI/CD ด้วย GitHub Actions**: Test → Snyk → Build → Push Image |
 | 🌙 การบ้าน | 🎤 เตรียมสไลด์ + ซ้อมนำเสนอสำหรับ Demo Day · ⭐ เสริม: Playwright E2E |
 
-> 💡 วันนี้แน่นที่สุด — ใครที่ UI หรือ Login/MFA ยังไม่เสร็จ ให้ **ตัด scope** ตั้งแต่เช้า (Demo แอปเล็กที่ใช้งานได้จริงดีกว่าแอปใหญ่ที่พัง)
+> 💡 วันนี้แน่นที่สุด — ใครที่ UI หรือ Login/2FA ยังไม่เสร็จ ให้ **ตัด scope** ตั้งแต่เช้า — RBAC ทำแค่ส่วน backend ก่อนได้ (Demo แอปเล็กที่ใช้งานได้จริงดีกว่าแอปใหญ่ที่พัง)
 
 ---
 
 ## 📥 0. เริ่มติดตั้ง Nessus ไว้ก่อน
 
-Nessus ต้องโหลด plugin นาน — ทำ **ขั้นที่ 1–3 ของ [ข้อ 7](#️-7-nessus--สแกน-infrastructurehost)** แล้วปล่อยทิ้งไว้ — บ่ายจะโหลดเสร็จพอดี
+Nessus ต้องโหลด plugin นาน — ทำ **ขั้นที่ 1–3 ของ [ข้อ 8](#️-8-nessus--สแกน-infrastructurehost)** แล้วปล่อยทิ้งไว้ — บ่ายจะโหลดเสร็จพอดี
 
 ---
 
-## 🔁 1. ทำ UI ให้เสร็จ + ทดสอบระบบแบบ End-to-End
+## 👮 1. RBAC — กำหนดสิทธิ์ตามบทบาท (09:10–10:00)
+
+**RBAC (Role-Based Access Control)** = ผู้ใช้แต่ละคนมี **บทบาท (role)** เช่น `admin`, `user` และแต่ละบทบาททำได้เฉพาะ **สิทธิ์ (permission)** ที่กำหนด — เช่น ผู้ใช้ทั่วไปจองห้องได้ แต่เฉพาะ admin เพิ่ม/ลบห้องได้
+
+> 📦 ใช้ repo ตัวอย่างเดิม [2FA-example-coding](https://github.com/nuttkku/2FA-example-coding) (clone ไว้ที่ `~/2fa-example` แล้วตอนทำ 2FA วันที่ 3) — มี RBAC 3 บทบาท (`admin`, `manager`, `user`) พร้อมหน้าจัดการผู้ใช้
+
+### 🧠 หลักการ
+
+```
+ผู้ใช้ ──► role (เก็บใน DB) ──► permission map กลาง ──► middleware ตรวจทุก request ฝั่ง backend
+                                 'rooms:write': ['admin']            ผ่าน → ทำงาน · ไม่ผ่าน → 403
+```
+
+| เรื่อง | ทำแบบนี้ ✅ | ห้ามทำ ❌ |
+|---|---|---|
+| ตรวจสิทธิ์ที่ไหน | **backend ทุก endpoint** — frontend ซ่อนปุ่มได้แค่เพื่อความสะดวก | ซ่อนปุ่มใน Svelte แล้วคิดว่าปลอดภัย (ยิง API ตรงได้) |
+| role มาจากไหน | อ่านจาก DB/session ฝั่ง server | เชื่อ role ที่ frontend ส่งมา |
+| ค่าเริ่มต้น | **ปฏิเสธไว้ก่อน** — permission ที่ไม่มีในแผนที่ = ไม่อนุญาต · สมัครใหม่ได้ role ต่ำสุด | สมัครแล้วเลือก role เองได้ |
+| เป็นเจ้าของข้อมูล | ผู้ใช้ทั่วไปแก้/ลบได้เฉพาะ **ข้อมูลของตัวเอง** (ตรวจ `owner_id`) | ใครก็แก้ `/api/bookings/15` ได้ถ้ารู้เลข id (ช่องโหว่ IDOR) |
+| admin คนแรก | สร้างจาก seed / env / สั่งผ่าน DB | หน้าเว็บให้ใครก็ได้ตั้งตัวเองเป็น admin |
+| เปลี่ยน role | เฉพาะ admin + บันทึก audit log | แก้ role แล้วไม่มีร่องรอย |
+
+### 💬 Prompt: เรียนแล้ววางแผน (Plan mode)
+
+```
+อ่านโปรเจกต์ตัวอย่างใน ~/2fa-example เฉพาะส่วน RBAC:
+- README หัวข้อ "RBAC ทำงานอย่างไร"
+- backend/src/config/permissions.js, backend/src/middleware/rbac.middleware.js, backend/src/routes/admin.routes.js
+- คอลัมน์ role ใน backend/src/db/migrations/001_init.sql
+- frontend/src/lib/guards.js และ frontend/src/pages/AdminUsers.svelte
+
+แล้ววางแผนเพิ่ม RBAC ให้แอปของฉัน (ยังไม่ต้องแก้โค้ด):
+- 2 บทบาท: admin และ user (สมัครใหม่ได้ user เสมอ) — เพิ่มผ่าน migration ใหม่
+- permission map กลางไฟล์เดียว แบบตัวอย่าง ครอบคลุม resource หลักของแอปฉัน (ดู docs/app-idea.md)
+- user แก้/ลบได้เฉพาะข้อมูลของตัวเอง (ตรวจเจ้าของ) · admin จัดการได้ทั้งหมด
+- หน้า admin ง่ายๆ: รายชื่อผู้ใช้ + เปลี่ยน role
+- สร้าง admin คนแรกจาก seed ที่อ่านอีเมลจาก env (ห้าม seed ตอน NODE_ENV=production)
+- frontend ซ่อนเมนูตาม role แต่ backend ต้องตรวจทุก endpoint
+ไม่ต้องทำ manager, SSO หรือ audit log เต็มรูปแบบ บอกว่าส่วนไหนเอามาจากตัวอย่าง ส่วนไหนปรับ
+```
+
+**ก่อนอนุมัติแผน ตรวจว่า:** ตรวจสิทธิ์ที่ backend ทุก endpoint · ค่าเริ่มต้นคือปฏิเสธ · มีการตรวจความเป็นเจ้าของข้อมูล · ผู้ใช้เลือก role เองไม่ได้
+
+### 🧪 ทดสอบเอง
+
+1. สมัครบัญชีใหม่ → ต้องเป็น `user` → ไม่เห็นเมนู admin
+2. **ลองยิง API admin ตรงๆ** ด้วยบัญชี user (DevTools → Console: `fetch('/api/admin/users').then(r => r.status)`) → ต้องได้ **403** ไม่ใช่ 200
+3. ด้วยบัญชี user A ลองแก้ข้อมูลของ user B โดยเปลี่ยน id ใน request → ต้องถูกปฏิเสธ
+4. ล็อกอินเป็น admin (จาก seed) → เปลี่ยน role ของ user คนหนึ่งเป็น admin → ล็อกอินบัญชีนั้นใหม่ → เห็นเมนู admin
+5. เปิด DataGrip/DBeaver ดูคอลัมน์ `role` ในตาราง `users`
+6. Commit + Push → `/security-review`
+
+> 💡 **เวลาไม่พอ?** ทำแค่ข้อ 1–3 (backend ตรวจสิทธิ์ + ตรวจเจ้าของ) ให้ผ่านก่อน — หน้า admin ทำต่อใน Sprint บ่ายนี้ได้
+
+---
+
+## 🔁 2. ทำ UI ให้เสร็จ + ทดสอบระบบแบบ End-to-End
 
 > 🎨 ทำ UI ที่เริ่มไว้วันที่ 2 ให้ CRUD ได้ครบก่อน (รวมหน้าที่ต้องล็อกอิน และเมนูตาม role จากวันที่ 3) — Prompt อยู่ใน [วันที่ 2 ข้อ 9](../day-2-bootcamp/README.md#-9-lab-svelte-ui-เชื่อม-api)
 
@@ -56,7 +114,7 @@ Nessus ต้องโหลด plugin นาน — ทำ **ขั้นที
 
 ---
 
-## ☁️ 2. Commit และ Push ขึ้น GitHub
+## ☁️ 3. Commit และ Push ขึ้น GitHub
 
 ก่อน Push ตรวจสอบ:
 ```bash
@@ -74,7 +132,7 @@ git push origin main
 
 ---
 
-## 🧪 3. Unit Test + Integration Test
+## 🧪 4. Unit Test + Integration Test
 
 ### ⚖️ ความต่าง
 
@@ -82,7 +140,7 @@ git push origin main
 |---|---|---|---|
 | Unit | ฟังก์ชันเดี่ยว เช่น validation, คำนวณราคา | Vitest | ไม่ (mock) |
 | Integration | API endpoint จริง ผ่าน HTTP ถึง DB | Vitest + Supertest | ใช่ (DB ทดสอบ) |
-| E2E | ผู้ใช้คลิกบนเบราว์เซอร์ | Playwright (เสริมในข้อ 1) | ใช่ |
+| E2E | ผู้ใช้คลิกบนเบราว์เซอร์ | Playwright (เสริมในข้อ 2) | ใช่ |
 
 ### 💬 Prompt: วางแผนก่อนเขียน
 
@@ -112,7 +170,7 @@ Frontend ก็ทำเช่นเดียวกัน (Vitest + `@testing-li
 
 ---
 
-## 📊 4. อ่าน Report และแก้ไข (ต่อจากข้อ 3)
+## 📊 5. อ่าน Report และแก้ไข (ต่อจากข้อ 4)
 
 ```bash
 cd backend
@@ -135,7 +193,7 @@ Commit: `git commit -m "test: add unit and integration tests"`
 
 ---
 
-## 📦 5. Snyk — สแกน Dependency
+## 📦 6. Snyk — สแกน Dependency
 
 Snyk ตรวจว่า npm package ที่ใช้อยู่มีช่องโหว่ที่รู้จัก (CVE) หรือไม่
 
@@ -158,7 +216,7 @@ snyk code test           # สแกนโค้ดที่เขียนเ�
 
 ---
 
-## 🕷️ 6. OWASP ZAP — Dynamic Scan เว็บแอป
+## 🕷️ 7. OWASP ZAP — Dynamic Scan เว็บแอป
 
 ZAP โจมตีแอปที่ **กำลังรันอยู่** แบบอัตโนมัติ เพื่อหาปัญหาเช่น header ความปลอดภัยที่ขาด, XSS, cookie ไม่ปลอดภัย
 
@@ -196,7 +254,7 @@ docker run --rm -v "${PWD}:/zap/wrk:rw" -t ghcr.io/zaproxy/zaproxy:stable `
 
 ---
 
-## 🛰️ 7. Nessus — สแกน Infrastructure/Host
+## 🛰️ 8. Nessus — สแกน Infrastructure/Host
 
 Nessus ตรวจระดับ **เครื่อง/เซิร์ฟเวอร์**: พอร์ตที่เปิด, บริการที่ล้าสมัย, config ที่ไม่ปลอดภัย
 
@@ -217,7 +275,7 @@ Nessus ตรวจระดับ **เครื่อง/เซิร์ฟเ
 ### 🧪 Lab: เห็นผลต่างก่อน/หลัง
 1. บน VM มี `hello-compose` จากวันที่ 3 อยู่แล้ว (ซึ่ง **เปิดพอร์ต Postgres 5432 ออกมา**) — `cd ~/hello-compose && docker compose up -d` แล้วสแกนรอบที่ 1
 2. ให้ Claude ช่วยแก้ compose ให้ Postgres ไม่ publish port และปิดบริการที่ไม่จำเป็น แล้วสแกนรอบที่ 2
-3. เปรียบเทียบ: พอร์ต/finding ไหนหายไป — นี่คือหลัก *ลด attack surface* ที่จะใช้ตอน deploy ในข้อ 8
+3. เปรียบเทียบ: พอร์ต/finding ไหนหายไป — นี่คือหลัก *ลด attack surface* ที่จะใช้ตอน deploy ในข้อ 9
 
 > ⚠️ ข้อควรรู้: พอร์ตที่ Docker publish (`ports:`) **ข้าม firewall `ufw`** ของ Ubuntu ได้ การปิดพอร์ตจึงต้องทำที่ compose ด้วย ไม่ใช่แค่ที่ firewall
 
@@ -239,7 +297,7 @@ Nessus ตรวจระดับ **เครื่อง/เซิร์ฟเ
 
 ---
 
-## 🌍 8. Deploy ขึ้น Server จริง
+## 🌍 9. Deploy ขึ้น Server จริง
 
 ### 🧭 ทางเลือก — ไม่มีโดเมนก็ได้ URL
 
@@ -287,7 +345,7 @@ docker logs tunnel 2>&1 | grep trycloudflare.com
   ```
 - 🛡️ ตรวจว่า `docker-compose.yml` ของโปรเจกต์ **ไม่ publish พอร์ต DB** (`5432`) — สแกน Nessus ซ้ำหลัง deploy ต้องไม่เห็นพอร์ตนี้
 
-ทางด้านล่าง (**ทางเต็ม**) ใช้ image ที่ CI build ไว้ใน GHCR + Caddy เป็น reverse proxy — ใช้เมื่อตั้ง GitHub Actions ([ข้อ 11](#️-11-cicd-ด้วย-github-actions-15001600)) สำเร็จแล้ว
+ทางด้านล่าง (**ทางเต็ม**) ใช้ image ที่ CI build ไว้ใน GHCR + Caddy เป็น reverse proxy — ใช้เมื่อตั้ง GitHub Actions ([ข้อ 12](#️-12-cicd-ด้วย-github-actions-15001600)) สำเร็จแล้ว
 
 ### 🅰️ ทางเต็ม A: image จาก CI + Caddy + Cloudflare Quick Tunnel
 
@@ -371,11 +429,11 @@ VM ใน VirtualBox อยู่หลัง NAT ทำให้ GitHub Actions
 
 ### 🔎 สแกน Production
 - **ZAP baseline** กับ URL ของ Tunnel (ของตัวเองเท่านั้น) — Cloudflare อาจ rate-limit ถ้าสแกนหนัก ใช้ baseline ไม่ใช่ full scan
-- **Nessus Basic Network Scan** กับ IP Host-only ของ VM — ควรเห็นเฉพาะพอร์ต **22** เปิด (Caddy bind แค่ `127.0.0.1`, Postgres ไม่ publish) เทียบกับผลสแกนในข้อ 7
+- **Nessus Basic Network Scan** กับ IP Host-only ของ VM — ควรเห็นเฉพาะพอร์ต **22** เปิด (Caddy bind แค่ `127.0.0.1`, Postgres ไม่ publish) เทียบกับผลสแกนในข้อ 8
 
 ---
 
-## 🏃 9. Sprint — ปิดฟีเจอร์ + Polish + แก้บั๊ก
+## 🏃 10. Sprint — ปิดฟีเจอร์ + Polish + แก้บั๊ก
 
 **เป้าหมาย:** ฟีเจอร์ "Must have" จาก `docs/app-idea.md` ทำงานได้ครบวงจร พร้อม Demo — **Code freeze 15:00** หลังจากนี้ไม่เพิ่มฟีเจอร์ใหม่
 
@@ -446,12 +504,12 @@ git push -u origin feat/booking-create
 
 ---
 
-## 🎤 10. อัปเดต Server + เตรียมนำเสนอ (การบ้าน)
+## 🎤 11. อัปเดต Server + เตรียมนำเสนอ (การบ้าน)
 
 ### 🔄 อัปเดตแอปบน Server (ท้าย Sprint ก่อน 15:00)
 1. Push งาน Sprint ขึ้น GitHub
 2. **Backup ก่อนอัปเดต** — ทางลัด: `cd ~/app && docker compose exec -T db pg_dump -U app -d appdb --format=custom > ~/backup-$(date +%H%M).dump` (ปรับชื่อ user/db ให้ตรง `.env`) · ทางเต็ม: `bash backup.sh`
-3. อัปเดต — ทางลัด: `git pull && docker compose up -d --build` · ทางเต็ม: `pull` + `up -d frontend backend` (ดู [ข้อ 8](#-8-deploy-ขึ้น-server-จริง)) — **อย่ารีสตาร์ท tunnel** URL จะเปลี่ยน
+3. อัปเดต — ทางลัด: `git pull && docker compose up -d --build` · ทางเต็ม: `pull` + `up -d frontend backend` (ดู [ข้อ 9](#-9-deploy-ขึ้น-server-จริง)) — **อย่ารีสตาร์ท tunnel** URL จะเปลี่ยน
 4. เปิด URL จากมือถือ (4G) ไล่ flow หลักที่จะ Demo ให้ผ่านทั้งหมด
 
 ### 🎬 เตรียมสไลด์ + ซ้อม (🌙 การบ้านคืนนี้)
@@ -468,7 +526,7 @@ git push -u origin feat/booking-create
 
 ---
 
-## ⚙️ 11. CI/CD ด้วย GitHub Actions (15:00–16:00)
+## ⚙️ 12. CI/CD ด้วย GitHub Actions (15:00–16:00)
 
 ### 🗺️ ภาพรวม Pipeline
 
@@ -512,13 +570,13 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 
 > 💡 เสริม: Claude Code มี GitHub Action ของตัวเอง ให้ mention `@claude` ใน Issue/PR เพื่อให้ช่วยแก้ได้ — ดูเอกสาร Claude Code GitHub Actions ใน [CREDITS.md](../CREDITS.md)
 
-> ⏱️ **มีเวลา 1 ชั่วโมง:** ถ้า job `zap` ยังไม่ผ่าน ให้ปิด job นั้นไว้ก่อน (comment ออก) แล้วให้ `test` → `snyk` → `build-push` เขียวให้ได้ — ZAP สแกนด้วยมือไปแล้วในข้อ 6
+> ⏱️ **มีเวลา 1 ชั่วโมง:** ถ้า job `zap` ยังไม่ผ่าน ให้ปิด job นั้นไว้ก่อน (comment ออก) แล้วให้ `test` → `snyk` → `build-push` เขียวให้ได้ — ZAP สแกนด้วยมือไปแล้วในข้อ 7
 
 ### 🚚 CD: ส่งของขึ้น Server
 
 - **CI** (Continuous Integration) = ทุก push ต้องผ่าน test + security scan อัตโนมัติ
 - **CD** (Continuous Delivery/Deployment) = build image ที่ผ่าน CI แล้วส่งไปพร้อมใช้งาน — job `build-push` ส่ง image ขึ้น **GHCR** แล้ว
-- VM ใน VirtualBox อยู่หลัง NAT → GitHub Actions SSH เข้ามาไม่ได้ → ใช้วิธีให้ VM **ดึง image ใหม่เอง** (cron) ตามหัวข้อ "Deploy อัตโนมัติจาก CI" ใน [ข้อ 8](#-8-deploy-ขึ้น-server-จริง) หรืออัปเดตด้วยมือแบบทางลัด
+- VM ใน VirtualBox อยู่หลัง NAT → GitHub Actions SSH เข้ามาไม่ได้ → ใช้วิธีให้ VM **ดึง image ใหม่เอง** (cron) ตามหัวข้อ "Deploy อัตโนมัติจาก CI" ใน [ข้อ 9](#-9-deploy-ขึ้น-server-จริง) หรืออัปเดตด้วยมือแบบทางลัด
 
 > 📦 **ดูตัวอย่างจริง:** repo [2FA-example-coding](https://github.com/nuttkku/2FA-example-coding) (จากวันที่ 3) มี `CI-CD.md` และ `.github/workflows/ci.yml` + `cd.yml` ที่ใช้ npm audit, **Semgrep**, **Trivy** (สแกน image), smoke test และ CD ที่ publish image เมื่อสร้าง tag `vX.Y.Z` — ให้ Claude อ่านเทียบกับ workflow ของเราได้:
 > ```
@@ -530,6 +588,7 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 
 ## ✅ Checklist ท้ายวัน (พร้อมสำหรับ Demo Day)
 
+- [ ] 👮 บัญชี user เรียก API admin ได้ **403** และแก้ข้อมูลของคนอื่นไม่ได้ · admin เปลี่ยน role ได้
 - [ ] 🎨 หน้าเว็บ CRUD ได้ครบ และข้อมูลอยู่รอดหลังรีสตาร์ท
 - [ ] 🧪 Unit + Integration test ผ่านทั้งหมด (เป้า branch coverage ≥ 70%)
 - [ ] 📦 `snyk test` ไม่มี High/Critical ที่แก้ได้ค้างอยู่ · 🕷️ ZAP baseline ไม่มี FAIL · บันทึกใน `docs/security-notes.md`
@@ -555,7 +614,8 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 | Coverage ไม่ถึง 70% แต่หมดเวลา | จดไฟล์ที่ต่ำไว้ แล้วให้ Claude เติม test ช่วง Sprint วันที่ 4 |
 | Nessus ยังโหลด plugin ไม่เสร็จตอนบ่าย | สร้าง VM ต่อไปก่อน · ถ้าไม่ทันจริง ใช้ `nmap` สแกนพอร์ต VM ของตัวเองแทนชั่วคราว |
 | Quick Tunnel URL เปลี่ยน | container `tunnel-quick` ถูกรีสตาร์ท — ดู URL ใหม่จาก `logs tunnel-quick` และอย่ารีสตาร์ทหลังส่ง URL ให้ผู้ชมแล้ว |
-| เปิด URL แล้วขึ้น "Blocked request. This host is not allowed" | frontend เป็น Vite dev server — เพิ่ม `server.allowedHosts` ให้ `*.trycloudflare.com` (ดูข้อ 8 ทางลัด) |
+| เปิด URL แล้วขึ้น "Blocked request. This host is not allowed" | frontend เป็น Vite dev server — เพิ่ม `server.allowedHosts` ให้ `*.trycloudflare.com` (ดูข้อ 9 ทางลัด) |
+| เปลี่ยน role แล้วยังใช้สิทธิ์เดิม | session เก็บ role ไว้ตอนล็อกอิน — ให้ล็อกอินใหม่ หรือให้ backend อ่าน role จาก DB ทุก request |
 
 ## 📚 อ้างอิง
 ดู [CREDITS.md](../CREDITS.md) หัวข้อ "Framework & Library", "Security" และ "CI/CD & Deploy"

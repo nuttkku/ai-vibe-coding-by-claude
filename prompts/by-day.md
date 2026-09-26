@@ -18,20 +18,20 @@
 
 ## 🏗️ วันที่ 3
 - ☁️ แก้ปัญหา Tunnel: `ฉันรัน cloudflared quick tunnel บน Ubuntu VM ด้วย docker แล้ว URL เปิดไม่ได้ ... ช่วยไล่หาสาเหตุทีละขั้น` → [day-3 §2](../day-3-server-auth/README.md#️-2-cloudflare-tunnel--เปิดเว็บใน-vm-ให้คนภายนอกเข้าได้)
-- 📧 วางแผน Login ผ่าน Email (Plan mode) → [day-3 §3](../day-3-server-auth/README.md#-3-login-ผ่าน-email-13001415)
-- 🔑 เรียนจาก repo ตัวอย่างแล้ววางแผน 2FA: `อ่านโปรเจกต์ตัวอย่างใน ~/2fa-example เฉพาะส่วน 2FA ... แล้ววางแผนนำ TOTP 2FA + backup codes มาใส่ในแอปของฉัน` → [day-3 §4](../day-3-server-auth/README.md#-4-2fa--mfa--ให้-claude-เรียนจาก-repo-ตัวอย่าง-14151515)
-- 👮 เรียนจาก repo ตัวอย่างแล้ววางแผน RBAC: `อ่านโปรเจกต์ตัวอย่างใน ~/2fa-example เฉพาะส่วน RBAC ... แล้ววางแผนเพิ่ม RBAC ให้แอปของฉัน` → [day-3 §5](../day-3-server-auth/README.md#-5-rbac--กำหนดสิทธิ์ตามบทบาท-15151600)
+- 📧 วางแผน Login ผ่าน Email (Plan mode) → [day-3 §3](../day-3-server-auth/README.md#-3-login-ผ่าน-email-13001430)
+- 🔑 เรียนจาก repo ตัวอย่างแล้ววางแผน 2FA: `อ่านโปรเจกต์ตัวอย่างใน ~/2fa-example เฉพาะส่วน 2FA ... แล้ววางแผนนำ TOTP 2FA + backup codes มาใส่ในแอปของฉัน` → [day-3 §4](../day-3-server-auth/README.md#-4-2fa--mfa--ให้-claude-เรียนจาก-repo-ตัวอย่าง-14301600)
 - 🔍 ตรวจงาน auth: `/security-review`
 
 ## 🚀 วันที่ 4
-- 🧪 วางแผน test → [day-4 §3](../day-4-build-deploy/README.md#-3-unit-test--integration-test)
+- 👮 เรียนจาก repo ตัวอย่างแล้ววางแผน RBAC: `อ่านโปรเจกต์ตัวอย่างใน ~/2fa-example เฉพาะส่วน RBAC ... แล้ววางแผนเพิ่ม RBAC ให้แอปของฉัน` → [day-4 §1](../day-4-build-deploy/README.md#-1-rbac--กำหนดสิทธิ์ตามบทบาท-09101000)
+- 🧪 วางแผน test → [day-4 §4](../day-4-build-deploy/README.md#-4-unit-test--integration-test)
 - 📦 แก้ตามผล Snyk: `นี่คือผล snyk test: <ผล> จัดลำดับตามความรุนแรง ... แก้เฉพาะ High/Critical ก่อน`
 - 🕷️ แก้ตาม ZAP: `นี่คือ alert จาก ZAP: <รายการ> แก้ใน backend ... อธิบายแต่ละ alert สั้นๆ`
 - 🛰️ ตีความ Nessus: `สรุป finding เป็นภาษาไทย: ความเสี่ยง, เกี่ยวกับแอปหรือ OS, วิธีแก้`
-- 🌍 Deploy → [day-4 §8](../day-4-build-deploy/README.md#-8-deploy-ขึ้น-server-จริง)
-- 🏃 วางแผน Sprint: `วางแผน Sprint (1 ชั่วโมง) เป็น task ย่อยที่แต่ละ task commit ได้เอง เรียงตามลำดับความสำคัญ` → [day-4 §9](../day-4-build-deploy/README.md#-9-sprint--ปิดฟีเจอร์--polish--แก้บั๊ก)
-- 🎤 ร่างสไลด์ Demo: `อ่าน docs/app-idea.md, README.md และ git log --oneline แล้วช่วยกรอก templates/demo-presentation.md` → [day-4 §10](../day-4-build-deploy/README.md#-10-อัปเดต-server--เตรียมนำเสนอ-การบ้าน)
-- ⚙️ สร้าง CI/CD → [day-4 §11](../day-4-build-deploy/README.md#️-11-cicd-ด้วย-github-actions-15001600)
+- 🌍 Deploy → [day-4 §9](../day-4-build-deploy/README.md#-9-deploy-ขึ้น-server-จริง)
+- 🏃 วางแผน Sprint: `วางแผน Sprint (1 ชั่วโมง) เป็น task ย่อยที่แต่ละ task commit ได้เอง เรียงตามลำดับความสำคัญ` → [day-4 §10](../day-4-build-deploy/README.md#-10-sprint--ปิดฟีเจอร์--polish--แก้บั๊ก)
+- 🎤 ร่างสไลด์ Demo: `อ่าน docs/app-idea.md, README.md และ git log --oneline แล้วช่วยกรอก templates/demo-presentation.md` → [day-4 §11](../day-4-build-deploy/README.md#-11-อัปเดต-server--เตรียมนำเสนอ-การบ้าน)
+- ⚙️ สร้าง CI/CD → [day-4 §12](../day-4-build-deploy/README.md#️-12-cicd-ด้วย-github-actions-15001600)
 
 ## 🎤 วันที่ 5 — Demo Day (ไม่มีการสอน)
 - แชร์ Prompt ที่ได้ผลที่สุดของตัวเองใน [community.md](community.md)
