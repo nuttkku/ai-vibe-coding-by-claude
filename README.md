@@ -32,7 +32,7 @@
 | 🧰 1 | [เปิดหลักสูตร + Vibe Coding + ติดตั้งเครื่องมือ](day-1-intro/README.md) | เช้า: เปิดหลักสูตร, แนะนำตัวผู้สอนและผู้อบรม, สาธิตสด · บ่าย: Vibe Coding คืออะไร, ติดตั้ง **VSCode + Claude Code Extension** และ **Git + GitHub Desktop** · การบ้าน: ติดตั้ง Docker, Node.js, VirtualBox |
 | 🎮 2 | [Bootcamp, Docker, App Idea, ฐานข้อมูล, Scaffold + UI](day-2-bootcamp/README.md) | **🎮 Claude Code Bootcamp**, **🌱 Git Bootcamp**, Docker Desktop + **🐳 Docker ลงลึก**, App Idea, `CLAUDE.md`, **🗄️ DBMS + DataGrip / DBeaver**, **Scaffold** Svelte + Express + PostgreSQL + ER Diagram, Svelte UI เชื่อม API |
 | 🏗️ 3 | [Server จำลอง + Cloudflare Tunnel + Login + 2FA](day-3-server-auth/README.md) | เช้า: สร้าง **VirtualBox VM** + เปิดเว็บผ่าน **Cloudflare Quick Tunnel** · บ่าย: **📧 Login ผ่าน Email** (ยืนยันอีเมลด้วย Mailpit) + **🔑 2FA แบบ TOTP** (ให้ Claude เรียนจาก [repo ตัวอย่าง](https://github.com/nuttkku/2FA-example-coding)) |
-| 🚀 4 | [RBAC + Test + Security + Deploy + Sprint + CI/CD](day-4-build-deploy/README.md) | **👮 RBAC** (เรียนจาก repo ตัวอย่างเดิม), UI ให้ครบ, Unit + Integration Test, **Snyk**, **OWASP ZAP**, **Nessus**, Deploy ขึ้น VM ได้ URL HTTPS, Sprint · ปิดท้ายด้วย **⚙️ CI/CD ด้วย GitHub Actions** |
+| 🚀 4 | [RBAC + Test + Security + Deploy + Sprint + CI/CD](day-4-build-deploy/README.md) | **👮 RBAC** (เรียนจาก repo ตัวอย่างเดิม), UI ให้ครบ, Unit + Integration Test, **Snyk**, **OWASP ZAP**, **Nessus**, Deploy ขึ้น VM ได้ URL HTTPS, Sprint · ปิดท้ายด้วย **📜 ที่มาของ CI/CD + ⚙️ CI/CD ด้วย GitHub Actions** |
 | 🎤 5 | Demo Day | **ไม่มีการสอน / ไม่มีหน้าบทเรียน** — ผู้อบรมทุกคนนำเสนอแอปที่สร้างด้วย Vibe Coding บน URL จริง + แชร์ Prompt/Strategy + ปิดหลักสูตร — รูปแบบและเกณฑ์อยู่ใน [`templates/demo-presentation.md`](templates/demo-presentation.md) |
 
 ## 📂 โครงสร้าง Repository
@@ -47,7 +47,7 @@
 │   └── examples/                 # vm-setup.sh
 ├── day-4-build-deploy/       # วันที่ 4: RBAC + UI + Test + Snyk/ZAP/Nessus + Deploy + Sprint + CI/CD
 │   └── examples/                 # ci.yml, zap-rules.tsv, security-notes.md, docker-compose.prod.yml, Caddyfile, backup/restore
-├── guides/                   # Cheat sheet Claude Code, Git, Docker, โหมด·โมเดล·ค่าใช้จ่าย, คู่มือโควต้า
+├── guides/                   # Cheat sheet Claude Code, Git, Docker, โหมด·โมเดล·ค่าใช้จ่าย, คู่มือโควต้า, History of CI/CD
 ├── scripts/                  # check-env.ps1 / check-env.sh ตรวจเครื่องก่อนเรียน
 ├── templates/                # แม่แบบ CLAUDE.md, App Idea, Demo
 ├── prompts/                  # คลัง Prompt ที่ใช้ตลอดหลักสูตร

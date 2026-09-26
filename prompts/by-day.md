@@ -31,6 +31,7 @@
 - 🌍 Deploy → [day-4 §9](../day-4-build-deploy/README.md#-9-deploy-ขึ้น-server-จริง)
 - 🏃 วางแผน Sprint: `วางแผน Sprint (1 ชั่วโมง) เป็น task ย่อยที่แต่ละ task commit ได้เอง เรียงตามลำดับความสำคัญ` → [day-4 §10](../day-4-build-deploy/README.md#-10-sprint--ปิดฟีเจอร์--polish--แก้บั๊ก)
 - 🎤 ร่างสไลด์ Demo: `อ่าน docs/app-idea.md, README.md และ git log --oneline แล้วช่วยกรอก templates/demo-presentation.md` → [day-4 §11](../day-4-build-deploy/README.md#-11-อัปเดต-server--เตรียมนำเสนอ-การบ้าน)
+- 📜 ที่มาที่ไปของ CI/CD → [History of CI/CD](../guides/cicd-history.md)
 - ⚙️ สร้าง CI/CD → [day-4 §12](../day-4-build-deploy/README.md#️-12-cicd-ด้วย-github-actions-15001600)
 
 ## 🎤 วันที่ 5 — Demo Day (ไม่มีการสอน)

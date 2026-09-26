@@ -27,7 +27,8 @@
 | 13:00–13:30 | 🛰️ Nessus: สแกน VM ก่อน/หลังปิดพอร์ต |
 | 13:30–14:15 | 🌍 Deploy ขึ้น VM + Cloudflare Tunnel (ทางลัด: clone + build บน VM) |
 | 14:15–15:00 | 🏃 Sprint: ปิดฟีเจอร์ + Polish + แก้บั๊ก → Backup + อัปเดตแอปบน Server → **Code freeze 15:00** |
-| 15:00–16:00 | ⚙️ **CI/CD ด้วย GitHub Actions**: Test → Snyk → Build → Push Image |
+| 15:00–15:15 | 📜 **ที่มาที่ไปของ CI/CD** (History of CI/CD) |
+| 15:15–16:00 | ⚙️ **CI/CD ด้วย GitHub Actions**: Test → Snyk → Build → Push Image |
 | 🌙 การบ้าน | 🎤 เตรียมสไลด์ + ซ้อมนำเสนอสำหรับ Demo Day · ⭐ เสริม: Playwright E2E |
 
 > 💡 วันนี้แน่นที่สุด — ใครที่ UI หรือ Login/2FA ยังไม่เสร็จ ให้ **ตัด scope** ตั้งแต่เช้า — RBAC ทำแค่ส่วน backend ก่อนได้ (Demo แอปเล็กที่ใช้งานได้จริงดีกว่าแอปใหญ่ที่พัง)
@@ -527,6 +528,30 @@ git push -u origin feat/booking-create
 ---
 
 ## ⚙️ 12. CI/CD ด้วย GitHub Actions (15:00–16:00)
+
+### 📜 ที่มาที่ไป (15:00–15:15)
+
+> 📖 เนื้อหาเต็มพร้อมแหล่งอ้างอิง: **[History of CI/CD](../guides/cicd-history.md)**
+
+**ปัญหาตั้งต้น — "Integration Hell":** สมัยก่อนแต่ละคนเขียนโค้ดแยกกันหลายสัปดาห์แล้วค่อยรวม → โค้ดชนกันเป็นร้อยจุด บั๊กเจอช้า release ปีละไม่กี่ครั้งและน่ากลัว
+
+| ปี | ใคร | เสนออะไร |
+|---|---|---|
+| 1996 | Microsoft / Steve McConnell | **Daily Build and Smoke Test** — build ทั้งระบบทุกวัน + ทดสอบเบื้องต้น |
+| ปลาย 1990s | Kent Beck (Extreme Programming) | **Continuous Integration** — รวมโค้ด + test อัตโนมัติ **หลายครั้งต่อวัน** |
+| 2000 | Martin Fowler | บทความ "Continuous Integration" — แนวปฏิบัติ 11 ข้อ เช่น self-testing build, fix broken builds immediately |
+| ~2001–2011 | CruiseControl → Hudson → Jenkins | เครื่องมือ CI server อัตโนมัติ |
+| 2009 | Timothy Fitz (IMVU) · Allspaw & Hammond (Flickr) | **Continuous Deployment** วันละ 50 ครั้ง · **DevOps** — Dev กับ Ops ทำงานร่วมกัน |
+| 2010 | Jez Humble & David Farley | หนังสือ **Continuous Delivery** — **Deployment Pipeline**, "If it hurts, do it more frequently" |
+| 2013 | Docker | build ครั้งเดียวเป็น image รันเหมือนกันทุกที่ |
+| 2018 | Accelerate / DORA | งานวิจัย: ทีมที่ deploy บ่อย **เสถียรกว่า** — วัดด้วย DORA metrics |
+| 2019 | GitHub Actions | CI/CD อยู่ใน repo เป็นไฟล์ YAML — **ที่เราจะทำต่อจากนี้** |
+
+**CI vs CD:** **CI** = รวมโค้ดบ่อย + build/test อัตโนมัติทุก push · **Continuous Delivery** = ผ่าน pipeline แล้ว **พร้อม release** (คนกดปุ่ม) · **Continuous Deployment** = ผ่านแล้ว **ขึ้นระบบจริงอัตโนมัติ**
+
+🗣️ ถามห้อง: *"ทำไม deploy บ่อยขึ้น ระบบถึงพังน้อยลง?"* — แล้วเฉลยด้วยหลัก "งานเล็ก → พังเล็ก → หาสาเหตุง่าย → แก้เร็ว"
+
+### ⚙️ ลงมือสร้าง Pipeline (15:15–16:00)
 
 ### 🗺️ ภาพรวม Pipeline
 
