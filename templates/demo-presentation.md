@@ -11,7 +11,7 @@
 
 ## ⚙️ 3. เบื้องหลัง (2 นาที)
 - Architecture: Svelte → Express → PostgreSQL (Docker Compose)
-- CI/CD: <ลิงก์ GitHub Actions run ล่าสุดที่ผ่าน>
+- CI/CD: <ด่านใน pipeline ของเรา + ผลรันล่าสุด (และลิงก์ GitHub Actions ถ้าทำส่วนเสริม)>
 - Test: <จำนวน test / coverage>
 - Security: <ผล Snyk / ZAP สรุป และสิ่งที่แก้ไป>
 

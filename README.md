@@ -21,7 +21,7 @@
 - 🔑 ทำระบบ **Login ผ่าน Email + 2FA (TOTP) + RBAC** โดยให้ Claude เรียนจากโค้ดตัวอย่างแล้วนำมาใช้
 - 🧪 ให้ Claude เขียน Unit/Integration Test และอ่านผลเพื่อแก้บั๊ก
 - 🛡️ สแกนความปลอดภัยด้วย **Snyk**, **OWASP ZAP**, **Nessus**
-- ⚙️ สร้าง Pipeline **GitHub Actions**: Test → Security Scan → Build → Push Image
+- ⚙️ ออกแบบ **CI/CD Pipeline** เอง (Test → Security → Build → Deploy) แล้วให้ AI สร้างและรันตาม
 - 🌍 สร้าง Server จำลองด้วย **VirtualBox** แล้ว Deploy แอปขึ้นไป เปิดสู่อินเทอร์เน็ตด้วย **Cloudflare Tunnel** (ไม่ต้องมีโดเมน)
 - 🎤 นำเสนอแอปของตัวเองบน URL จริงใน **Demo Day** (วันที่ 5)
 
@@ -32,7 +32,7 @@
 | 🧰 1 | [เปิดหลักสูตร + Vibe Coding + ติดตั้งเครื่องมือ](day-1-intro/README.md) | เช้า: เปิดหลักสูตร, แนะนำตัวผู้สอนและผู้อบรม, สาธิตสด · บ่าย: Vibe Coding คืออะไร, ติดตั้ง **VSCode + Claude Code Extension** และ **Git + GitHub Desktop** · การบ้าน: ติดตั้ง Docker, Node.js, VirtualBox |
 | 🎮 2 | [Bootcamp, Docker, App Idea, ฐานข้อมูล, Scaffold + UI](day-2-bootcamp/README.md) | **🎮 Claude Code Bootcamp**, **🌱 Git Bootcamp**, Docker Desktop + **🐳 Docker ลงลึก**, App Idea, `CLAUDE.md`, **🗄️ DBMS + DataGrip / DBeaver**, **Scaffold** Svelte + Express + PostgreSQL + ER Diagram, Svelte UI เชื่อม API |
 | 🏗️ 3 | [Server จำลอง + Cloudflare Tunnel + Login + 2FA](day-3-server-auth/README.md) | เช้า: สร้าง **VirtualBox VM** + เปิดเว็บผ่าน **Cloudflare Quick Tunnel** · บ่าย: **📧 Login ผ่าน Email** (ยืนยันอีเมลด้วย Mailpit) + **🔑 2FA แบบ TOTP** (ให้ Claude เรียนจาก [repo ตัวอย่าง](https://github.com/nuttkku/2FA-example-coding)) |
-| 🚀 4 | [RBAC + Test + Security + Deploy + Sprint + CI/CD](day-4-build-deploy/README.md) | **👮 RBAC** (เรียนจาก repo ตัวอย่างเดิม), UI ให้ครบ, Unit + Integration Test, **Snyk**, **OWASP ZAP**, **Nessus**, Deploy ขึ้น VM ได้ URL HTTPS, Sprint · ปิดท้ายด้วย **📜 ที่มาของ CI/CD + ⚙️ CI/CD ด้วย GitHub Actions** |
+| 🚀 4 | [RBAC + Test + Security + Deploy + Sprint + CI/CD](day-4-build-deploy/README.md) | **👮 RBAC** (เรียนจาก repo ตัวอย่างเดิม), UI ให้ครบ, Unit + Integration Test, **Snyk**, **OWASP ZAP**, **Nessus**, Deploy ขึ้น VM ได้ URL HTTPS, Sprint · ปิดท้ายด้วย **📜 ที่มาของ CI/CD + ⚙️ ออกแบบ Pipeline เองแล้วให้ AI ทำตาม** (GitHub Actions เป็นส่วนเสริม) |
 | 🎤 5 | Demo Day | **ไม่มีการสอน / ไม่มีหน้าบทเรียน** — ผู้อบรมทุกคนนำเสนอแอปที่สร้างด้วย Vibe Coding บน URL จริง + แชร์ Prompt/Strategy + ปิดหลักสูตร — รูปแบบและเกณฑ์อยู่ใน [`templates/demo-presentation.md`](templates/demo-presentation.md) |
 
 ## 📂 โครงสร้าง Repository
@@ -49,7 +49,7 @@
 │   └── examples/                 # ci.yml, zap-rules.tsv, security-notes.md, docker-compose.prod.yml, Caddyfile, backup/restore
 ├── guides/                   # Cheat sheet Claude Code, Git, Docker, โหมด·โมเดล·ค่าใช้จ่าย, คู่มือโควต้า, History of CI/CD
 ├── scripts/                  # check-env.ps1 / check-env.sh ตรวจเครื่องก่อนเรียน
-├── templates/                # แม่แบบ CLAUDE.md, App Idea, Demo
+├── templates/                # แม่แบบ CLAUDE.md, App Idea, Pipeline spec, Demo
 ├── prompts/                  # คลัง Prompt ที่ใช้ตลอดหลักสูตร
 ├── CLAUDE.md                 # คำแนะนำสำหรับ Claude เมื่อช่วยแก้ไข repo นี้
 ├── CREDITS.md                # แหล่งอ้างอิงและเครดิต

@@ -37,5 +37,6 @@ Full idea and scope: docs/app-idea.md
 
 ## Definition of Done
 - Tests pass (`npm test` in backend and frontend).
+- `bash scripts/pipeline.sh --no-deploy` passes before every push (pipeline stages and rules are defined in docs/pipeline.md — follow them exactly, never skip a stage).
 - `docker compose up -d --build` starts cleanly from scratch.
 - README updated if setup or commands changed.

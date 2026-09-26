@@ -32,7 +32,8 @@
 - 🏃 วางแผน Sprint: `วางแผน Sprint (1 ชั่วโมง) เป็น task ย่อยที่แต่ละ task commit ได้เอง เรียงตามลำดับความสำคัญ` → [day-4 §10](../day-4-build-deploy/README.md#-10-sprint--ปิดฟีเจอร์--polish--แก้บั๊ก)
 - 🎤 ร่างสไลด์ Demo: `อ่าน docs/app-idea.md, README.md และ git log --oneline แล้วช่วยกรอก templates/demo-presentation.md` → [day-4 §11](../day-4-build-deploy/README.md#-11-อัปเดต-server--เตรียมนำเสนอ-การบ้าน)
 - 📜 ที่มาที่ไปของ CI/CD → [History of CI/CD](../guides/cicd-history.md)
-- ⚙️ สร้าง CI/CD → [day-4 §12](../day-4-build-deploy/README.md#️-12-cicd-ด้วย-github-actions-15001600)
+- 🤖 ให้ Claude สร้าง pipeline ตามสเปก: `อ่าน docs/pipeline.md แล้วสร้าง scripts/pipeline.sh ที่ทำตามทุกด่านและทุกกติกาในสเปกเป๊ะๆ ...` → [day-4 §12](../day-4-build-deploy/README.md#️-12-cicd--ออกแบบ-pipeline-เอง-แล้วให้-ai-ทำตาม-15001600)
+- 🚦 รัน pipeline ผ่าน Claude: `/pipeline --no-deploy`
 
 ## 🎤 วันที่ 5 — Demo Day (ไม่มีการสอน)
 - แชร์ Prompt ที่ได้ผลที่สุดของตัวเองใน [community.md](community.md)

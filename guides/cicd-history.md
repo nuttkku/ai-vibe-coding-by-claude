@@ -36,7 +36,7 @@
 | **ม.ค. 2011** | ชุมชน Hudson ลงมติ fork โปรเจกต์ใหม่ชื่อ **Jenkins** หลังปัญหากับ Oracle (release แรก 11 ก.พ. 2011) [5] | Jenkins กลายเป็น CI server ที่ใช้มากที่สุดในยุคนั้น |
 | **2013** | **Docker** เปิดตัว [11] | build ครั้งเดียวเป็น **image** แล้วรันเหมือนกันทุกที่ — CI/CD ส่งมอบ image แทนไฟล์ |
 | **2014–2018** | รายงาน **State of DevOps** และหนังสือ **Accelerate** (Forsgren, Humble, Kim, 2018) [12] | พิสูจน์ด้วยข้อมูลว่าทีมที่ deploy บ่อยกลับ **เสถียรกว่า** — เกิด **DORA metrics** [13] |
-| **2018–2019** | **GitHub Actions** เปิดตัว (2018) แล้วรองรับ CI/CD เต็มรูปแบบ 8 ส.ค. 2019 (GA 13 พ.ย. 2019) [14] | CI/CD อยู่ใน repo เดียวกับโค้ด เขียนเป็นไฟล์ YAML — **สิ่งที่เราใช้ในหลักสูตร** |
+| **2018–2019** | **GitHub Actions** เปิดตัว (2018) แล้วรองรับ CI/CD เต็มรูปแบบ 8 ส.ค. 2019 (GA 13 พ.ย. 2019) [14] | CI/CD อยู่ใน repo เดียวกับโค้ด เขียนเป็นไฟล์ YAML — ในหลักสูตรใช้เป็น **ส่วนเสริม** |
 | **2020s** | **DevSecOps / Shift-left security** — ใส่ security scan (SCA, SAST, DAST, image scan) ใน pipeline · กรอบความปลอดภัยของ supply chain เช่น SLSA [15] | ตรวจความปลอดภัย **ทุก commit** ไม่ใช่ปีละครั้ง — เหมือน Snyk/ZAP ใน `ci.yml` ของเรา |
 
 ---
@@ -144,20 +144,19 @@
 
 ## 🔗 5. เชื่อมกับ pipeline ในหลักสูตร
 
-`day-4-build-deploy/examples/ci.yml` ของเรานำแนวคิดทั้งหมดข้างบนมาใช้:
+ในหลักสูตรเรา **ไม่ยึดติดเครื่องมือ** — ผู้เรียนเขียนสเปก pipeline เอง (`docs/pipeline.md`) แล้วให้ Claude สร้าง `scripts/pipeline.sh` ที่ทำตามสเปก ส่วน GitHub Actions เป็นส่วนเสริม
 
 | แนวคิด (ใคร) | อยู่ตรงไหนในหลักสูตร |
 |---|---|
-| Self-testing build, ทุก push ต้อง build (Fowler [2]) | job `test` รันทุก push/PR |
-| Fix broken builds immediately (Fowler [2]) | กฎ "Pipeline แดง → แก้ที่ต้นเหตุ ห้ามปิด test" |
-| Build quality in / Shift-left security (Humble & Farley [10], DevSecOps [15]) | job `snyk` + `zap` ก่อน build |
-| Build artifact ครั้งเดียว (Humble & Farley [10]) + Docker [11] | job `build-push` สร้าง image ไว้ใน GHCR ครั้งเดียว |
-| Continuous Delivery (Humble & Farley [10]) | image พร้อม deploy — เรา `pull` + `up -d` บน VM เอง |
-| Continuous Deployment (Fitz [7]) | (ต่อยอด) cron บน VM ดึง image ใหม่อัตโนมัติ |
-| Hide work-in-progress (Fowler [2]) | feature branch + Pull Request |
-| Everyone can see what's happening (Fowler [2]) | แท็บ **Actions** บน GitHub |
-
----
+| Keep everything in version control (Humble & Farley [10]) | สเปก `docs/pipeline.md` และ `scripts/pipeline.sh` อยู่ใน git |
+| Make the build self-testing (Fowler [2]) | ด่าน 🧪 Test |
+| Fix broken builds immediately (Fowler [2]) | กติกา **fail fast** — ด่านไหนแดง หยุดทั้งเส้น |
+| Build quality in / Shift-left security (Humble & Farley [10], DevSecOps [15]) | ด่าน 🛡️ Security ก่อน Build |
+| Build artifact ครั้งเดียว (Humble & Farley [10]) + Docker [11] | ด่าน 🐳 Build (docker image) |
+| Test in a clone of production (Fowler [2]) | ด่าน 💨 Smoke รันด้วย Docker Compose เหมือนบน VM |
+| Automate deployment (Fowler [2]) / Continuous Delivery (Humble & Farley [10]) | ด่าน 🌍 Deploy ขึ้น VM — **เรากดรันเอง = Continuous Delivery** |
+| Continuous Deployment (Fitz [7]) | (ต่อยอด) ให้ pipeline รันอัตโนมัติทุก push เช่น ผ่าน GitHub Actions |
+| Everyone can see what's happening (Fowler [2]) | สคริปต์พิมพ์ ✅/❌ ทุกด่าน · (เสริม) แท็บ Actions บน GitHub |
 
 ## 🗣️ 6. คำถามชวนคิดในห้อง
 

@@ -1,4 +1,4 @@
-# 🚀 วันที่ 4 — RBAC + Test + Security + Deploy + Sprint + CI/CD
+# 🚀 วันที่ 4 — RBAC + Test + Security + Deploy + Sprint + CI/CD Pipeline
 
 ## 🎯 เป้าหมายของวัน
 
@@ -8,7 +8,7 @@
 - 🛡️ สแกนความปลอดภัย 3 ระดับ: **Snyk** (dependency) → **OWASP ZAP** (เว็บแอป) → **Nessus** (VM)
 - 🌍 **Deploy แอปขึ้น VM** และได้ URL HTTPS ผ่าน Cloudflare Tunnel
 - 🏃 Sprint ปิด Must have + Polish แล้วอัปเดตขึ้น Server
-- ⚙️ ปิดท้ายด้วย **CI/CD**: GitHub Actions รัน test + security scan แล้ว build/push image อัตโนมัติ
+- ⚙️ ปิดท้ายด้วย **CI/CD**: ออกแบบ pipeline เอง (test → security → build → smoke → deploy) แล้วให้ AI สร้างและรันตามสเปก — GitHub Actions เป็นส่วนเสริม
 - 🎤 เตรียมสไลด์และซ้อมนำเสนอสำหรับ **Demo Day (วันที่ 5 — นำเสนอทั้งวัน ไม่มีการสอน)**
 
 > ⚠️ **จริยธรรมและกฎหมาย:** สแกนเฉพาะแอปและเครื่องของตัวเอง หรือที่ได้รับอนุญาตเป็นลายลักษณ์อักษรเท่านั้น
@@ -28,8 +28,8 @@
 | 13:30–14:15 | 🌍 Deploy ขึ้น VM + Cloudflare Tunnel (ทางลัด: clone + build บน VM) |
 | 14:15–15:00 | 🏃 Sprint: ปิดฟีเจอร์ + Polish + แก้บั๊ก → Backup + อัปเดตแอปบน Server → **Code freeze 15:00** |
 | 15:00–15:15 | 📜 **ที่มาที่ไปของ CI/CD** (History of CI/CD) |
-| 15:15–16:00 | ⚙️ **CI/CD ด้วย GitHub Actions**: Test → Snyk → Build → Push Image |
-| 🌙 การบ้าน | 🎤 เตรียมสไลด์ + ซ้อมนำเสนอสำหรับ Demo Day · ⭐ เสริม: Playwright E2E |
+| 15:15–16:00 | ⚙️ **ออกแบบ Pipeline เอง แล้วให้ AI สร้างและรันตาม**: Test → Security → Build → Smoke → Deploy ขึ้น VM |
+| 🌙 การบ้าน | 🎤 เตรียมสไลด์ + ซ้อมนำเสนอสำหรับ Demo Day · ⭐ เสริม: GitHub Actions, Playwright E2E |
 
 > 💡 วันนี้แน่นที่สุด — ใครที่ UI หรือ Login/2FA ยังไม่เสร็จ ให้ **ตัด scope** ตั้งแต่เช้า — RBAC ทำแค่ส่วน backend ก่อนได้ (Demo แอปเล็กที่ใช้งานได้จริงดีกว่าแอปใหญ่ที่พัง)
 
@@ -346,7 +346,7 @@ docker logs tunnel 2>&1 | grep trycloudflare.com
   ```
 - 🛡️ ตรวจว่า `docker-compose.yml` ของโปรเจกต์ **ไม่ publish พอร์ต DB** (`5432`) — สแกน Nessus ซ้ำหลัง deploy ต้องไม่เห็นพอร์ตนี้
 
-ทางด้านล่าง (**ทางเต็ม**) ใช้ image ที่ CI build ไว้ใน GHCR + Caddy เป็น reverse proxy — ใช้เมื่อตั้ง GitHub Actions ([ข้อ 12](#️-12-cicd-ด้วย-github-actions-15001600)) สำเร็จแล้ว
+ทางด้านล่าง (**ทางเต็ม**) ใช้ image ที่ CI build ไว้ใน GHCR + Caddy เป็น reverse proxy — ใช้เมื่อทำส่วนเสริม GitHub Actions ([ข้อ 12](#️-12-cicd--ออกแบบ-pipeline-เอง-แล้วให้-ai-ทำตาม-15001600)) สำเร็จแล้ว
 
 ### 🅰️ ทางเต็ม A: image จาก CI + Caddy + Cloudflare Quick Tunnel
 
@@ -527,7 +527,7 @@ git push -u origin feat/booking-create
 
 ---
 
-## ⚙️ 12. CI/CD ด้วย GitHub Actions (15:00–16:00)
+## ⚙️ 12. CI/CD — ออกแบบ Pipeline เอง แล้วให้ AI ทำตาม (15:00–16:00)
 
 ### 📜 ที่มาที่ไป (15:00–15:15)
 
@@ -545,15 +545,84 @@ git push -u origin feat/booking-create
 | 2010 | Jez Humble & David Farley | หนังสือ **Continuous Delivery** — **Deployment Pipeline**, "If it hurts, do it more frequently" |
 | 2013 | Docker | build ครั้งเดียวเป็น image รันเหมือนกันทุกที่ |
 | 2018 | Accelerate / DORA | งานวิจัย: ทีมที่ deploy บ่อย **เสถียรกว่า** — วัดด้วย DORA metrics |
-| 2019 | GitHub Actions | CI/CD อยู่ใน repo เป็นไฟล์ YAML — **ที่เราจะทำต่อจากนี้** |
+| 2019 | GitHub Actions | CI/CD อยู่ใน repo เป็นไฟล์ YAML — ในหลักสูตรใช้เป็น **ส่วนเสริม** |
 
 **CI vs CD:** **CI** = รวมโค้ดบ่อย + build/test อัตโนมัติทุก push · **Continuous Delivery** = ผ่าน pipeline แล้ว **พร้อม release** (คนกดปุ่ม) · **Continuous Deployment** = ผ่านแล้ว **ขึ้นระบบจริงอัตโนมัติ**
 
 🗣️ ถามห้อง: *"ทำไม deploy บ่อยขึ้น ระบบถึงพังน้อยลง?"* — แล้วเฉลยด้วยหลัก "งานเล็ก → พังเล็ก → หาสาเหตุง่าย → แก้เร็ว"
 
-### ⚙️ ลงมือสร้าง Pipeline (15:15–16:00)
+### ⚙️ ลงมือ: สเปก → สคริปต์ → รัน (15:15–16:00)
 
-### 🗺️ ภาพรวม Pipeline
+### 🧭 หลักคิด: เราออกแบบ Pipeline — AI ลงมือทำตาม
+
+เครื่องมือ CI/CD เปลี่ยนได้เสมอ (Jenkins, GitLab CI, GitHub Actions ฯลฯ) แต่สิ่งที่ทีมต้องตัดสินใจเองคือ **"มีด่านอะไร ผ่านเมื่อไหร่ และกติกาคืออะไร"** — ตรงกับหลักของ Humble & Farley ที่ให้ pipeline อยู่ใน version control และทำซ้ำได้ ([History of CI/CD](../guides/cicd-history.md))
+
+ใน Vibe Coding เราจึง **เขียนสเปก pipeline เป็นภาษาคน** → ให้ Claude **สร้างสคริปต์ที่ทำตามเป๊ะ** → รันจากเครื่องตัวเองและ **deploy ขึ้น VM ผ่าน SSH** ได้เลย (เครื่องเราต่อ VM ผ่าน Host-only อยู่แล้ว)
+
+```
+ docs/pipeline.md (สเปกที่เราเขียน)
+          │  Claude อ่านแล้วสร้าง
+          ▼
+ scripts/pipeline.sh:  🧪 Test ─► 🛡️ Security ─► 🐳 Build ─► 💨 Smoke ─► 🌍 Deploy ขึ้น VM
+                       └──────────── CI ────────────────────┘   └── CD ──┘
+                       ด่านไหนแดง = หยุดทั้งเส้น (fail fast)
+```
+
+### 📝 1. เขียนสเปก Pipeline เอง (10 นาที)
+
+คัดลอก [`templates/pipeline.md`](../templates/pipeline.md) ไปเป็น `docs/pipeline.md` ในโปรเจกต์ แล้วปรับให้ตรงกับแอปของตัวเอง — แม่แบบมีให้แล้ว 5 ด่าน:
+
+| # | ด่าน | ผ่านเมื่อ |
+|---|---|---|
+| 1 | 🧪 Test | test ผ่านทุกข้อ |
+| 2 | 🛡️ Security (npm audit / Snyk) | ไม่มีช่องโหว่ High ขึ้นไป |
+| 3 | 🐳 Build (`docker compose build`) | build สำเร็จ |
+| 4 | 💨 Smoke (`up -d --wait` + `curl /api/health`) | HTTP 200 |
+| 5 | 🌍 Deploy (SSH → `git pull` → `up -d --build` บน VM) | HTTP 200 บน VM, URL tunnel เดิม |
+
+และ **กติกา**: fail fast · ห้ามข้ามด่าน/ปิด test/ลด threshold · deploy เฉพาะ `main` ที่ commit ครบ · ไม่มีความลับในสคริปต์
+
+> 💡 จะเพิ่มด่านเองก็ได้ เช่น ZAP baseline หลัง Smoke หรือ Trivy สแกน image หลัง Build — **เราเป็นคนออกแบบ**
+
+### 🤖 2. ให้ Claude สร้าง Pipeline ตามสเปก (Plan mode, 15 นาที)
+
+```
+อ่าน docs/pipeline.md แล้วสร้าง scripts/pipeline.sh ที่ทำตามทุกด่านและทุกกติกาในสเปกเป๊ะๆ:
+- bash ที่รันได้ทั้ง Git Bash (Windows), macOS และ Linux, ใช้ set -euo pipefail
+- พิมพ์ชื่อด่าน, ✅/❌ และเวลาที่ใช้ของแต่ละด่าน แล้วสรุปเป็นตารางตอนจบ
+- รองรับ --no-deploy (หยุดก่อนด่าน Deploy)
+- ด่าน Deploy อ่านที่อยู่ VM จาก env DEPLOY_HOST และตรวจว่าอยู่ branch main และไม่มีไฟล์ค้าง commit ก่อน deploy
+- ห้ามเก็บรหัสผ่านหรือความลับในสคริปต์
+- อัปเดต CLAUDE.md หัวข้อ Definition of Done: "bash scripts/pipeline.sh --no-deploy ต้องผ่านก่อน push"
+ถ้าสเปกไม่ชัดตรงไหนให้ถามฉันก่อน อย่าเดา
+```
+
+อ่านแผน → ตรวจว่า **ครบทุกด่านตามลำดับ** และ **ไม่ได้แอบข้ามกติกาข้อไหน** → อนุมัติ
+
+### 🧩 3. ผูกเข้ากับ Claude Code (5 นาที)
+
+- คัดลอก [`templates/claude/commands/pipeline.md`](../templates/claude/commands/pipeline.md) ไปเป็น `.claude/commands/pipeline.md` → พิมพ์ `/pipeline --no-deploy` ให้ Claude รันและสรุปผลให้
+- เมื่อ `CLAUDE.md` มีกฎ "pipeline ต้องผ่านก่อน push" แล้ว Claude จะรันเองทุกครั้งก่อนบอกว่างานเสร็จ
+
+### 🧪 4. ลองให้พัง แล้วดูว่า Pipeline หยุดจริง (10 นาที)
+
+1. แก้ test ให้ fail 1 ข้อ → `bash scripts/pipeline.sh --no-deploy` → ต้อง **หยุดที่ด่าน Test** และไม่ build ต่อ ✅
+2. แก้กลับ → รันครบทุกด่าน: `DEPLOY_HOST=<user>@192.168.56.101 bash scripts/pipeline.sh` → เห็น ✅ ทุกด่าน
+3. เปิด URL ของ tunnel บนมือถือ → เห็นเวอร์ชันล่าสุด 🎉
+4. คุยกันในห้อง: pipeline นี้เป็น Continuous **Delivery** หรือ Continuous **Deployment**? (เรายังเป็นคนกดรัน → Delivery)
+
+---
+
+### ⭐ เสริม: รัน Pipeline เดียวกันบนเครื่องกลางด้วย GitHub Actions
+
+ถ้ามีเวลาหรือเป็นการบ้าน — ย้ายด่าน 1–3 ไปรันอัตโนมัติทุก push บน GitHub (ด่าน Deploy ยังรันจากเครื่องเรา เพราะ VM อยู่หลัง NAT)
+
+```
+แปลงด่าน Test, Security, Build ใน docs/pipeline.md เป็น .github/workflows/ci.yml
+โดยใช้ day-4 examples/ci.yml เป็นต้นแบบ และให้ทำตามกติกาเดิมใน docs/pipeline.md ทุกข้อ
+```
+
+#### 🗺️ ภาพรวม Pipeline
 
 ```
 push / PR
@@ -570,7 +639,7 @@ push / PR
 
 ตัวอย่างเต็ม: [`examples/ci.yml`](examples/ci.yml) — **คัดลอกไปไว้ที่ `.github/workflows/ci.yml` ในโปรเจกต์ของตัวเอง**
 
-### 💬 Prompt ให้ Claude เขียน/ปรับ Workflow
+#### 💬 Prompt ให้ Claude เขียน/ปรับ Workflow
 
 ```
 สร้าง .github/workflows/ci.yml สำหรับโปรเจกต์นี้ โดยใช้ day-4 examples/ci.yml เป็นต้นแบบ:
@@ -581,12 +650,12 @@ push / PR
 ปรับ path, พอร์ต, ชื่อ db ให้ตรงกับโปรเจกต์จริง และอธิบายแต่ละ job สั้นๆ
 ```
 
-### 🔐 ตั้งค่าใน GitHub
+#### 🔐 ตั้งค่าใน GitHub
 1. Snyk → Account settings → คัดลอก **Auth Token**
 2. GitHub repo → Settings → Secrets and variables → Actions → **New repository secret** ชื่อ `SNYK_TOKEN`
 3. Push แล้วดูผลที่แท็บ **Actions**
 
-### 🚨 เมื่อ Pipeline แดง
+#### 🚨 เมื่อ Pipeline แดง
 ```
 GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 <วาง log ช่วงที่ error>
@@ -597,7 +666,7 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 
 > ⏱️ **มีเวลา 1 ชั่วโมง:** ถ้า job `zap` ยังไม่ผ่าน ให้ปิด job นั้นไว้ก่อน (comment ออก) แล้วให้ `test` → `snyk` → `build-push` เขียวให้ได้ — ZAP สแกนด้วยมือไปแล้วในข้อ 7
 
-### 🚚 CD: ส่งของขึ้น Server
+#### 🚚 CD: ส่งของขึ้น Server
 
 - **CI** (Continuous Integration) = ทุก push ต้องผ่าน test + security scan อัตโนมัติ
 - **CD** (Continuous Delivery/Deployment) = build image ที่ผ่าน CI แล้วส่งไปพร้อมใช้งาน — job `build-push` ส่ง image ขึ้น **GHCR** แล้ว
@@ -622,8 +691,8 @@ GitHub Actions job "<ชื่อ job>" fail ด้วย log นี้:
 - [ ] 🏃 ฟีเจอร์ Must have ใช้งานได้ครบ และ schema เปลี่ยนผ่าน migration ใหม่เท่านั้น
 - [ ] 💾 Backup DB บน VM แล้วอย่างน้อย 1 ครั้ง · 🔒 Postgres ไม่เปิดพอร์ตออกภายนอก
 - [ ] 📄 README ของโปรเจกต์มี URL, วิธีรัน, สถาปัตยกรรม
-- [ ] ⚙️ `.github/workflows/ci.yml` รัน `test` → `snyk` → `build-push` เขียว และมี image ใน ghcr.io
-- [ ] 🌙 (การบ้าน) สไลด์ Demo พร้อม และซ้อมจับเวลาแล้ว · ⭐ (เสริม) Playwright E2E ผ่าน
+- [ ] ⚙️ มี `docs/pipeline.md` (สเปกที่เขียนเอง) + `scripts/pipeline.sh` ที่ Claude สร้าง — รันครบทุกด่าน, หยุดจริงเมื่อ test พัง และ deploy ขึ้น VM ได้
+- [ ] 🌙 (การบ้าน) สไลด์ Demo พร้อม และซ้อมจับเวลาแล้ว · ⭐ (เสริม) GitHub Actions เขียว, Playwright E2E ผ่าน
 
 ## 🛠️ Troubleshooting
 
